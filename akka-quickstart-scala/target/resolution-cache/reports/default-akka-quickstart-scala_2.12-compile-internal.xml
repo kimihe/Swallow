@@ -7,100 +7,100 @@
 		revision="1.0"
 		conf="compile-internal"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
-		date="20170622174847"/>
+		date="20170624152630"/>
 	<dependencies>
 		<module organisation="com.typesafe.akka" name="akka-remote_2.12">
-			<revision name="2.5.2" status="release" pubdate="20170524175323" resolver="public" artresolver="public" homepage="http://akka.io/" downloaded="true" searched="true" default="false" conf="default, compile, runtime, default(compile), master" position="5">
+			<revision name="2.5.2" status="release" pubdate="20170524175323" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://akka.io/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="5">
 				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
-				<metadata-artifact status="successful" details="" size="3896" time="1296" location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-remote_2.12/ivy-2.5.2.xml" searched="true" original-local-location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-remote_2.12/ivy-2.5.2.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/akka/akka-remote_2.12/2.5.2/akka-remote_2.12-2.5.2.pom"/>
+				<metadata-artifact status="no" details="" size="4276" time="0" location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-remote_2.12/ivy-2.5.2.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/akka/akka-remote_2.12/2.5.2/akka-remote_2.12-2.5.2.pom"/>
 				<caller organisation="default" name="akka-quickstart-scala_2.12" conf="compile-internal, compile, provided, optional" rev="2.5.2" rev-constraint-default="2.5.2" rev-constraint-dynamic="2.5.2" callerrev="1.0"/>
 				<artifacts>
-					<artifact name="akka-remote_2.12" type="jar" ext="jar" status="successful" details="" size="2250485" time="11935" location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-remote_2.12/jars/akka-remote_2.12-2.5.2.jar">
+					<artifact name="akka-remote_2.12" type="jar" ext="jar" status="no" details="" size="2250485" time="0" location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-remote_2.12/jars/akka-remote_2.12-2.5.2.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/typesafe/akka/akka-remote_2.12/2.5.2/akka-remote_2.12-2.5.2.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
 		</module>
 		<module organisation="io.aeron" name="aeron-driver">
-			<revision name="1.2.5" status="release" pubdate="20170413043450" resolver="public" artresolver="public" homepage="https://github.com/real-logic/Aeron" downloaded="true" searched="true" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="12">
+			<revision name="1.2.5" status="release" pubdate="20170413043450" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/real-logic/Aeron" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="12">
 				<license name="The Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
-				<metadata-artifact status="successful" details="" size="2286" time="1312" location="/Users/zhouqihua/.ivy2/cache/io.aeron/aeron-driver/ivy-1.2.5.xml" searched="true" original-local-location="/Users/zhouqihua/.ivy2/cache/io.aeron/aeron-driver/ivy-1.2.5.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/io/aeron/aeron-driver/1.2.5/aeron-driver-1.2.5.pom"/>
+				<metadata-artifact status="no" details="" size="3067" time="0" location="/Users/zhouqihua/.ivy2/cache/io.aeron/aeron-driver/ivy-1.2.5.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/io/aeron/aeron-driver/1.2.5/aeron-driver-1.2.5.pom"/>
 				<caller organisation="com.typesafe.akka" name="akka-remote_2.12" conf="default, compile, runtime, master" rev="1.2.5" rev-constraint-default="1.2.5" rev-constraint-dynamic="1.2.5" callerrev="2.5.2"/>
 				<artifacts>
-					<artifact name="aeron-driver" type="jar" ext="jar" status="successful" details="" size="218992" time="2123" location="/Users/zhouqihua/.ivy2/cache/io.aeron/aeron-driver/jars/aeron-driver-1.2.5.jar">
+					<artifact name="aeron-driver" type="jar" ext="jar" status="no" details="" size="218992" time="0" location="/Users/zhouqihua/.ivy2/cache/io.aeron/aeron-driver/jars/aeron-driver-1.2.5.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/io/aeron/aeron-driver/1.2.5/aeron-driver-1.2.5.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
 		</module>
 		<module organisation="io.aeron" name="aeron-client">
-			<revision name="1.2.5" status="release" pubdate="20170413043437" resolver="public" artresolver="public" homepage="https://github.com/real-logic/Aeron" downloaded="true" searched="true" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="13">
+			<revision name="1.2.5" status="release" pubdate="20170413043437" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/real-logic/Aeron" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="13">
 				<license name="The Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
-				<metadata-artifact status="successful" details="" size="2282" time="1216" location="/Users/zhouqihua/.ivy2/cache/io.aeron/aeron-client/ivy-1.2.5.xml" searched="true" original-local-location="/Users/zhouqihua/.ivy2/cache/io.aeron/aeron-client/ivy-1.2.5.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/io/aeron/aeron-client/1.2.5/aeron-client-1.2.5.pom"/>
+				<metadata-artifact status="no" details="" size="3063" time="0" location="/Users/zhouqihua/.ivy2/cache/io.aeron/aeron-client/ivy-1.2.5.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/io/aeron/aeron-client/1.2.5/aeron-client-1.2.5.pom"/>
 				<caller organisation="com.typesafe.akka" name="akka-remote_2.12" conf="default, compile, runtime, master" rev="1.2.5" rev-constraint-default="1.2.5" rev-constraint-dynamic="1.2.5" callerrev="2.5.2"/>
 				<caller organisation="io.aeron" name="aeron-driver" conf="compile, runtime" rev="1.2.5" rev-constraint-default="1.2.5" rev-constraint-dynamic="1.2.5" callerrev="1.2.5"/>
 				<artifacts>
-					<artifact name="aeron-client" type="jar" ext="jar" status="successful" details="" size="111150" time="1734" location="/Users/zhouqihua/.ivy2/cache/io.aeron/aeron-client/jars/aeron-client-1.2.5.jar">
+					<artifact name="aeron-client" type="jar" ext="jar" status="no" details="" size="111150" time="0" location="/Users/zhouqihua/.ivy2/cache/io.aeron/aeron-client/jars/aeron-client-1.2.5.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/io/aeron/aeron-client/1.2.5/aeron-client-1.2.5.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
 		</module>
 		<module organisation="org.agrona" name="agrona">
-			<revision name="0.9.5" status="release" pubdate="20170413041342" resolver="public" artresolver="public" homepage="https://github.com/real-logic/Agrona" downloaded="true" searched="true" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="14">
+			<revision name="0.9.5" status="release" pubdate="20170413041342" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/real-logic/Agrona" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="14">
 				<license name="The Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
-				<metadata-artifact status="successful" details="" size="2088" time="1312" location="/Users/zhouqihua/.ivy2/cache/org.agrona/agrona/ivy-0.9.5.xml" searched="true" original-local-location="/Users/zhouqihua/.ivy2/cache/org.agrona/agrona/ivy-0.9.5.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/agrona/agrona/0.9.5/agrona-0.9.5.pom"/>
+				<metadata-artifact status="no" details="" size="2893" time="0" location="/Users/zhouqihua/.ivy2/cache/org.agrona/agrona/ivy-0.9.5.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/agrona/agrona/0.9.5/agrona-0.9.5.pom"/>
 				<caller organisation="io.aeron" name="aeron-client" conf="compile, runtime" rev="0.9.5" rev-constraint-default="0.9.5" rev-constraint-dynamic="0.9.5" callerrev="1.2.5"/>
 				<artifacts>
-					<artifact name="agrona" type="jar" ext="jar" status="successful" details="" size="269612" time="2316" location="/Users/zhouqihua/.ivy2/cache/org.agrona/agrona/jars/agrona-0.9.5.jar">
+					<artifact name="agrona" type="jar" ext="jar" status="no" details="" size="269612" time="0" location="/Users/zhouqihua/.ivy2/cache/org.agrona/agrona/jars/agrona-0.9.5.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/agrona/agrona/0.9.5/agrona-0.9.5.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
 		</module>
 		<module organisation="io.netty" name="netty">
-			<revision name="3.10.6.Final" status="release" pubdate="20160629204528" resolver="public" artresolver="public" homepage="http://netty.io/" downloaded="true" searched="true" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="11">
+			<revision name="3.10.6.Final" status="release" pubdate="20160629204528" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://netty.io/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="11">
 				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
-				<metadata-artifact status="successful" details="" size="28829" time="1638" location="/Users/zhouqihua/.ivy2/cache/io.netty/netty/ivy-3.10.6.Final.xml" searched="true" original-local-location="/Users/zhouqihua/.ivy2/cache/io.netty/netty/ivy-3.10.6.Final.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/io/netty/netty/3.10.6.Final/netty-3.10.6.Final.pom"/>
+				<metadata-artifact status="no" details="" size="7197" time="0" location="/Users/zhouqihua/.ivy2/cache/io.netty/netty/ivy-3.10.6.Final.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/io/netty/netty/3.10.6.Final/netty-3.10.6.Final.pom"/>
 				<caller organisation="com.typesafe.akka" name="akka-remote_2.12" conf="default, compile, runtime, master" rev="3.10.6.Final" rev-constraint-default="3.10.6.Final" rev-constraint-dynamic="3.10.6.Final" callerrev="2.5.2"/>
 				<artifacts>
-					<artifact name="netty" type="bundle" ext="jar" status="successful" details="" size="1292696" time="5962" location="/Users/zhouqihua/.ivy2/cache/io.netty/netty/bundles/netty-3.10.6.Final.jar">
+					<artifact name="netty" type="bundle" ext="jar" status="no" details="" size="1292696" time="0" location="/Users/zhouqihua/.ivy2/cache/io.netty/netty/bundles/netty-3.10.6.Final.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/io/netty/netty/3.10.6.Final/netty-3.10.6.Final.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
 		</module>
 		<module organisation="com.typesafe.akka" name="akka-protobuf_2.12">
-			<revision name="2.5.2" status="release" pubdate="20170524174931" resolver="public" artresolver="public" homepage="http://akka.io/" downloaded="true" searched="true" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="10">
+			<revision name="2.5.2" status="release" pubdate="20170524174931" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://akka.io/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="10">
 				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
-				<metadata-artifact status="successful" details="" size="1582" time="1260" location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-protobuf_2.12/ivy-2.5.2.xml" searched="true" original-local-location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-protobuf_2.12/ivy-2.5.2.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/akka/akka-protobuf_2.12/2.5.2/akka-protobuf_2.12-2.5.2.pom"/>
+				<metadata-artifact status="no" details="" size="2664" time="0" location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-protobuf_2.12/ivy-2.5.2.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/akka/akka-protobuf_2.12/2.5.2/akka-protobuf_2.12-2.5.2.pom"/>
 				<caller organisation="com.typesafe.akka" name="akka-remote_2.12" conf="default, compile, runtime, master" rev="2.5.2" rev-constraint-default="2.5.2" rev-constraint-dynamic="2.5.2" callerrev="2.5.2"/>
 				<artifacts>
-					<artifact name="akka-protobuf_2.12" type="jar" ext="jar" status="successful" details="" size="484659" time="3244" location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-protobuf_2.12/jars/akka-protobuf_2.12-2.5.2.jar">
+					<artifact name="akka-protobuf_2.12" type="jar" ext="jar" status="no" details="" size="484659" time="0" location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-protobuf_2.12/jars/akka-protobuf_2.12-2.5.2.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/typesafe/akka/akka-protobuf_2.12/2.5.2/akka-protobuf_2.12-2.5.2.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
 		</module>
 		<module organisation="com.typesafe.akka" name="akka-stream_2.12">
-			<revision name="2.5.2" status="release" pubdate="20170524175046" resolver="public" artresolver="public" homepage="http://akka.io/" downloaded="true" searched="true" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="6">
+			<revision name="2.5.2" status="release" pubdate="20170524175046" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://akka.io/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="6">
 				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
-				<metadata-artifact status="successful" details="" size="2542" time="1335" location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-stream_2.12/ivy-2.5.2.xml" searched="true" original-local-location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-stream_2.12/ivy-2.5.2.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/akka/akka-stream_2.12/2.5.2/akka-stream_2.12-2.5.2.pom"/>
+				<metadata-artifact status="no" details="" size="3359" time="0" location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-stream_2.12/ivy-2.5.2.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/akka/akka-stream_2.12/2.5.2/akka-stream_2.12-2.5.2.pom"/>
 				<caller organisation="com.typesafe.akka" name="akka-remote_2.12" conf="default, compile, runtime, master" rev="2.5.2" rev-constraint-default="2.5.2" rev-constraint-dynamic="2.5.2" callerrev="2.5.2"/>
 				<artifacts>
-					<artifact name="akka-stream_2.12" type="jar" ext="jar" status="successful" details="" size="3553881" time="24741" location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-stream_2.12/jars/akka-stream_2.12-2.5.2.jar">
+					<artifact name="akka-stream_2.12" type="jar" ext="jar" status="no" details="" size="3553881" time="0" location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-stream_2.12/jars/akka-stream_2.12-2.5.2.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/typesafe/akka/akka-stream_2.12/2.5.2/akka-stream_2.12-2.5.2.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
 		</module>
 		<module organisation="com.typesafe" name="ssl-config-core_2.12">
-			<revision name="0.2.1" status="release" pubdate="20161102213833" resolver="public" artresolver="public" homepage="https://github.com/typesafehub/ssl-config" downloaded="true" searched="true" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="8">
+			<revision name="0.2.1" status="release" pubdate="20161102213833" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/typesafehub/ssl-config" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="8">
 				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
-				<metadata-artifact status="successful" details="" size="3027" time="1136" location="/Users/zhouqihua/.ivy2/cache/com.typesafe/ssl-config-core_2.12/ivy-0.2.1.xml" searched="true" original-local-location="/Users/zhouqihua/.ivy2/cache/com.typesafe/ssl-config-core_2.12/ivy-0.2.1.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/ssl-config-core_2.12/0.2.1/ssl-config-core_2.12-0.2.1.pom"/>
+				<metadata-artifact status="no" details="" size="3613" time="0" location="/Users/zhouqihua/.ivy2/cache/com.typesafe/ssl-config-core_2.12/ivy-0.2.1.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/ssl-config-core_2.12/0.2.1/ssl-config-core_2.12-0.2.1.pom"/>
 				<caller organisation="com.typesafe.akka" name="akka-stream_2.12" conf="compile, runtime" rev="0.2.1" rev-constraint-default="0.2.1" rev-constraint-dynamic="0.2.1" callerrev="2.5.2"/>
 				<artifacts>
-					<artifact name="ssl-config-core_2.12" type="bundle" ext="jar" status="successful" details="" size="243527" time="2265" location="/Users/zhouqihua/.ivy2/cache/com.typesafe/ssl-config-core_2.12/bundles/ssl-config-core_2.12-0.2.1.jar">
+					<artifact name="ssl-config-core_2.12" type="bundle" ext="jar" status="no" details="" size="243527" time="0" location="/Users/zhouqihua/.ivy2/cache/com.typesafe/ssl-config-core_2.12/bundles/ssl-config-core_2.12-0.2.1.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/typesafe/ssl-config-core_2.12/0.2.1/ssl-config-core_2.12-0.2.1.jar"/>
 					</artifact>
 				</artifacts>
@@ -119,12 +119,12 @@
 			</revision>
 		</module>
 		<module organisation="org.reactivestreams" name="reactive-streams">
-			<revision name="1.0.0" status="release" pubdate="20150430001454" resolver="public" artresolver="public" homepage="http://www.reactive-streams.org/" downloaded="true" searched="true" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="7">
+			<revision name="1.0.0" status="release" pubdate="20150430001454" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.reactive-streams.org/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="7">
 				<license name="CC0" url="http://creativecommons.org/publicdomain/zero/1.0/"/>
-				<metadata-artifact status="successful" details="" size="1159" time="1341" location="/Users/zhouqihua/.ivy2/cache/org.reactivestreams/reactive-streams/ivy-1.0.0.xml" searched="true" original-local-location="/Users/zhouqihua/.ivy2/cache/org.reactivestreams/reactive-streams/ivy-1.0.0.xml.original" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/reactivestreams/reactive-streams/1.0.0/reactive-streams-1.0.0.pom"/>
+				<metadata-artifact status="no" details="" size="2523" time="0" location="/Users/zhouqihua/.ivy2/cache/org.reactivestreams/reactive-streams/ivy-1.0.0.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/reactivestreams/reactive-streams/1.0.0/reactive-streams-1.0.0.pom"/>
 				<caller organisation="com.typesafe.akka" name="akka-stream_2.12" conf="compile, runtime" rev="1.0.0" rev-constraint-default="1.0.0" rev-constraint-dynamic="1.0.0" callerrev="2.5.2"/>
 				<artifacts>
-					<artifact name="reactive-streams" type="jar" ext="jar" status="successful" details="" size="2042" time="1241" location="/Users/zhouqihua/.ivy2/cache/org.reactivestreams/reactive-streams/jars/reactive-streams-1.0.0.jar">
+					<artifact name="reactive-streams" type="jar" ext="jar" status="no" details="" size="2042" time="0" location="/Users/zhouqihua/.ivy2/cache/org.reactivestreams/reactive-streams/jars/reactive-streams-1.0.0.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/org/reactivestreams/reactive-streams/1.0.0/reactive-streams-1.0.0.jar"/>
 					</artifact>
 				</artifacts>
