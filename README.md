@@ -42,5 +42,8 @@ Enter number: 3
 ```
 Enter `3` and select one and `MyMasterActor` will run.
 
+# Intellij IDEA
+You can also run this project in **Intellij IDEA**, just open from the root directory.
+
 # More
-This project is still in development, welcome any contributions to help to make it better.
+This project is still in development, welcome any contributions to help to make it better.  :)
