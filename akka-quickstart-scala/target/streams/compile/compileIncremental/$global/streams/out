@@ -1,0 +1,65 @@
+[0m[[0mdebug[0m] [0m[naha] [0m
+[0m[[0mdebug[0m] [0m[naha] Initial source changes: [0m
+[0m[[0mdebug[0m] [0m[naha] 	removed:Set()[0m
+[0m[[0mdebug[0m] [0m[naha] 	added: Set(/Users/zhouqihua/Desktop/akka-quickstart-scala/src/main/scala/com/lightbend/akka/sample/AkkaQuickstart.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] 	modified: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidated products: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] External API changes: API Changes: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] Modified binary dependencies: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] Initial directly invalidated sources: Set(/Users/zhouqihua/Desktop/akka-quickstart-scala/src/main/scala/com/lightbend/akka/sample/AkkaQuickstart.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] [0m
+[0m[[0mdebug[0m] [0m[naha] Sources indirectly invalidated by:[0m
+[0m[[0mdebug[0m] [0m[naha] 	product: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] 	binary dep: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] 	external source: Set()[0m
+[0m[[0mdebug[0m] [0mAll initially invalidated sources: Set(/Users/zhouqihua/Desktop/akka-quickstart-scala/src/main/scala/com/lightbend/akka/sample/AkkaQuickstart.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] Initial set of included nodes: Set(/Users/zhouqihua/Desktop/akka-quickstart-scala/src/main/scala/com/lightbend/akka/sample/AkkaQuickstart.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] Recompiling all 1 sources: invalidated sources (1) exceeded 50.0% of all sources[0m
+[0m[[0minfo[0m] [0mCompiling 1 Scala source to /Users/zhouqihua/Desktop/akka-quickstart-scala/target/scala-2.12/classes...[0m
+[0m[[0mdebug[0m] [0mGetting org.scala-sbt:compiler-interface:0.13.15:component from component compiler for Scala 2.12.2[0m
+[0m[[0minfo[0m] [0m'compiler-interface' not yet compiled for Scala 2.12.2. Compiling...[0m
+[0m[[0mdebug[0m] [0mPlain interface to Scala compiler 2.12.2  with arguments: [0m
+[0m[[0mdebug[0m] [0m	-nowarn[0m
+[0m[[0mdebug[0m] [0m	-d[0m
+[0m[[0mdebug[0m] [0m	/var/folders/p8/ldh8vps57cq7yp0nsfx48nrm0000gn/T/sbt_49846c3d[0m
+[0m[[0mdebug[0m] [0m	-bootclasspath[0m
+[0m[[0mdebug[0m] [0m	/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/classes:/Users/zhouqihua/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.12.2.jar[0m
+[0m[[0mdebug[0m] [0m	-classpath[0m
+[0m[[0mdebug[0m] [0m	/Users/zhouqihua/.sbt/boot/scala-2.10.6/org.scala-sbt/sbt/0.13.15/xsbti/interface-0.13.15.jar:/var/folders/p8/ldh8vps57cq7yp0nsfx48nrm0000gn/T/sbt_3f60607e/srcs/org.scala-sbt/compiler-interface/compiler-interface-0.13.15-sources.jar:/Users/zhouqihua/.ivy2/cache/org.scala-lang/scala-compiler/jars/scala-compiler-2.12.2.jar:/Users/zhouqihua/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.12.2.jar:/Users/zhouqihua/.ivy2/cache/org.scala-lang.modules/scala-xml_2.12/bundles/scala-xml_2.12-1.0.6.jar:/Users/zhouqihua/.ivy2/cache/jline/jline/jars/jline-2.14.3.jar[0m
+[0m[[0mdebug[0m] [0m	/var/folders/p8/ldh8vps57cq7yp0nsfx48nrm0000gn/T/sbt_558e8fc4/xsbt/API.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/p8/ldh8vps57cq7yp0nsfx48nrm0000gn/T/sbt_558e8fc4/xsbt/Analyzer.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/p8/ldh8vps57cq7yp0nsfx48nrm0000gn/T/sbt_558e8fc4/xsbt/Command.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/p8/ldh8vps57cq7yp0nsfx48nrm0000gn/T/sbt_558e8fc4/xsbt/Compat.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/p8/ldh8vps57cq7yp0nsfx48nrm0000gn/T/sbt_558e8fc4/xsbt/CompilerInterface.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/p8/ldh8vps57cq7yp0nsfx48nrm0000gn/T/sbt_558e8fc4/xsbt/ConsoleInterface.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/p8/ldh8vps57cq7yp0nsfx48nrm0000gn/T/sbt_558e8fc4/xsbt/DelegatingReporter.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/p8/ldh8vps57cq7yp0nsfx48nrm0000gn/T/sbt_558e8fc4/xsbt/Dependency.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/p8/ldh8vps57cq7yp0nsfx48nrm0000gn/T/sbt_558e8fc4/xsbt/ExtractAPI.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/p8/ldh8vps57cq7yp0nsfx48nrm0000gn/T/sbt_558e8fc4/xsbt/ExtractUsedNames.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/p8/ldh8vps57cq7yp0nsfx48nrm0000gn/T/sbt_558e8fc4/xsbt/GlobalHelpers.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/p8/ldh8vps57cq7yp0nsfx48nrm0000gn/T/sbt_558e8fc4/xsbt/LocateClassFile.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/p8/ldh8vps57cq7yp0nsfx48nrm0000gn/T/sbt_558e8fc4/xsbt/Log.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/p8/ldh8vps57cq7yp0nsfx48nrm0000gn/T/sbt_558e8fc4/xsbt/Message.scala[0m
+[0m[[0mdebug[0m] [0m	/var/folders/p8/ldh8vps57cq7yp0nsfx48nrm0000gn/T/sbt_558e8fc4/xsbt/ScaladocInterface.scala[0m
+[0m[[0minfo[0m] [0m  Compilation completed in 14.954 s[0m
+[0m[[0mdebug[0m] [0mGetting org.scala-sbt:compiler-interface:0.13.15:component from component compiler for Scala 2.12.2[0m
+[0m[[0mdebug[0m] [0mRunning cached compiler 152be7f9, interfacing (CompilerInterface) with Scala compiler version 2.12.2[0m
+[0m[[0mdebug[0m] [0mCalling Scala compiler with arguments  (CompilerInterface):[0m
+[0m[[0mdebug[0m] [0m	-bootclasspath[0m
+[0m[[0mdebug[0m] [0m	/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/classes:/Users/zhouqihua/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.12.2.jar[0m
+[0m[[0mdebug[0m] [0m	-classpath[0m
+[0m[[0mdebug[0m] [0m	/Users/zhouqihua/Desktop/akka-quickstart-scala/target/scala-2.12/classes:/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-actor_2.12/jars/akka-actor_2.12-2.5.2.jar:/Users/zhouqihua/.ivy2/cache/com.typesafe/config/bundles/config-1.3.1.jar:/Users/zhouqihua/.ivy2/cache/org.scala-lang.modules/scala-java8-compat_2.12/bundles/scala-java8-compat_2.12-0.8.0.jar:/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-testkit_2.12/jars/akka-testkit_2.12-2.5.2.jar[0m
+[0m[[0mdebug[0m] [0mScala compilation took 17.096148104 s[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidating /Users/zhouqihua/Desktop/akka-quickstart-scala/src/main/scala/com/lightbend/akka/sample/AkkaQuickstart.scala...[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidating (transitively) by inheritance from /Users/zhouqihua/Desktop/akka-quickstart-scala/src/main/scala/com/lightbend/akka/sample/AkkaQuickstart.scala...[0m
+[0m[[0mdebug[0m] [0m[naha] Initial set of included nodes: Set(/Users/zhouqihua/Desktop/akka-quickstart-scala/src/main/scala/com/lightbend/akka/sample/AkkaQuickstart.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] Invalidated by transitive inheritance dependency: Set(/Users/zhouqihua/Desktop/akka-quickstart-scala/src/main/scala/com/lightbend/akka/sample/AkkaQuickstart.scala)[0m
+[0m[[0mdebug[0m] [0m[naha] The /Users/zhouqihua/Desktop/akka-quickstart-scala/src/main/scala/com/lightbend/akka/sample/AkkaQuickstart.scala source file has the following implicit definitions changed:[0m
+[0m[[0mdebug[0m] [0m[naha] 	self, context.[0m
+[0m[[0mdebug[0m] [0m[naha] All member reference dependencies will be considered within this context.[0m
+[0m[[0mdebug[0m] [0m[naha] New invalidations:[0m
+[0m[[0mdebug[0m] [0m[naha] 	Set()[0m
+[0m[[0mdebug[0m] [0m[naha] Initial set of included nodes: Set()[0m
+[0m[[0mdebug[0m] [0m[naha] Previously invalidated, but (transitively) depend on new invalidations:[0m
+[0m[[0mdebug[0m] [0m[naha] 	Set()[0m
+[0m[[0mdebug[0m] [0m[naha] All newly invalidated sources after taking into account (previously) recompiled sources:Set()[0m
