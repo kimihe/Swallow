@@ -1,5 +1,6 @@
 # Swallow
-Efficient flow scheduling system in data-intensive clusters
+Efficient flow scheduling system in data-intensive clusters.  
+**Development Language:** `Scala`.
 
 # Download Project
 1. Download from [https://github.com/kimihe/Swallow](https://github.com/kimihe/Swallow) or use `git clone git@github.com:kimihe/Swallow.git`.
