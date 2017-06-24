@@ -14,7 +14,6 @@ Efficient flow scheduling system in data-intensive clusters
 ```
 
 * On **Windows**, use a tool such as File Explorer to extract the project.
-Running the example
 
 # Running the example
 * In a console, change directories to the top level of the unzipped project.
