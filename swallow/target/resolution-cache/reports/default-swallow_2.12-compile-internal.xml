@@ -7,7 +7,7 @@
 		revision="1.0"
 		conf="compile-internal"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
-		date="20170625164322"/>
+		date="20170625171822"/>
 	<dependencies>
 		<module organisation="com.typesafe.akka" name="akka-remote_2.12">
 			<revision name="2.5.2" status="release" pubdate="20170524175323" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://akka.io/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="5">

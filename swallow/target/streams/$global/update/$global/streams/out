@@ -1,4 +1,4 @@
-[0m[[0minfo[0m] [0mUpdating {file:/Users/zhouqihua/Desktop/swallow/}swallow...[0m
+[0m[[0minfo[0m] [0mUpdating {file:/Users/zhouqihua/Desktop/Swallow-master/swallow/}swallow...[0m
 [0m[[0mdebug[0m] [0m:: resolving dependencies :: default#swallow_2.12;1.0[0m
 [0m[[0mdebug[0m] [0m	confs: [compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool][0m
 [0m[[0mdebug[0m] [0m	validate = true[0m
@@ -3057,19 +3057,19 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#scala-compiler;2.12.1!scala-compiler.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang.modules#scala-xml_2.12;1.0.6!scala-xml_2.12.jar(bundle)[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] jline#jline;2.14.1!jline.jar[0m
-[0m[[0mdebug[0m] [0m:: resolution report :: resolve 406ms :: artifacts dl 13ms[0m
-[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 compile produced in /Users/zhouqihua/Desktop/swallow/target/resolution-cache/reports/default-swallow_2.12-compile.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 runtime produced in /Users/zhouqihua/Desktop/swallow/target/resolution-cache/reports/default-swallow_2.12-runtime.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 test produced in /Users/zhouqihua/Desktop/swallow/target/resolution-cache/reports/default-swallow_2.12-test.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 provided produced in /Users/zhouqihua/Desktop/swallow/target/resolution-cache/reports/default-swallow_2.12-provided.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 optional produced in /Users/zhouqihua/Desktop/swallow/target/resolution-cache/reports/default-swallow_2.12-optional.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 compile-internal produced in /Users/zhouqihua/Desktop/swallow/target/resolution-cache/reports/default-swallow_2.12-compile-internal.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 runtime-internal produced in /Users/zhouqihua/Desktop/swallow/target/resolution-cache/reports/default-swallow_2.12-runtime-internal.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 test-internal produced in /Users/zhouqihua/Desktop/swallow/target/resolution-cache/reports/default-swallow_2.12-test-internal.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 plugin produced in /Users/zhouqihua/Desktop/swallow/target/resolution-cache/reports/default-swallow_2.12-plugin.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 sources produced in /Users/zhouqihua/Desktop/swallow/target/resolution-cache/reports/default-swallow_2.12-sources.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 docs produced in /Users/zhouqihua/Desktop/swallow/target/resolution-cache/reports/default-swallow_2.12-docs.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 pom produced in /Users/zhouqihua/Desktop/swallow/target/resolution-cache/reports/default-swallow_2.12-pom.xml[0m
-[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 scala-tool produced in /Users/zhouqihua/Desktop/swallow/target/resolution-cache/reports/default-swallow_2.12-scala-tool.xml[0m
-[0m[[0mdebug[0m] [0m	resolve done (406ms resolve - 13ms download)[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 382ms :: artifacts dl 6ms[0m
+[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 compile produced in /Users/zhouqihua/Desktop/Swallow-master/swallow/target/resolution-cache/reports/default-swallow_2.12-compile.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 runtime produced in /Users/zhouqihua/Desktop/Swallow-master/swallow/target/resolution-cache/reports/default-swallow_2.12-runtime.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 test produced in /Users/zhouqihua/Desktop/Swallow-master/swallow/target/resolution-cache/reports/default-swallow_2.12-test.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 provided produced in /Users/zhouqihua/Desktop/Swallow-master/swallow/target/resolution-cache/reports/default-swallow_2.12-provided.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 optional produced in /Users/zhouqihua/Desktop/Swallow-master/swallow/target/resolution-cache/reports/default-swallow_2.12-optional.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 compile-internal produced in /Users/zhouqihua/Desktop/Swallow-master/swallow/target/resolution-cache/reports/default-swallow_2.12-compile-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 runtime-internal produced in /Users/zhouqihua/Desktop/Swallow-master/swallow/target/resolution-cache/reports/default-swallow_2.12-runtime-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 test-internal produced in /Users/zhouqihua/Desktop/Swallow-master/swallow/target/resolution-cache/reports/default-swallow_2.12-test-internal.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 plugin produced in /Users/zhouqihua/Desktop/Swallow-master/swallow/target/resolution-cache/reports/default-swallow_2.12-plugin.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 sources produced in /Users/zhouqihua/Desktop/Swallow-master/swallow/target/resolution-cache/reports/default-swallow_2.12-sources.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 docs produced in /Users/zhouqihua/Desktop/Swallow-master/swallow/target/resolution-cache/reports/default-swallow_2.12-docs.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 pom produced in /Users/zhouqihua/Desktop/Swallow-master/swallow/target/resolution-cache/reports/default-swallow_2.12-pom.xml[0m
+[0m[[0mdebug[0m] [0m	report for default#swallow_2.12;1.0 scala-tool produced in /Users/zhouqihua/Desktop/Swallow-master/swallow/target/resolution-cache/reports/default-swallow_2.12-scala-tool.xml[0m
+[0m[[0mdebug[0m] [0m	resolve done (382ms resolve - 6ms download)[0m
 [0m[[0minfo[0m] [0mDone updating.[0m
