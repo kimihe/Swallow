@@ -1,6 +1,6 @@
 name := "swallow"
-
-version := "1.0"
+organization := "com.kimihe"
+version := "0.2-SNAPSHOT"
 
 scalaVersion := "2.12.1"
 
