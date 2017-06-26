@@ -13,23 +13,8 @@ object KMMasterActor {
 
   def main(args: Array[String]): Unit = {
 
-    val conf = """
-      akka {
-        actor {
-          provider = "akka.remote.RemoteActorRefProvider"
-        }
-        remote {
-          enabled-transports = ["akka.remote.netty.tcp"]
-          netty.tcp {
-            hostname = "0.0.0.0"
-            port = 17200
-          }
-        }
-      }
-    """
-
-    val config = ConfigFactory.parseString(conf)
-    val system = ActorSystem("masterActor", config)
+    val config = ConfigFactory.load()
+    val system = ActorSystem("masterActor", config.getConfig("masterActor").withFallback(config))
     val masterActor = system.actorOf(Props[MasterActor], name = "masterActor")
 
 
@@ -39,7 +24,7 @@ object KMMasterActor {
     val master: String = "akka.tcp://masterActor@0.0.0.0:17200/user/masterActor"
     val from: String = "akka.tcp://localActor@0.0.0.0:17201/user/localActor"
     val to: String = "akka.tcp://remoteActor@0.0.0.0:17202/user/remoteActor"
-    val content: String = "****** hello remote ******"
+    val content: String = "****** Hello Remote !!! ******"
     val description: String = "Version Beta 0.1"
 
     masterActor ! SubmitNewFlow(taskId, master, from, to, content, description)

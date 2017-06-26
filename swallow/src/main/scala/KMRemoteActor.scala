@@ -8,24 +8,8 @@ import akka.actor._
 object KMRemoteActor {
   def main(args: Array[String]): Unit = {
 
-    val conf = """
-      akka {
-        actor {
-          provider = "akka.remote.RemoteActorRefProvider"
-        }
-        remote {
-          enabled-transports = ["akka.remote.netty.tcp"]
-          netty.tcp {
-            hostname = "0.0.0.0"
-            port = 17202
-          }
-        }
-      }
-    """
-    val config = ConfigFactory.parseString(conf)
-    val system = ActorSystem("remoteActor", config)
-    //    val config = ConfigFactory.load()
-    //    val system = ActorSystem("remoteActor", config.getConfig("remoteActor").withFallback(config))
+    val config = ConfigFactory.load()
+    val system = ActorSystem("remoteActor", config.getConfig("remoteActor").withFallback(config))
     val remoteActor = system.actorOf(Props[RemoteActor], name = "remoteActor")
   }
 }
@@ -44,7 +28,7 @@ class RemoteActor extends Actor with ActorLogging{
       log.info(s"[Flow Info] from: $from; to: $to; content: $content")
 
       val localActor = context.actorSelection(s"$from")
-      localActor ! CompleteFlow(taskId, master, from, to, "Flow Completed !!!", description)
+      localActor ! CompleteFlow(taskId, master, from, to, "****** Flow Completed !!! ******", description)
   }
 }
 

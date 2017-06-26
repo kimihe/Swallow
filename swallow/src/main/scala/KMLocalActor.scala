@@ -8,24 +8,8 @@ import akka.actor._
 object KMLocalActor {
   def main(args: Array[String]): Unit = {
 
-    val conf = """
-      akka {
-        actor {
-          provider = "akka.remote.RemoteActorRefProvider"
-        }
-        remote {
-          enabled-transports = ["akka.remote.netty.tcp"]
-          netty.tcp {
-            hostname = "0.0.0.0"
-            port = 17201
-          }
-        }
-      }
-    """
-    val config = ConfigFactory.parseString(conf)
-    val system = ActorSystem("localActor", config)
-    //        val config = ConfigFactory.load()
-    //        val system = ActorSystem("localActor", config.getConfig("localActor").withFallback(config))
+    val config = ConfigFactory.load()
+    val system = ActorSystem("localActor", config.getConfig("localActor").withFallback(config))
     val localActor = system.actorOf(Props[LocalActor], name = "localActor")
   }
 }
