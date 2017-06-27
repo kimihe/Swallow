@@ -4,7 +4,7 @@
 		module="swallow_2.12"
 		revision="0.3-SNAPSHOT"
 		status="integration"
-		publication="20170627211621"
+		publication="20170627212918"
 	>
 		<description>
 		swallow
@@ -39,5 +39,6 @@
 		<dependency org="org.scalatest" name="scalatest_2.12" rev="3.0.1" conf="test->default(compile)"/>
 		<dependency org="com.typesafe.akka" name="akka-remote_2.12" rev="2.5.3" conf="compile->default(compile)"/>
 		<dependency org="com.typesafe.akka" name="akka-cluster_2.12" rev="2.5.3" conf="compile->default(compile)"/>
+		<dependency org="com.typesafe.akka" name="akka-contrib_2.12" rev="2.5.3" conf="compile->default(compile)"/>
 	</dependencies>
 </ivy-module>
