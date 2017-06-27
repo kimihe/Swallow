@@ -4,10 +4,10 @@
 	<info
 		organisation="com.kimihe"
 		module="swallow_2.12"
-		revision="0.2-SNAPSHOT"
+		revision="0.3-SNAPSHOT"
 		conf="pom"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
-		date="20170626182059"/>
+		date="20170627211621"/>
 	<dependencies>
 	</dependencies>
 </ivy-report>
