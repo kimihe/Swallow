@@ -2,6 +2,7 @@
   * Created by zhouqihua on 2017/6/25.
   */
 
+import swallow.core._
 import akka.actor._
 import com.typesafe.config._
 
@@ -20,14 +21,18 @@ object KMMasterActor {
 
     StdIn.readLine()
 
-    val taskId: String = "FLOW-0000001"
+    val flowId: String = "FLOW-000001"
+    val taskId: String = "TASK-000001"
     val master: String = "akka.tcp://masterActor@0.0.0.0:17200/user/masterActor"
     val from: String = "akka.tcp://localActor@0.0.0.0:17201/user/localActor"
     val to: String = "akka.tcp://remoteActor@0.0.0.0:17202/user/remoteActor"
     val content: String = "****** Hello Remote !!! ******"
     val description: String = "Version Beta 0.1"
 
-    masterActor ! SubmitNewFlow(taskId, master, from, to, content, description)
+    val flowInfo = new KMFlowInfo(flowId, taskId, master, from, to, content, description, KMDataType.FAKE)
+    val flow = KMFlow.initWithFlowInfo(flowInfo)
+
+    masterActor ! SubmitNewFlow(flow)
 
     StdIn.readLine()
     system.terminate()
@@ -35,8 +40,9 @@ object KMMasterActor {
   }
 }
 object MasterActor {
-  final case class SubmitNewFlow(taskId: String, master: String, from: String, to: String, content: String, description: String)
-  final case class AggregateFlow(taskId: String, master: String, from: String, to: String, content: String, description: String)
+
+  final case class SubmitNewFlow(flow: KMFlow)
+  final case class AggregateFlow(flow: KMFlow)
 }
 
 class MasterActor extends Actor with ActorLogging {
@@ -45,15 +51,30 @@ class MasterActor extends Actor with ActorLogging {
 
   override def receive: Receive = {
 
-    case SubmitNewFlow(taskId, master, from, to, content, description) =>
+    case SubmitNewFlow(flow: KMFlow) =>
       log.info(s"[MasterActor] submitNewFlow; [From sender]: $sender")
-      log.info(s"[Flow Info] from: $from; to: $to; content: $content")
+      log.info(s"[Flow Info] from: ${flow.flowInfo.from}; to: ${flow.flowInfo.to}; content: ${flow.flowInfo.content}")
 
-      val localActor = context.actorSelection(s"$from")
-      localActor ! TransferFlow(taskId, master, from, to, content, description)
+      val localActor = context.actorSelection(s"${flow.flowInfo.from}")
+      localActor ! TransferFlow(flow)
 
-    case AggregateFlow(taskId, master, from, to, content, description) =>
+//      val serialization = SerializationExtension(context.system)
+//      // Have something to serialize
+//      val original = flow.flowInfo
+//
+//      // Find the Serializer for it
+//      val serializer = serialization.findSerializerFor(original)
+//      // Turn it into bytes
+//      val bytes = serializer.toBinary(original)
+//      // Turn it back into an object
+//      //val back = serializer.fromBinary(bytes, manifest = None)
+//
+//      localActor ! TransferFlowSeri(bytes)
+
+
+
+    case AggregateFlow(flow: KMFlow) =>
       log.info(s"[MasterActor] aggregateFlow; [From sender]: $sender")
-      log.info(s"[Flow Info] from: $from; to: $to; content: $content")
+      log.info(s"[Flow Info] from: ${flow.flowInfo.from}; to: ${flow.flowInfo.to}; content: ${flow.flowInfo.content}")
   }
 }

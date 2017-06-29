@@ -2,6 +2,7 @@
   * Created by zhouqihua on 2017/6/25.
   */
 
+import swallow.core._
 import com.typesafe.config._
 import akka.actor._
 
@@ -15,14 +16,16 @@ object KMLocalActor {
 }
 
 object LocalActor {
-  final case class TransferFlow(taskId: String, master: String, from: String, to: String, content: String, description: String)
-  final case class CompleteFlow(taskId: String, master: String, from: String, to: String, content: String, description: String)
+  final case class TransferFlow(flow: KMFlow)
+  final case class TransferFlowSeri(flow: Any)
+  final case class CompleteFlow(flow: KMFlow)
 }
 
 class LocalActor extends Actor with ActorLogging {
   import MasterActor._
   import LocalActor._
   import RemoteActor._
+  import KMClusterListener._
 
   override def preStart(): Unit = {
 
@@ -30,18 +33,22 @@ class LocalActor extends Actor with ActorLogging {
 
   override def receive: Receive = {
 
-    case TransferFlow(taskId, master, from, to, content, description) =>
+    case TransferFlow(flow: KMFlow) =>
       log.info(s"[LocalActor] transferFlow; [From sender]: $sender")
-      log.info(s"[Flow Info] from: $from; to: $to; content: $content")
+      log.info(s"[Flow Info] from: ${flow.flowInfo.from}; to: ${flow.flowInfo.to}; content: ${flow.flowInfo.content}")
 
-      val remoteActor = context.actorSelection(s"$to")
-      remoteActor ! ReceiveFlow(taskId, master, from, to, content, description)
+      val remoteActor = context.actorSelection(s"${flow.flowInfo.to}")
+      remoteActor ! ReceiveFlow(flow)
 
-    case CompleteFlow(taskId, master, from, to, content, description) =>
+    case CompleteFlow(flow: KMFlow) =>
       log.info(s"[LocalActor] completeFlow; [From sender]: $sender")
-      log.info(s"[Flow Info] from: $from; to: $to; content: $content")
-      val masterActor = context.actorSelection(s"$master")
-      masterActor ! AggregateFlow(taskId, master, from, to, content, description)
+      log.info(s"[Flow Info] from: ${flow.flowInfo.from}; to: ${flow.flowInfo.to}; content: ${flow.flowInfo.content}")
+
+      val masterActor = context.actorSelection(s"${flow.flowInfo.master}")
+      masterActor ! AggregateFlow(flow)
+
+      val clusterListener = context.actorSelection("akka.tcp://ClusterSystem@127.0.0.1:2551/user/clusterListener")
+      clusterListener ! SuperviseFlow(flow)
   }
 }
 
