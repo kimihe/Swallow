@@ -22,14 +22,21 @@ Efficient flow scheduling system in data-intensive clusters, based on [Akka](htt
 ```
 Multiple main classes detected, select one to run:
 
- [1] KMActorAggregation
- [2] KMLocalActor
- [3] KMMasterActor
- [4] KMRemoteActor
+ [1] examples.ExampleClusterApp
+ [2] examples.ExampleMaster
+ [3] examples.ExampleReceiver
+ [4] examples.ExampleSender
+ [5] examples.KMActorAggregation
+ [6] examples.KMClusterApp
+ [7] examples.KMLocalActor
+ [8] examples.KMMasterActor
+ [9] examples.KMRemoteActor
 
-Enter number: 3
+Enter number: 
 ```
-* For example: enter `3` and select `KMMasterActor ` to run.
+* For example: enter `1` and select to run `[1] examples.ExampleClusterApp `. Then, you can start three new terminals to run `[2] examples.ExampleMaster`, `[4] examples.ExampleSender` and `[3] examples.ExampleReceiver`. 
+
+* These four processes simulate a simplest distributed scheduling system. In this example, all of them are run on the same machine, you can modify the `application.conf` in directory `resources` to respectively configure their IP address and communication port. Run them on different machines and the same behaviour will be shown.
 
 # Intellij IDEA
 You can also organize this project with **Intellij IDEA**, just open from the root directory `Swallo-master/swallow`.

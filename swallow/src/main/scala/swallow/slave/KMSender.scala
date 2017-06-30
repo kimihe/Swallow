@@ -28,7 +28,7 @@ class KMSender (slaveType: KMSlaveType.SlaveType) extends KMNode {
       val masterActor = context.actorSelection(s"${flow.flowInfo.master}")
       masterActor ! MasterAggregateFlow(flow)
 
-      val clusterListener = context.actorSelection("akka.tcp://ClusterSystem@127.0.0.1:2551/user/clusterListener")
+      val clusterListener = context.actorSelection("akka.tcp://ClusterSystem@127.0.0.1:2551/user/cLusterSupervisor")
       clusterListener ! ClusterSuperviseFlow(flow)
   }
 }
