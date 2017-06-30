@@ -9,6 +9,6 @@ import akka.actor._
 class KMNode extends Actor with ActorLogging {
   override def receive: Receive = {
     case msg =>
-      log.info(s"$msg")
+      log.info(s"Received msg: $msg")
   }
 }
