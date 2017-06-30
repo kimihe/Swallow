@@ -1,4 +1,4 @@
-[0m[[0minfo[0m] [0mRunning examples.KMActorAggregation [0m
+[0m[[0minfo[0m] [0mRunning examples.ExampleSender [0m
 [0m[[0mdebug[0m] [0mWaiting for threads to exit or System.exit to be called.[0m
 [0m[[0mdebug[0m] [0m  Classpath:[0m
 [0m[[0mdebug[0m] [0m	/Users/zhouqihua/Desktop/Swallow-master/swallow/target/scala-2.12/classes[0m
@@ -23,7 +23,8 @@
 [0m[[0mdebug[0m] [0m	/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-persistence_2.12/jars/akka-persistence_2.12-2.5.3.jar[0m
 [0m[[0mdebug[0m] [0mWaiting for thread run-main-0 to terminate.[0m
 [0m[[0mdebug[0m] [0m	Thread run-main-0 exited.[0m
-[0m[[0mdebug[0m] [0mWaiting for thread MyTestActor2-scheduler-1 to terminate.[0m
-[0m[[0mdebug[0m] [0m	Thread MyTestActor2-scheduler-1 exited.[0m
-[0m[[0mdebug[0m] [0mWaiting for thread MyTestActor2-akka.actor.default-dispatcher-4 to terminate.[0m
-[0m[[0mdebug[0m] [0m	Thread MyTestActor2-akka.actor.default-dispatcher-4 exited.[0m
+[0m[[0mdebug[0m] [0mWaiting for thread New I/O worker #1 to terminate.[0m
+[0m[[0mdebug[0m] [0m	Thread SenderSystem-5 exited.[0m
+[0m[[0mdebug[0m] [0mWaiting for thread SenderSystem-scheduler-1 to terminate.[0m
+[0m[[0mdebug[0m] [0m	Thread SenderSystem-scheduler-1 exited.[0m
+[0m[[0mdebug[0m] [0mWaiting for thread SenderSystem-akka.actor.default-dispatcher-16 to terminate.[0m

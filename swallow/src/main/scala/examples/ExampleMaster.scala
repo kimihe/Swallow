@@ -31,6 +31,7 @@ object ExampleMaster {
     val flow = KMFlow.initWithFlowInfo(flowInfo)
 
 
+    Thread.sleep(3000)
     println("****** Press Enter To Continue. ******")
     StdIn.readLine()
 
