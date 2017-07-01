@@ -4,11 +4,12 @@ package swallow.slave
   * Created by zhouqihua on 2017/6/29.
   */
 
-import swallow.core.{KMFlow, KMFlowInfo, KMNode, KMDataType}
+import akka.actor.Props
+import swallow.core.{KMDataType, KMFlow, KMFlowInfo, KMNode}
 import swallow.core.KMActorMessages._
 
 object KMReceiver {
-
+  def props: Props = Props(new KMReceiver(KMSlaveType.Receiver))
 }
 
 class KMReceiver (slaveType: KMSlaveType.SlaveType) extends KMNode {

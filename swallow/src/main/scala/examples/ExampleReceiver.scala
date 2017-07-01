@@ -4,15 +4,12 @@ package examples
   * Created by zhouqihua on 2017/6/30.
   */
 
-import akka.actor.{ActorSystem, Props}
-import com.typesafe.config.ConfigFactory
-import swallow.slave.{KMReceiver, KMSlaveType}
+import swallow.Util.KMAkkaKit
+import swallow.slave.KMReceiver
 
 object ExampleReceiver {
   def main(args: Array[String]): Unit = {
 
-    val config = ConfigFactory.load()
-    val system = ActorSystem("ReceiverSystem", config.getConfig("remoteActor").withFallback(config))
-    val remoteActor = system.actorOf(Props(new KMReceiver(KMSlaveType.Receiver)), name = "receiverActor")
+    KMAkkaKit.initActorRefWith("ReceiverSystem", "0.0.0.0", 17202, KMReceiver.props, "receiverActor")
   }
 }

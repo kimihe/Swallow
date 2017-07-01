@@ -6,6 +6,10 @@ package swallow.core
 
 object KMActorMessages {
 
+  final case class TestFlow(flow: KMFlow)
+
+
+
   final case class ClusterSuperviseFlow(flow: KMFlow)
 
   final case class MasterSubmitNewFlow(flow: KMFlow)

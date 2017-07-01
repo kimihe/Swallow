@@ -4,18 +4,18 @@ package swallow.cluster
   * Created by zhouqihua on 2017/6/30.
   */
 
+import akka.actor.Props
 import akka.cluster.Cluster
 import akka.cluster.ClusterEvent._
-
 import swallow.core.{KMFlow, KMNode}
 import swallow.core.KMActorMessages._
 
 
-object KMCLusterSupervisor {
-
+object KMClusterSupervisor {
+  def props: Props = Props(new KMClusterSupervisor)
 }
 
-class KMCLusterSupervisor extends KMNode {
+class KMClusterSupervisor extends KMNode {
 
   val cluster = Cluster(context.system)
 

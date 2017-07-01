@@ -4,11 +4,12 @@ package swallow.slave
   * Created by zhouqihua on 2017/6/29.
   */
 
+import akka.actor.Props
 import swallow.core.{KMFlow, KMNode}
 import swallow.core.KMActorMessages._
 
 object KMSender {
-
+  def props: Props = Props(new KMSender(KMSlaveType.Sender))
 }
 
 class KMSender (slaveType: KMSlaveType.SlaveType) extends KMNode {
@@ -28,7 +29,7 @@ class KMSender (slaveType: KMSlaveType.SlaveType) extends KMNode {
       val masterActor = context.actorSelection(s"${flow.flowInfo.master}")
       masterActor ! MasterAggregateFlow(flow)
 
-      val clusterListener = context.actorSelection("akka.tcp://ClusterSystem@127.0.0.1:2551/user/cLusterSupervisor")
+      val clusterListener = context.actorSelection("akka.tcp://ClusterSystem@127.0.0.1:2551/user/clusterSupervisor1")
       clusterListener ! ClusterSuperviseFlow(flow)
   }
 }

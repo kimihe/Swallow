@@ -6,17 +6,17 @@ package examples
 
 import akka.actor.{ActorSystem, Props}
 import com.typesafe.config.ConfigFactory
-import scala.io.StdIn
+import swallow.Util.KMAkkaKit
 
+import scala.io.StdIn
 import swallow.core.{KMDataType, KMFlow, KMFlowInfo}
 import swallow.master.{KMJobDispatcher, KMMaster}
 
 object ExampleMaster {
   def main(args: Array[String]): Unit = {
 
-    val config = ConfigFactory.load()
-    val system = ActorSystem("MasterSystem", config.getConfig("masterActor").withFallback(config))
-    val masterActor = system.actorOf(Props[KMMaster], name = "masterActor")
+    val masterSystem = KMAkkaKit.initActorSystemWith("MasterSystem", "0.0.0.0", 17200)
+    KMAkkaKit.initActorRefWith(masterSystem, KMMaster.props, "masterActor")
 
     val flowId: String = "FLOW-000001"
     val taskId: String = "TASK-000001"
@@ -31,13 +31,13 @@ object ExampleMaster {
     val flow = KMFlow.initWithFlowInfo(flowInfo)
 
 
-    Thread.sleep(3000)
+    Thread.sleep(5000)
     println("****** Press Enter To Continue. ******")
     StdIn.readLine()
 
-    KMJobDispatcher.dispatchNewFlow(system, flow)
+    KMJobDispatcher.dispatchNewFlow(masterSystem, flow)
 
     StdIn.readLine()
-    system.terminate()
+    masterSystem.terminate()
   }
 }

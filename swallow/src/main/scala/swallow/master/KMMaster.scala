@@ -4,14 +4,16 @@ package swallow.master
   * Created by zhouqihua on 2017/6/29.
   */
 
+import akka.actor.{Props}
 import swallow.core.{KMFlow, KMNode}
 import swallow.core.KMActorMessages._
 
 object KMMaster {
-
+  def props: Props = Props(new KMMaster)
 }
 
 class KMMaster extends KMNode {
+
   override def receive: Receive = {
 
     case MasterSubmitNewFlow(flow: KMFlow) =>
