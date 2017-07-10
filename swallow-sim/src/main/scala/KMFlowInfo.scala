@@ -6,7 +6,7 @@ class KMFlowInfo (val flowId: String,
 
                   val src: KMPort,
                   val dest: KMPort,
-                  val totalSize: Long,
+                  val totalSize: Double,
 
                   val arrivedDate: Long,
                   val description: String
