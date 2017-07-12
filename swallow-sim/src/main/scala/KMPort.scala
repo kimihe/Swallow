@@ -56,8 +56,8 @@ class KMPort (val portId: String, // physical address
   }
 
   def resetPort: Unit = {
-    var remBandwidth: Long = totalBandwidth;
-    var remCPU: Long       = totalCPU;
+    this.remBandwidth = totalBandwidth;
+    this.remCPU       = totalCPU;
   }
 
   def description: Unit = {

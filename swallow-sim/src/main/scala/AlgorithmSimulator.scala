@@ -37,21 +37,23 @@ object AlgorithmSimulator {
 
     val flows10: Array[KMFlow] = Array(flow1, flow2, flow3, flow4, flow5, flow6, flow7, flow8, flow9, flow10);
     val flows3:  Array[KMFlow] = Array(flow1, flow2, flow3);
+    val flows2:  Array[KMFlow] = Array(flow1, flow2);
     val flows1:  Array[KMFlow] = Array(flow1);
 
 
+    val testFlows: Array[KMFlow] = flows2;
     //when received msg, simulated with 'while'
+    var iterationsNumber: Long = 1;
     breakable {
       while (true) {
-        var iterationsNumber: Long = 1;
-        schedulingFlows(timeSlice = 0.1, flows1, ingress, egress, iterationsNumber);
+        schedulingFlows(timeSlice = 0.1, testFlows, ingress, egress, iterationsNumber);
         iterationsNumber = iterationsNumber+1;
 
         //if all flows completed
-        val flag: Boolean = flowsDidCompleted(flows1);
+        val flag: Boolean = flowsDidCompleted(testFlows);
         if(flag) {
           println("****** Flows Completed !!! ******");
-          for (aFlow <- flows1) {
+          for (aFlow <- testFlows) {
             println(s"$aFlow FCT: ${aFlow.consumedTime}");
           }
 
@@ -194,8 +196,8 @@ object AlgorithmSimulator {
   def schedulingFlows(timeSlice: Double, flows: Array[KMFlow], ingress: KMPort, egress: KMPort, iterationsNumber: Long): Unit = {
 
     // each scheduling time point reset all resources
-    ingress.remBandwidth = 200;
-    egress.remBandwidth = 100;
+    ingress.resetPort;
+    egress.resetPort;
     for (aFlow <- flows) {
       aFlow.resetFlow;
     }
