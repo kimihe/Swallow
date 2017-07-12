@@ -73,17 +73,55 @@ object AlgorithmSimulator {
     return traffic;
   }
 
-  def SFSH(flows: Array[KMFlow]): Tuple3[KMFlow, Long, Long] = {
 
-    // calculate and sort
+  /**
+    * calculate completion time and sort
+    */
+  def SFSH(flows: Array[KMFlow]): Tuple4[KMFlow, Long, Long, Double] = {
+
+    // optimal(op) flow, bandwidth and CPU
+    var optimalFlow: KMFlow         = null;
+    var usedBandwidth: Long         = 0;
+    var usedCPU: Long               = 0;
+    var opFlowFCT_thisRound: Double = Double.MaxValue;
+
+    for (aFlow <- flows) {
+
+      // bandwidth bottleneck(bn)
+      val ingressBandwidth: Long = aFlow.flowInfo.ingress.remBandwidth;
+      val egressBandwidth: Long  = aFlow.flowInfo.egress.remBandwidth;
+      val bnBandwidth: Long      = math.min(ingressBandwidth, egressBandwidth);
 
 
-    val flow: KMFlow = null;
-    val usedBandwidth: Long = 0;
-    val usedCPU: Long = 0;
+      // completion time on ingress
+      val T_uc_i: Double = aFlow.remSize / bnBandwidth;
+      val T_c_i: Double  = (aFlow.remSize * aFlow.compressionRatio) / bnBandwidth
+                  + aFlow.remSize / aFlow.flowInfo.ingress.computationSpeed;
+      // compltion time on egress
+      val T_uc_j: Double = aFlow.remSize / bnBandwidth;
+      val T_c_j: Double  = (aFlow.remSize * aFlow.compressionRatio) / bnBandwidth;
+                  + aFlow.remSize / aFlow.flowInfo.egress.computationSpeed;
+
+
+      // comparison of compression and uncompression
+      val T_c_max: Double  = math.max(T_c_i, T_c_j);
+      val T_uc_max: Double = math.max(T_uc_i, T_uc_j);
+      val T_max: Double    = math.max(T_c_max, T_uc_max);
+
+
+      // update and select
+      if (T_max < opFlowFCT_thisRound) {
+        opFlowFCT_thisRound = T_max;
+
+        optimalFlow = aFlow;
+        usedBandwidth = bnBandwidth;
+        usedCPU = 0;
+      }
+
+    }
 
 //    val res: Map[String, Any] = Map("flow" -> flow, "usedBandwidth" -> usedBandwidth, "usedCPU" -> usedCPU);
-    val res: Tuple3[KMFlow, Long, Long] = (flow, usedBandwidth, usedCPU);
+    val res: Tuple4[KMFlow, Long, Long, Double] = (optimalFlow, usedBandwidth, usedCPU, opFlowFCT_thisRound);
 
     return res;
   }
@@ -93,21 +131,16 @@ object AlgorithmSimulator {
     while (ingress.isBandwidthFree && egress.isBandwidthFree) {
 
       // sort with SFSH(Simple Flow Scheduling Heuristic)
-
-//      val aMap: Map[String, Any] = SFSH(flows);
-//      val aFlow: KMFlow = aMap.get("flow");
-//      val usedBandwidth: Long = aMap.get("usedBandwidth");
-//      val usedCPU: Long = aMap.get("usedCPU");
-
-
-      val aTuple: Tuple3[KMFlow, Long, Long] = SFSH(flows);
+      val aTuple: Tuple4[KMFlow, Long, Long, Double] = SFSH(flows);
       val aFlow: KMFlow = aTuple._1;
       val usedBandwidth: Long = aTuple._2;
       val usedCPU: Long = aTuple._3;
 
       val flowTraffic: Double = flowTrafficInOneTimeSlice(timeSlice, usedBandwidth);
 
-      aFlow.updateFlowWith(finishedSize = flowTraffic, usedBandwidth = usedBandwidth, usedCPU = usedCPU);
+      aFlow.updateFlowWith(finishedSize  = flowTraffic,
+                           usedBandwidth = usedBandwidth,
+                           usedCPU       = usedCPU);
       ingress.updatePortWithFlow(aFlow);
       egress.updatePortWithFlow(aFlow);
     }
