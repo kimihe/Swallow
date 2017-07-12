@@ -9,6 +9,7 @@ object KMFlow {
 class KMFlow (val flowInfo: KMFlowInfo) extends Serializable{
 
   val compressionRatio: Double = 0.5;
+  var willBeCompressed: Boolean = false;
 
   var consumedTime: Double = 0;
   var remSize: Double = flowInfo.totalSize;
@@ -49,6 +50,11 @@ class KMFlow (val flowInfo: KMFlowInfo) extends Serializable{
     else {
       return false;
     }
+  }
+
+  def resetFlow: Unit = {
+    this.usedBandwidth = 0;
+    this.usedCPU = 0;
   }
 
 }

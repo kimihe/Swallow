@@ -2,6 +2,8 @@
   * Created by zhouqihua on 2017/7/8.
   */
 
+// TODO: Remove a flow from flowArrays when it is completed.
+
 import scala.util.control.Breaks._
 
 object AlgorithmSimulator {
@@ -10,15 +12,18 @@ object AlgorithmSimulator {
     val ingress = new KMPort(
                               portId = "ingress",
                               portType =  KMPortType.ingress,
-                              totalBandwidth =  1000,
+                              totalBandwidth =  200,
                               totalCPU =  1,
-                              remBandwidth =  800,
-                              remCPU =  1,
-                              computationSpeed =  350);
-    val egress  = new KMPort("egress", KMPortType.egress, 1000, 1, 500, 1, 700);
+                              computationSpeed =  400);
+    val egress  = new KMPort(
+                              portId =  "egress",
+                              portType = KMPortType.egress,
+                              totalBandwidth = 100,
+                              totalCPU = 1,
+                              computationSpeed = 800);
 
 
-    val flow1 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow1", ingress, egress, 2500, 0, "this is flow-000001"));
+    val flow1 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow1", ingress, egress, 2000, 0, "this is flow-000001"));
     val flow2 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow2", ingress, egress, 3000, 0, "this is flow-000002"));
     val flow3 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow3", ingress, egress, 3500, 0, "this is flow-000003"));
     val flow4 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow4", ingress, egress, 4000, 0, "this is flow-000004"));
@@ -30,20 +35,32 @@ object AlgorithmSimulator {
     val flow10 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow10", ingress, egress, 4000, 0, "this is flow-0000010"));
 
 
-    val flows: Array[KMFlow] = Array(flow1, flow2, flow3, flow4, flow5, flow6, flow7, flow8, flow9, flow10);
+    val flows10: Array[KMFlow] = Array(flow1, flow2, flow3, flow4, flow5, flow6, flow7, flow8, flow9, flow10);
+    val flows3:  Array[KMFlow] = Array(flow1, flow2, flow3);
+    val flows1:  Array[KMFlow] = Array(flow1);
 
 
     //when received msg, simulated with 'while'
-    while (true) {
-      schedulingFlows(timeSlice = 0.1, flows, ingress, egress);
+    breakable {
+      while (true) {
+        var iterationsNumber: Long = 1;
+        schedulingFlows(timeSlice = 0.1, flows1, ingress, egress, iterationsNumber);
+        iterationsNumber = iterationsNumber+1;
 
-      //if 10 flows completed
-      val flag: Boolean = flowsDidCompleted(flows);
-      if(flag) {
-        println("****** Flows Completed !!! ******");
-        break;
+        //if all flows completed
+        val flag: Boolean = flowsDidCompleted(flows1);
+        if(flag) {
+          println("****** Flows Completed !!! ******");
+          for (aFlow <- flows1) {
+            println(s"$aFlow FCT: ${aFlow.consumedTime}");
+          }
+
+          break();
+        }
       }
     }
+
+
 
 
 
@@ -57,10 +74,13 @@ object AlgorithmSimulator {
   def flowsDidCompleted(flows: Array[KMFlow]): Boolean = {
 
     var flag: Boolean = true;
-    for (aFlow <- flows) {
-      if (!aFlow.isCompleted) {
-        flag = false;
-        break;
+    // pass a function to the breakable method
+    breakable {
+      for (aFlow <- flows) {
+        if (!aFlow.isCompleted) {
+          flag = false;
+          break();
+        }
       }
     }
 
@@ -77,70 +97,128 @@ object AlgorithmSimulator {
   /**
     * calculate completion time and sort
     */
-  def SFSH(flows: Array[KMFlow]): Tuple4[KMFlow, Long, Long, Double] = {
+  def SFSH(flows: Array[KMFlow]): Tuple6[KMFlow, Long, Long, Boolean, Double, KMPortType.PortType] = {
 
     // optimal(op) flow, bandwidth and CPU
-    var optimalFlow: KMFlow         = null;
-    var usedBandwidth: Long         = 0;
-    var usedCPU: Long               = 0;
+    var opFlow: KMFlow         = null;
+    var opUsedBandwidth: Long         = 0;
+    var opUsedCPU: Long               = 0;
+    var opFlowWillBeCompressed: Boolean = false;
     var opFlowFCT_thisRound: Double = Double.MaxValue;
+    var opBottleneckPort: KMPortType.PortType = KMPortType.other;
 
+
+
+    // iteration
     for (aFlow <- flows) {
+      breakable {
 
-      // bandwidth bottleneck(bn)
-      val ingressBandwidth: Long = aFlow.flowInfo.ingress.remBandwidth;
-      val egressBandwidth: Long  = aFlow.flowInfo.egress.remBandwidth;
-      val bnBandwidth: Long      = math.min(ingressBandwidth, egressBandwidth);
-
-
-      // completion time on ingress
-      val T_uc_i: Double = aFlow.remSize / bnBandwidth;
-      val T_c_i: Double  = (aFlow.remSize * aFlow.compressionRatio) / bnBandwidth
-                  + aFlow.remSize / aFlow.flowInfo.ingress.computationSpeed;
-      // compltion time on egress
-      val T_uc_j: Double = aFlow.remSize / bnBandwidth;
-      val T_c_j: Double  = (aFlow.remSize * aFlow.compressionRatio) / bnBandwidth;
-                  + aFlow.remSize / aFlow.flowInfo.egress.computationSpeed;
+        if (aFlow.isCompleted)
+          break();
 
 
-      // comparison of compression and uncompression
-      val T_c_max: Double  = math.max(T_c_i, T_c_j);
-      val T_uc_max: Double = math.max(T_uc_i, T_uc_j);
-      val T_max: Double    = math.max(T_c_max, T_uc_max);
+        // init variables
+        var bnBandwidth: Long = 0;
+        var usedCPU = 0;
+        var flowWillBeCompressed: Boolean = false;
+        var FCT: Double = 0;
+        var bnPort: KMPortType.PortType = KMPortType.other;
 
 
-      // update and select
-      if (T_max < opFlowFCT_thisRound) {
-        opFlowFCT_thisRound = T_max;
 
-        optimalFlow = aFlow;
-        usedBandwidth = bnBandwidth;
-        usedCPU = 0;
+        // bandwidth bottleneck(bn)
+        val ingressBandwidth: Long = aFlow.flowInfo.ingress.remBandwidth;
+        val egressBandwidth: Long  = aFlow.flowInfo.egress.remBandwidth;
+
+        if (ingressBandwidth <= egressBandwidth) {
+          bnBandwidth = ingressBandwidth;
+          bnPort = KMPortType.ingress;
+        }
+        else {
+          bnBandwidth = egressBandwidth;
+          bnPort = KMPortType.egress;
+        }
+
+        if (bnBandwidth == 0)
+          break(); // equivalent to 'continue'
+
+
+
+        // completion time on ingress
+        val T_uc_i: Double = aFlow.remSize / bnBandwidth;
+        val T_c_i: Double  = (aFlow.remSize * aFlow.compressionRatio) / bnBandwidth +
+          aFlow.remSize / aFlow.flowInfo.ingress.computationSpeed;
+
+        // compltion time on egress
+        val T_uc_j: Double = aFlow.remSize / bnBandwidth;
+        val T_c_j: Double  = (aFlow.remSize * aFlow.compressionRatio) / bnBandwidth +
+          aFlow.remSize / aFlow.flowInfo.egress.computationSpeed;
+
+        // comparison of compression and uncompression
+        val T_c_max: Double  = math.max(T_c_i, T_c_j);
+        val T_uc_max: Double = math.max(T_uc_i, T_uc_j);
+
+        if (T_c_max <= T_uc_max) {
+          FCT = T_c_max;
+          flowWillBeCompressed = true
+        }
+        else {
+          FCT = T_uc_max;
+          flowWillBeCompressed = false;
+        }
+
+
+
+        // update and select
+        if (FCT < opFlowFCT_thisRound) {
+
+          opFlow = aFlow;
+          opUsedBandwidth = bnBandwidth;
+          opUsedCPU = usedCPU;
+          opFlowWillBeCompressed = flowWillBeCompressed;
+          opFlowFCT_thisRound = FCT;
+          opBottleneckPort = bnPort;
+        }
       }
-
     }
 
-//    val res: Map[String, Any] = Map("flow" -> flow, "usedBandwidth" -> usedBandwidth, "usedCPU" -> usedCPU);
-    val res: Tuple4[KMFlow, Long, Long, Double] = (optimalFlow, usedBandwidth, usedCPU, opFlowFCT_thisRound);
+
+
+
+    val res: Tuple6[KMFlow, Long, Long, Boolean, Double, KMPortType.PortType] = (
+      opFlow, opUsedBandwidth, opUsedCPU, opFlowWillBeCompressed,opFlowFCT_thisRound, opBottleneckPort);
 
     return res;
   }
 
-  def schedulingFlows(timeSlice: Double, flows: Array[KMFlow], ingress: KMPort, egress: KMPort): Unit = {
+  def schedulingFlows(timeSlice: Double, flows: Array[KMFlow], ingress: KMPort, egress: KMPort, iterationsNumber: Long): Unit = {
+
+    // each scheduling time point reset all resources
+    ingress.remBandwidth = 200;
+    egress.remBandwidth = 100;
+    for (aFlow <- flows) {
+      aFlow.resetFlow;
+    }
 
     while (ingress.isBandwidthFree && egress.isBandwidthFree) {
 
       // sort with SFSH(Simple Flow Scheduling Heuristic)
-      val aTuple: Tuple4[KMFlow, Long, Long, Double] = SFSH(flows);
+      val aTuple: Tuple6[KMFlow, Long, Long, Boolean, Double, KMPortType.PortType] = SFSH(flows);
+      println(s"SFSH[$iterationsNumber]: $aTuple");
+
+
       val aFlow: KMFlow = aTuple._1;
-      val usedBandwidth: Long = aTuple._2;
-      val usedCPU: Long = aTuple._3;
+      var usedBandwidth: Long = aTuple._2;
+      var usedCPU: Long = aTuple._3;
+
+
 
       val flowTraffic: Double = flowTrafficInOneTimeSlice(timeSlice, usedBandwidth);
 
       aFlow.updateFlowWith(finishedSize  = flowTraffic,
                            usedBandwidth = usedBandwidth,
                            usedCPU       = usedCPU);
+      aFlow.updateFlowWith(0.1);
       ingress.updatePortWithFlow(aFlow);
       egress.updatePortWithFlow(aFlow);
     }

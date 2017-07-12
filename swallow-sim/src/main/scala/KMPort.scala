@@ -5,7 +5,7 @@
 object KMPortType extends Enumeration {
   type PortType = Value
 
-  val ingress, egress = Value
+  val ingress, egress, other = Value
 }
 
 
@@ -14,15 +14,27 @@ class KMPort (val portId: String, // physical address
 
               val totalBandwidth: Long,
               val totalCPU: Long,
+              val computationSpeed: Long) extends Serializable {
 
-              var remBandwidth: Long,
-              var remCPU: Long,
-              var computationSpeed: Long) extends Serializable {
+  var remBandwidth: Long = totalBandwidth;
+  var remCPU: Long       = totalCPU;
 
   def updatePortWithFlow(flow: KMFlow): Unit = {
 
-    this.remBandwidth = this.remBandwidth - flow.usedBandwidth;
-    this.remCPU = this.remCPU - flow.usedCPU;
+    if (this.remBandwidth >= flow.usedBandwidth) {
+      this.remBandwidth = this.remBandwidth - flow.usedBandwidth;
+    }
+    else {
+      this.remBandwidth = 0;
+    }
+
+    if (this.remCPU > flow.usedCPU) {
+      this.remCPU = this.remCPU - flow.usedCPU;
+    }
+    else {
+      this.remCPU = 0;
+    }
+
   }
 
   def isBandwidthFree: Boolean = {
@@ -41,6 +53,11 @@ class KMPort (val portId: String, // physical address
     else {
       return  false;
     }
+  }
+
+  def resetPort: Unit = {
+    var remBandwidth: Long = totalBandwidth;
+    var remCPU: Long       = totalCPU;
   }
 
   def description: Unit = {
