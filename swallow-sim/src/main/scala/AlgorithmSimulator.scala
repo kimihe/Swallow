@@ -3,6 +3,7 @@
   */
 
 // TODO: Remove a flow from flowArrays when it is completed.
+// TODO: Update flow size after determining whether compress or not
 
 import scala.util.control.Breaks._
 
@@ -36,12 +37,12 @@ object AlgorithmSimulator {
 
 
     val flows10: Array[KMFlow] = Array(flow1, flow2, flow3, flow4, flow5, flow6, flow7, flow8, flow9, flow10);
-    val flows3:  Array[KMFlow] = Array(flow1, flow2, flow3);
-    val flows2:  Array[KMFlow] = Array(flow1, flow2);
+    val flows3:  Array[KMFlow] = Array(flow1, flow2, flow7);
+    val flows2:  Array[KMFlow] = Array(flow1, flow7);
     val flows1:  Array[KMFlow] = Array(flow1);
 
 
-    val testFlows: Array[KMFlow] = flows10;
+    val testFlows: Array[KMFlow] = flows2;
     //when received msg, simulated with 'while'
     var iterationsNumber: Long = 1;
     breakable {
@@ -105,7 +106,7 @@ object AlgorithmSimulator {
     var opFlow: KMFlow         = null;
     var opUsedBandwidth: Long         = 0;
     var opUsedCPU: Long               = 0;
-    var opFlowWillBeCompressed: Boolean = false;
+    var opCompressionFlag: Boolean = false;
     var opFlowFCT_thisRound: Double = Double.MaxValue;
     var opBottleneckPort: KMPortType.PortType = KMPortType.other;
 
@@ -122,7 +123,7 @@ object AlgorithmSimulator {
         // init variables
         var bnBandwidth: Long = 0;
         var usedCPU = 0;
-        var flowWillBeCompressed: Boolean = false;
+        var compressionFlag: Boolean = false;
         var FCT: Double = 0;
         var bnPort: KMPortType.PortType = KMPortType.other;
 
@@ -146,28 +147,37 @@ object AlgorithmSimulator {
 
 
 
-        // completion time on ingress
-        val T_uc_i: Double = aFlow.remSize / bnBandwidth;
-        val T_c_i: Double  = (aFlow.remSize * aFlow.compressionRatio) / bnBandwidth +
-          aFlow.remSize / aFlow.flowInfo.ingress.computationSpeed;
-
-        // compltion time on egress
-        val T_uc_j: Double = aFlow.remSize / bnBandwidth;
-        val T_c_j: Double  = (aFlow.remSize * aFlow.compressionRatio) / bnBandwidth +
-          aFlow.remSize / aFlow.flowInfo.egress.computationSpeed;
-
-        // comparison of compression and uncompression
-        val T_c_max: Double  = math.max(T_c_i, T_c_j);
-        val T_uc_max: Double = math.max(T_uc_i, T_uc_j);
-
-        if (T_c_max <= T_uc_max) {
-          FCT = T_c_max;
-          flowWillBeCompressed = true
+        // TODO: If a flow is compressed, do not compress it again
+        if (aFlow.hasBeenCompressed) {
+          FCT = aFlow.remSize / bnBandwidth;
+          compressionFlag = true;
         }
         else {
-          FCT = T_uc_max;
-          flowWillBeCompressed = false;
+          // completion time on ingress
+          val T_uc_i: Double = aFlow.remSize / bnBandwidth;
+          val T_c_i: Double  = (aFlow.remSize * aFlow.compressionRatio) / bnBandwidth +
+            aFlow.remSize / aFlow.flowInfo.ingress.computationSpeed;
+
+          // compltion time on egress
+          val T_uc_j: Double = aFlow.remSize / bnBandwidth;
+          val T_c_j: Double  = (aFlow.remSize * aFlow.compressionRatio) / bnBandwidth +
+            aFlow.remSize / aFlow.flowInfo.egress.computationSpeed;
+
+          // comparison of compression and uncompression
+          val T_c_max: Double  = math.max(T_c_i, T_c_j);
+          val T_uc_max: Double = math.max(T_uc_i, T_uc_j);
+
+          if (T_c_max <= T_uc_max) {
+            FCT = T_c_max;
+            compressionFlag = true
+          }
+          else {
+            FCT = T_uc_max;
+            compressionFlag = false;
+          }
         }
+
+
 
 
 
@@ -177,7 +187,7 @@ object AlgorithmSimulator {
           opFlow = aFlow;
           opUsedBandwidth = bnBandwidth;
           opUsedCPU = usedCPU;
-          opFlowWillBeCompressed = flowWillBeCompressed;
+          opCompressionFlag = compressionFlag;
           opFlowFCT_thisRound = FCT;
           opBottleneckPort = bnPort;
         }
@@ -188,7 +198,7 @@ object AlgorithmSimulator {
 
 
     val res: Tuple6[KMFlow, Long, Long, Boolean, Double, KMPortType.PortType] = (
-      opFlow, opUsedBandwidth, opUsedCPU, opFlowWillBeCompressed,opFlowFCT_thisRound, opBottleneckPort);
+      opFlow, opUsedBandwidth, opUsedCPU, opCompressionFlag, opFlowFCT_thisRound, opBottleneckPort);
 
     return res;
   }
@@ -212,17 +222,23 @@ object AlgorithmSimulator {
       val aFlow: KMFlow = aTuple._1;
       var usedBandwidth: Long = aTuple._2;
       var usedCPU: Long = aTuple._3;
+      val compressionFlag = aTuple._4;
 
 
 
       val flowTraffic: Double = flowTrafficInOneTimeSlice(timeSlice, usedBandwidth);
 
+      aFlow.updateFlowWith(compressionFlag);
       aFlow.updateFlowWith(finishedSize  = flowTraffic,
                            usedBandwidth = usedBandwidth,
                            usedCPU       = usedCPU);
-      aFlow.updateFlowWith(0.1);
+
       ingress.updatePortWithFlow(aFlow);
       egress.updatePortWithFlow(aFlow);
+
+      // TODO: How to calculate the consumed time?
+      for (aFlow <- flows)
+        aFlow.updateFlowWith(0.1);
     }
   }
 }

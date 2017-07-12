@@ -1,12 +1,20 @@
-# Swallow Guide
+# Project Guide
+### swallow
 Efficient flow scheduling system in data-intensive clusters, based on [Akka](http://akka.io/).  
 **Development Language:** `Scala`.  
+
+### swallow-sim
+Trace-driven simulator for flow scheduling used in swallow.   
+Full project is here ([swallow-sim](https://github.com/kimihe/Swallow/tree/master/swallow-sim)).
+
+### swallow-benchmark
+Synthesized data from real-world traces of data-intensive clusters.
 
 # Prerequisites
 * JDK 8.
 * sbt 0.13.13 or higher ([download here](http://www.scala-sbt.org/download.html)).
 
-# How To Download
+# How to Download
 1. Download from [https://github.com/kimihe/Swallow](https://github.com/kimihe/Swallow) or use `git clone git@github.com:kimihe/Swallow.git`.
 
 2. Extract the zip file to a convenient location:
@@ -14,7 +22,7 @@ Efficient flow scheduling system in data-intensive clusters, based on [Akka](htt
 * On **Linux** and **OSX** systems, open a terminal and use the command unzip `Swallo-master.zip`. 
 * On **Windows**, use a tool such as File Explorer to extract the project.
 
-# Running The Project
+# How to Complile and Run
 * In a console, change directories to the top level of the unzipped project. For example, if you used the default project name, `Swallo-master`, and extracted the project to your root directory, from the root directory, enter: `cd Swallo-master/swallow`.
 
 * In the above directory, enter `sbt compile` to compile the source codes and enter `sbt run` to execute the program. sbt will download project dependencies, build the project and compile the archived package. Output looks like this: 
@@ -38,7 +46,7 @@ Enter number:
 
 * These four processes simulate a simplest distributed scheduling system. In this example, all of them are run on the same machine, you can modify the `application.conf` in directory `resources` to respectively configure their IP address and communication port. Run them on different machines and the same behaviour will be shown.
 
-# Intellij IDEA
+# About Intellij IDEA
 You can also organize this project with **Intellij IDEA**, just open from the root directory `Swallo-master/swallow`.
 
 # More
