@@ -41,7 +41,7 @@ object AlgorithmSimulator {
     val flows1:  Array[KMFlow] = Array(flow1);
 
 
-    val testFlows: Array[KMFlow] = flows2;
+    val testFlows: Array[KMFlow] = flows10;
     //when received msg, simulated with 'while'
     var iterationsNumber: Long = 1;
     breakable {
