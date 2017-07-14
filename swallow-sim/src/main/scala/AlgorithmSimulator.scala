@@ -50,7 +50,7 @@ object AlgorithmSimulator {
       *
       * 2. sort seq: flow1, flow2, flow3;
       *
-      * 3. Final FCT = network time + compression time + waiting time(other flows are tranmitting);
+      * 3. Final FCT = network time + compression time + waiting time(other flows are being transmitted);
       * flow1 = 0.75 + 0.0 = 0.75;
       * flow2 = 0.75 + 0.5 = 1.25;
       * flow3 = 1.5 +(0.5 + 0.5) = 2.5;
