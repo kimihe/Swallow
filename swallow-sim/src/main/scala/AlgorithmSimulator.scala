@@ -24,9 +24,9 @@ object AlgorithmSimulator {
                               computationSpeed = 800);
 
 
-    val flow1 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow1", ingress, egress, 200, 0, "this is flow-000001"));
-    val flow2 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow2", ingress, egress, 3000, 0, "this is flow-000002"));
-    val flow3 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow3", ingress, egress, 3500, 0, "this is flow-000003"));
+    val flow1 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow1", ingress, egress, 100, 0, "this is flow-000001"));
+    val flow2 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow2", ingress, egress, 100, 0, "this is flow-000002"));
+    val flow3 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow3", ingress, egress, 200, 0, "this is flow-000003"));
     val flow4 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow4", ingress, egress, 4000, 0, "this is flow-000004"));
     val flow5 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow5", ingress, egress, 4500, 0, "this is flow-000005"));
     val flow6 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow6", ingress, egress, 5000, 0, "this is flow-000006"));
@@ -41,7 +41,21 @@ object AlgorithmSimulator {
     val flows2:  Array[KMFlow] = Array(flow1, flow7);
     val flows1:  Array[KMFlow] = Array(flow1);
 
-    val testFlows: Array[KMFlow] = Array(flow1);
+    /**
+      * EXAMPLE 1:
+      * 1. compeletion time = network time + compression time;
+      * flow1 = 0.5 + 0.25 = 0.75;
+      * flow2 = 0.5 + 0.25 = 0.75;
+      * flow3 = 1.0 + 0.5 = 1.5;
+      *
+      * 2. sort seq: flow1, flow2, flow3;
+      *
+      * 3. Final FCT = network time + compression time + waiting time(other flows are tranmitting);
+      * flow1 = 0.75 + 0.0 = 0.75;
+      * flow2 = 0.75 + 0.5 = 1.25;
+      * flow3 = 1.5 +(0.5 + 0.5) = 2.5;
+    */
+    val testFlows: Array[KMFlow] = Array(flow3, flow1, flow2);
 
 
     //when received msg, simulated with 'while'
