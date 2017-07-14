@@ -9,7 +9,8 @@ object KMFlow {
 class KMFlow (val flowInfo: KMFlowInfo) extends Serializable{
 
   val compressionRatio: Double     = 0.5;
-  val hasBeenCompressed: Boolean   = false;
+
+  var hasBeenCompressed: Boolean   = false;
 
   var consumedTime: Double = 0;
   var remSize: Double = flowInfo.totalSize;
@@ -37,15 +38,20 @@ class KMFlow (val flowInfo: KMFlowInfo) extends Serializable{
     this.usedCPU = usedCPU;
   }
 
-  def updateFlowWith(compressionFlag: Boolean): Unit = {
+  /**
+  * Updating a flow with compression arguments has the "Property of Idempotence" (幂等性)
+  */
+  def updateFlowWithCompressionArgs(compressionFlag: Boolean, compressionTime: Double): Unit = {
     if (compressionFlag) {
       if (!this.hasBeenCompressed) {
         this.remSize = this.remSize * this.compressionRatio;
+        this.consumedTime += compressionTime;
+        this.hasBeenCompressed = true;
       }
     }
   }
 
-  def updateFlowWith(consumedTime: Double): Unit = {
+  def updateFlowWithConsumedTime(consumedTime: Double): Unit = {
     if (!this.isCompleted) {
       this.consumedTime += consumedTime;
     }
