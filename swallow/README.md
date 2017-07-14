@@ -1,19 +1,6 @@
-# Project Guide
-In the root directory `Swallow-master`, three subprojects are contained: **swallow**, **swallow-sim**, and **swallow-benchmark**.  
-
-### swallow
+# Swallow
 Efficient flow scheduling system in data-intensive clusters, based on [Akka](http://akka.io/).  
 **Development Language:** `Scala`.  
-**Full Project:** [swallow](https://github.com/kimihe/Swallow/tree/master/swallow).
-
-### swallow-sim
-Trace-driven simulator for flow scheduling used in swallow.  
-**Development Language:** `Scala`.  
-**Full project:** [swallow-sim](https://github.com/kimihe/Swallow/tree/master/swallow-sim).
-
-### swallow-benchmark
-Synthesized data from real-world traces of data-intensive clusters.   
-**Full project:** [swallow-benchmark](https://github.com/kimihe/Swallow/tree/master/swallow-benchmark).
 
 # Prerequisites
 * JDK 8.
@@ -24,12 +11,10 @@ Synthesized data from real-world traces of data-intensive clusters.
 
 2. Extract the zip file to a convenient location:
 
-* On **Linux** and **OSX** systems, open a terminal and use the command unzip `Swallow-master.zip`. 
+* On **Linux** and **OSX** systems, open a terminal and use the command unzip `Swallo-master.zip`. 
 * On **Windows**, use a tool such as File Explorer to extract the project.
 
 # How to Complile and Run
-**Take `Swallow-master/swallow` as an example:**
-
 * In a console, change directories to the top level of the unzipped project. For example, if you used the default project name, `Swallo-master`, and extracted the project to your root directory, from the root directory, enter: `cd Swallo-master/swallow`.
 
 * In the above directory, enter `sbt compile` to compile the source codes and enter `sbt run` to execute the program. sbt will download project dependencies, build the project and compile the archived package. Output looks like this: 
