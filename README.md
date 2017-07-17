@@ -51,7 +51,7 @@ Enter number:
 ```
 * For example: enter `1` and select to run `[1] examples.ExampleClusterApp `. Then, you can start three new terminals to run `[2] examples.ExampleMaster`, `[4] examples.ExampleSender` and `[3] examples.ExampleReceiver`. 
 
-* These four processes simulate a simplest distributed scheduling system. In this example, all of them are run on the same machine, you can modify the `application.conf` in directory `resources` to respectively configure their IP address and communication port. Run them on different machines and the same behaviour will be shown.
+* These four processes simulate a simplest distributed scheduling system. In this example, all of them are run on the same machine, you can modify the `application.conf` in directory `resources` to respectively configure their IP address and communication port. **Swallow can be deployed on different machines and run as a real distributed scheduling system.**
 
 # About Intellij IDEA
 You can also organize this project with **Intellij IDEA**, just open from the root directory `Swallow-master/swallow`.
