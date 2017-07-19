@@ -24,38 +24,56 @@ object AlgorithmSimulator {
                               computationSpeed = 800);
 
 
+    val flow0 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow0", ingress, egress, 400, 0, "this is flow-000000"));
     val flow1 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow1", ingress, egress, 100, 0, "this is flow-000001"));
     val flow2 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow2", ingress, egress, 100, 0, "this is flow-000002"));
     val flow3 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow3", ingress, egress, 200, 0, "this is flow-000003"));
     val flow4 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow4", ingress, egress, 400, 0, "this is flow-000004"));
-    val flow5 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow5", ingress, egress, 450, 0, "this is flow-000005"));
+    val flow5 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow5", ingress, egress, 300, 0, "this is flow-000005"));
     val flow6 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow6", ingress, egress, 500, 0, "this is flow-000006"));
     val flow7 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow7", ingress, egress, 100, 0, "this is flow-000007"));
     val flow8 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow8", ingress, egress, 200, 0, "this is flow-000008"));
     val flow9 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow9", ingress, egress, 300, 0, "this is flow-000009"));
-    val flow10 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow10", ingress, egress, 400, 0, "this is flow-0000010"));
 
 
-    val flows10: Array[KMFlow] = Array(flow1, flow2, flow3, flow4, flow5, flow6, flow7, flow8, flow9, flow10);
+
+    val flows10: Array[KMFlow] = Array(flow0, flow1, flow2, flow3, flow4, flow5, flow6, flow7, flow8, flow9);
     val flows3:  Array[KMFlow] = Array(flow1, flow2, flow7);
     val flows2:  Array[KMFlow] = Array(flow1, flow7);
     val flows1:  Array[KMFlow] = Array(flow1);
 
     /**
       * EXAMPLE 1:
-      * 1. compeletion time = network time + compression time;
-      * flow1 = 0.5 + 0.25 = 0.75;
-      * flow2 = 0.5 + 0.25 = 0.75;
-      * flow3 = 1.0 + 0.5 = 1.5;
+      * compressionRatio = 0.5; computationSpeed = 400 (only consider compression)
       *
-      * 2. sort seq: flow1, flow2, flow3;
+      * 1. Execution Time = network time + compression time (dataSIze/200 + dataSize/400);
+      * flow0(400) = 2.0 + 1.0  = 3.0;
+      * flow1(100) = 0.5 + 0.25 = 0.75;
+      * flow2(100) = 0.5 + 0.25 = 0.75;
+      * flow3(200) = 1.0 + 0.5  = 1.5;
+      * flow4(400) = 2.0 + 1.0  = 3.0;
+      * flow5(300) = 1.5 + 0.75 = 2.25;
+      * flow6(500) = 2.5 + 1.25 = 3.75;
+      * flow7(100) = 0.5 + 0.25 = 0.75;
+      * flow8(200) = 1.0 + 0.5  = 1.5
+      * flow9(300) = 1.5 + 0.75 = 2.25;
       *
-      * 3. Final FCT = network time + compression time + waiting time(other flows are being transmitted);
+      *
+      * 2. sort seq: flow1, flow2, flow7, flow3, flow8, flow5, flow9, flow0, flow4, flow6;
+      *
+      * 3. FCT = Execution Time (network time + compression time) + Waiting Time (other flows are being transmitted);
       * flow1 = 0.75 + 0.0 = 0.75;
       * flow2 = 0.75 + 0.5 = 1.25;
-      * flow3 = 1.5 +(0.5 + 0.5) = 2.5;
+      * flow7 = 0.75 + (0.5 + 0.5) = 1.75
+      * flow3 = 1.5 + (0.5 + 0.5 + 0.5) = 3.0;
+      * flow8 = 1.5 + (0.5 + 0.5 + 0.5 + 1.0) = 4.0;
+      * flow5 = 2.25 + (0.5 + 0.5 + 0.5 + 1.0 + 1.0) = 5.75;
+      * flow9 = 2.25 + (0.5 + 0.5 + 0.5 + 1.0 + 1.0 + 1.5) = 7.25;
+      * flow0 = 3.0 + (0.5 + 0.5 + 0.5 + 1.0 + 1.0 + 1.5 + 1.5) = 9.5;
+      * flow4 = 3.0 + (0.5 + 0.5 + 0.5 + 1.0 + 1.0 + 1.5 + 1.5 + 2.0) = 11.5;
+      * flow6 = 3.75 + (0.5 + 0.5 + 0.5 + 1.0 + 1.0 + 1.5 + 1.5 + 2.0 + 2.0) = 14.25;
     */
-    val testFlows: Array[KMFlow] = flows10//Array(flow3, flow1, flow2);
+    val testFlows: Array[KMFlow] = flows10;//Array(flow6, flow0);
 
 
     //when received msg, simulated with 'while'
@@ -70,7 +88,7 @@ object AlgorithmSimulator {
         if(flag) {
           println("************ Flows Completed !!! ************");
           for (aFlow <- testFlows) {
-            println(s"$aFlow FCT: ${aFlow.consumedTime}");
+            println(s"${aFlow.flowInfo.flowId} FCT: ${aFlow.consumedTime}");
           }
 
           break();
@@ -229,11 +247,6 @@ object AlgorithmSimulator {
 
     while (ingress.isBandwidthFree && egress.isBandwidthFree) {
 
-      // TODO: How to calculate the consumed time?
-      for (aFlow <- flows)
-        aFlow.updateFlowWithConsumedTime(consumedTime = timeSlice);
-
-
       // sort with SFSH(Simple Flow Scheduling Heuristic)
       val aTuple: Tuple7[KMFlow, Long, Long, Boolean, Double, Double, KMPortType.PortType] = SFSH(flows);
 
@@ -246,10 +259,16 @@ object AlgorithmSimulator {
       val opBottleneckPort: KMPortType.PortType = aTuple._7;
 
       println(s"SFSH[$iterationsNumber]: " +
-        s"(opFlow: $opFlow, opUsedBandwidth: $opUsedBandwidth, opUsedCPU: $opUsedCPU, opCompressionFlag: $opCompressionFlag," +
+        s"(opFlow: ${opFlow.flowInfo.flowId}, opUsedBandwidth: $opUsedBandwidth, opUsedCPU: $opUsedCPU, opCompressionFlag: $opCompressionFlag," +
         s" opFlowFCT_thisRound: $opFlowFCT_thisRound, opCompressionTime: $opCompressionTime, opBottleneckPort: $opBottleneckPort)");
+      opFlow.description;
 
-      //opFlow.description;
+      // TODO: How to calculate the consumed time?
+      for (aFlow <- flows)
+        aFlow.updateFlowWithConsumedTime(consumedTime = timeSlice);
+      // TODO: Take Compression Time Into Account !!!
+
+
       val flowTraffic: Double = flowTrafficInOneTimeSlice(timeSlice, opUsedBandwidth);
 
       opFlow.updateFlowWithCompressionArgs(compressionFlag = opCompressionFlag,
@@ -257,7 +276,7 @@ object AlgorithmSimulator {
       opFlow.updateFlowWith(finishedSize  = flowTraffic,
                            usedBandwidth = opUsedBandwidth,
                            usedCPU       = opUsedCPU);
-      opFlow.description;
+      //opFlow.description;
 
       ingress.updatePortWithFlow(opFlow);
       egress.updatePortWithFlow(opFlow);

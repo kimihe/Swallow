@@ -2,6 +2,9 @@
   * Created by zhouqihua on 2017/7/8.
   */
 
+import java.math.BigDecimal
+import KMScalaKit._
+
 object KMFlow {
   def initWithFlowInfo(flowInfo: KMFlowInfo): KMFlow = new KMFlow(flowInfo)
 }
@@ -12,8 +15,9 @@ class KMFlow (val flowInfo: KMFlowInfo) extends Serializable{
 
   var hasBeenCompressed: Boolean   = false;
 
-  var consumedTime: Double = 0;
+  var consumedTime: Double = 0.0;
   var remSize: Double = flowInfo.totalSize;
+  var remCompressionTime: Double = 0.0;
 
   var usedBandwidth: Long = 0;
   var usedCPU: Long = 0;
@@ -45,7 +49,7 @@ class KMFlow (val flowInfo: KMFlowInfo) extends Serializable{
     if (compressionFlag) {
       if (!this.hasBeenCompressed) {
         this.remSize = this.remSize * this.compressionRatio;
-        this.consumedTime += compressionTime;
+        this.consumedTime = KMScalaKit.BigDemicalDoubleAdd(this.consumedTime,compressionTime);
         this.hasBeenCompressed = true;
       }
     }
@@ -53,7 +57,7 @@ class KMFlow (val flowInfo: KMFlowInfo) extends Serializable{
 
   def updateFlowWithConsumedTime(consumedTime: Double): Unit = {
     if (!this.isCompleted) {
-      this.consumedTime += consumedTime;
+      this.consumedTime = KMScalaKit.BigDemicalDoubleAdd(this.consumedTime, consumedTime);
     }
   }
 
@@ -72,13 +76,15 @@ class KMFlow (val flowInfo: KMFlowInfo) extends Serializable{
   }
 
   def description: Unit = {
-    println("[KMFlow Description]:                  \n" +
-    s"compressionRatio  : ${this.compressionRatio}  \n" +
-    s"hasBeenCompressed : ${this.hasBeenCompressed} \n" +
-    s"consumedTime      : ${this.consumedTime}      \n" +
-    s"remSize           : ${this.remSize}           \n" +
-    s"usedBandwidth     : ${this.usedBandwidth}     \n" +
-    s"usedCPU           : ${this.usedCPU}");
+    println("[KMFlow Description]:                              \n" +
+            s"flowId              : ${this.flowInfo.flowId}     \n" +
+            s"compressionRatio    : ${this.compressionRatio}    \n" +
+            s"hasBeenCompressed   : ${this.hasBeenCompressed}   \n" +
+            s"consumedTime        : ${this.consumedTime}        \n" +
+            s"remSize             : ${this.remSize}             \n" +
+            s"remConpressionTime  : ${this.remCompressionTime}  \n" +
+            s"usedBandwidth       : ${this.usedBandwidth}       \n" +
+            s"usedCPU             : ${this.usedCPU}");
   }
 
 
