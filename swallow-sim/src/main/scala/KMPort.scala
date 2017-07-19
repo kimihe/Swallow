@@ -61,15 +61,14 @@ class KMPort (val portId: String, // physical address
   }
 
   def description: Unit = {
-    println("[KMPort Description]:");
-
-    println(s"portId           : ${this.portId}");
-    println(s"portType         : ${this.portType}");
-    println(s"totalBandwidth   : ${this.totalBandwidth}");
-    println(s"totalCPU         : ${this.totalCPU}");
-    println(s"remBandwidth     : ${this.remBandwidth}");
-    println(s"remCPU           : ${this.remCPU}");
-    println(s"computationSpeed : ${this.computationSpeed}");
+    println("[KMPort Description]:                        \n" +
+            s"portId           : ${this.portId}           \n" +
+            s"portType         : ${this.portType}         \n" +
+            s"totalBandwidth   : ${this.totalBandwidth}   \n" +
+            s"totalCPU         : ${this.totalCPU}         \n" +
+            s"remBandwidth     : ${this.remBandwidth}     \n" +
+            s"remCPU           : ${this.remCPU}           \n" +
+            s"computationSpeed : ${this.computationSpeed}");
   }
 
 }

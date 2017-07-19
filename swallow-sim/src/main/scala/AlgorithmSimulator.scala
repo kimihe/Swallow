@@ -27,13 +27,13 @@ object AlgorithmSimulator {
     val flow1 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow1", ingress, egress, 100, 0, "this is flow-000001"));
     val flow2 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow2", ingress, egress, 100, 0, "this is flow-000002"));
     val flow3 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow3", ingress, egress, 200, 0, "this is flow-000003"));
-    val flow4 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow4", ingress, egress, 4000, 0, "this is flow-000004"));
-    val flow5 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow5", ingress, egress, 4500, 0, "this is flow-000005"));
-    val flow6 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow6", ingress, egress, 5000, 0, "this is flow-000006"));
-    val flow7 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow7", ingress, egress, 1000, 0, "this is flow-000007"));
-    val flow8 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow8", ingress, egress, 2000, 0, "this is flow-000008"));
-    val flow9 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow9", ingress, egress, 3000, 0, "this is flow-000009"));
-    val flow10 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow10", ingress, egress, 4000, 0, "this is flow-0000010"));
+    val flow4 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow4", ingress, egress, 400, 0, "this is flow-000004"));
+    val flow5 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow5", ingress, egress, 450, 0, "this is flow-000005"));
+    val flow6 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow6", ingress, egress, 500, 0, "this is flow-000006"));
+    val flow7 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow7", ingress, egress, 100, 0, "this is flow-000007"));
+    val flow8 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow8", ingress, egress, 200, 0, "this is flow-000008"));
+    val flow9 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow9", ingress, egress, 300, 0, "this is flow-000009"));
+    val flow10 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow10", ingress, egress, 400, 0, "this is flow-0000010"));
 
 
     val flows10: Array[KMFlow] = Array(flow1, flow2, flow3, flow4, flow5, flow6, flow7, flow8, flow9, flow10);
@@ -55,7 +55,7 @@ object AlgorithmSimulator {
       * flow2 = 0.75 + 0.5 = 1.25;
       * flow3 = 1.5 +(0.5 + 0.5) = 2.5;
     */
-    val testFlows: Array[KMFlow] = Array(flow3, flow1, flow2);
+    val testFlows: Array[KMFlow] = flows10//Array(flow3, flow1, flow2);
 
 
     //when received msg, simulated with 'while'
@@ -68,7 +68,7 @@ object AlgorithmSimulator {
         //if all flows completed
         val flag: Boolean = flowsDidCompleted(testFlows);
         if(flag) {
-          println("****** Flows Completed !!! ******");
+          println("************ Flows Completed !!! ************");
           for (aFlow <- testFlows) {
             println(s"$aFlow FCT: ${aFlow.consumedTime}");
           }
@@ -77,16 +77,10 @@ object AlgorithmSimulator {
         }
       }
     }
-
-
-
-
-
-
-
-
-
   }
+
+
+
 
 
   def flowsDidCompleted(flows: Array[KMFlow]): Boolean = {
@@ -118,12 +112,12 @@ object AlgorithmSimulator {
   def SFSH(flows: Array[KMFlow]): Tuple7[KMFlow, Long, Long, Boolean, Double, Double, KMPortType.PortType] = {
 
     // optimal(op) flow, bandwidth and CPU
-    var opFlow: KMFlow         = null;
-    var opUsedBandwidth: Long         = 0;
-    var opUsedCPU: Long               = 0;
-    var opCompressionFlag: Boolean = false;
-    var opFlowFCT_thisRound: Double = Double.MaxValue;
-    var opCompressionTime: Double = 0.0;
+    var opFlow: KMFlow                        = null;
+    var opUsedBandwidth: Long                 = 0;
+    var opUsedCPU: Long                       = 0;
+    var opCompressionFlag: Boolean            = false;
+    var opFlowFCT_thisRound: Double           = Double.MaxValue;
+    var opCompressionTime: Double             = 0.0;
     var opBottleneckPort: KMPortType.PortType = KMPortType.other;
 
 
@@ -137,11 +131,11 @@ object AlgorithmSimulator {
 
 
         // init variables
-        var bnBandwidth: Long = 0;
-        var usedCPU = 0;
-        var compressionFlag: Boolean = false;
-        var FCT: Double = 0;
-        var compressionTime: Double = 0.0;
+        var bnBandwidth: Long           = 0;
+        var usedCPU                     = 0;
+        var compressionFlag: Boolean    = false;
+        var FCT: Double                 = 0;
+        var compressionTime: Double     = 0.0;
         var bnPort: KMPortType.PortType = KMPortType.other;
 
 
@@ -204,13 +198,13 @@ object AlgorithmSimulator {
         // update and select
         if (FCT < opFlowFCT_thisRound) {
 
-          opFlow = aFlow;
-          opUsedBandwidth = bnBandwidth;
-          opUsedCPU = usedCPU;
-          opCompressionFlag = compressionFlag;
+          opFlow              = aFlow;
+          opUsedBandwidth     = bnBandwidth;
+          opUsedCPU           = usedCPU;
+          opCompressionFlag   = compressionFlag;
           opFlowFCT_thisRound = FCT;
-          opCompressionTime = compressionTime;
-          opBottleneckPort = bnPort;
+          opCompressionTime   = compressionTime;
+          opBottleneckPort    = bnPort;
         }
       }
     }
@@ -237,32 +231,36 @@ object AlgorithmSimulator {
 
       // TODO: How to calculate the consumed time?
       for (aFlow <- flows)
-        aFlow.updateFlowWithConsumedTime(consumedTime = 0.1);
+        aFlow.updateFlowWithConsumedTime(consumedTime = timeSlice);
 
 
       // sort with SFSH(Simple Flow Scheduling Heuristic)
       val aTuple: Tuple7[KMFlow, Long, Long, Boolean, Double, Double, KMPortType.PortType] = SFSH(flows);
-      println(s"SFSH[$iterationsNumber]: $aTuple");
 
+      val opFlow: KMFlow                        = aTuple._1;
+      var opUsedBandwidth: Long                 = aTuple._2;
+      var opUsedCPU: Long                       = aTuple._3;
+      val opCompressionFlag                     = aTuple._4;
+      val opFlowFCT_thisRound: Double           = aTuple._5;
+      val opCompressionTime: Double             = aTuple._6;
+      val opBottleneckPort: KMPortType.PortType = aTuple._7;
 
-      val aFlow: KMFlow = aTuple._1;
-      var usedBandwidth: Long = aTuple._2;
-      var usedCPU: Long = aTuple._3;
-      val compressionFlag = aTuple._4;
-      val compressionTime = aTuple._6;
+      println(s"SFSH[$iterationsNumber]: " +
+        s"(opFlow: $opFlow, opUsedBandwidth: $opUsedBandwidth, opUsedCPU: $opUsedCPU, opCompressionFlag: $opCompressionFlag," +
+        s" opFlowFCT_thisRound: $opFlowFCT_thisRound, opCompressionTime: $opCompressionTime, opBottleneckPort: $opBottleneckPort)");
 
+      //opFlow.description;
+      val flowTraffic: Double = flowTrafficInOneTimeSlice(timeSlice, opUsedBandwidth);
 
+      opFlow.updateFlowWithCompressionArgs(compressionFlag = opCompressionFlag,
+                                          compressionTime = opCompressionTime);
+      opFlow.updateFlowWith(finishedSize  = flowTraffic,
+                           usedBandwidth = opUsedBandwidth,
+                           usedCPU       = opUsedCPU);
+      opFlow.description;
 
-      val flowTraffic: Double = flowTrafficInOneTimeSlice(timeSlice, usedBandwidth);
-
-      aFlow.updateFlowWithCompressionArgs(compressionFlag = compressionFlag,
-                                          compressionTime = compressionTime);
-      aFlow.updateFlowWith(finishedSize  = flowTraffic,
-                           usedBandwidth = usedBandwidth,
-                           usedCPU       = usedCPU);
-
-      ingress.updatePortWithFlow(aFlow);
-      egress.updatePortWithFlow(aFlow);
+      ingress.updatePortWithFlow(opFlow);
+      egress.updatePortWithFlow(opFlow);
     }
   }
 }

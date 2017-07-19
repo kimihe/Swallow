@@ -71,4 +71,15 @@ class KMFlow (val flowInfo: KMFlowInfo) extends Serializable{
     this.usedCPU = 0;
   }
 
+  def description: Unit = {
+    println("[KMFlow Description]:                  \n" +
+    s"compressionRatio  : ${this.compressionRatio}  \n" +
+    s"hasBeenCompressed : ${this.hasBeenCompressed} \n" +
+    s"consumedTime      : ${this.consumedTime}      \n" +
+    s"remSize           : ${this.remSize}           \n" +
+    s"usedBandwidth     : ${this.usedBandwidth}     \n" +
+    s"usedCPU           : ${this.usedCPU}");
+  }
+
+
 }
