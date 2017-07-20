@@ -178,20 +178,20 @@ object AlgorithmSimulator {
 
         // TODO: If a flow is compressed, do not compress it again
         if (aFlow.hasBeenCompressed) {
-          FCT = aFlow.remSize / bnBandwidth;
+          FCT = aFlow.remSize.rawSize / bnBandwidth;
           compressionFlag = false;
           compressionTime = 0.0;
         }
         else {
           // compltion time under uncompression
-          val T_uc_i: Double = aFlow.remSize / bnBandwidth;
-          val T_uc_j: Double = aFlow.remSize / bnBandwidth;
+          val T_uc_i: Double = aFlow.remSize.rawSize / bnBandwidth;
+          val T_uc_j: Double = aFlow.remSize.rawSize / bnBandwidth;
 
           // completion time under compression
-          val T_c_i: Double  = (aFlow.remSize * aFlow.compressionRatio) / bnBandwidth +
-            aFlow.remSize / aFlow.flowInfo.ingress.computationSpeed;
-          val T_c_j: Double  = (aFlow.remSize * aFlow.compressionRatio) / bnBandwidth +
-            aFlow.remSize / aFlow.flowInfo.egress.computationSpeed;
+          val T_c_i: Double  = (aFlow.remSize.rawSize * aFlow.compressionRatio) / bnBandwidth +
+            aFlow.remSize.rawSize / aFlow.flowInfo.ingress.computationSpeed;
+          val T_c_j: Double  = (aFlow.remSize.rawSize * aFlow.compressionRatio) / bnBandwidth +
+            aFlow.remSize.rawSize / aFlow.flowInfo.egress.computationSpeed;
 
           // comparison of compression and uncompression
           val T_c_max: Double  = math.max(T_c_i, T_c_j);
@@ -200,7 +200,7 @@ object AlgorithmSimulator {
           if (T_c_max <= T_uc_max) {
             FCT = T_c_max;
             compressionFlag = true;
-            compressionTime = aFlow.remSize / aFlow.flowInfo.ingress.computationSpeed;
+            compressionTime = aFlow.remSize.rawSize / aFlow.flowInfo.ingress.computationSpeed;
           }
           else {
             FCT = T_uc_max;
