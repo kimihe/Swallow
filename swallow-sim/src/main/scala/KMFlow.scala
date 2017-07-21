@@ -2,6 +2,17 @@
   * Created by zhouqihua on 2017/7/8.
   */
 
+object KMFlowState extends Enumeration {
+  type FlowState = Value
+
+  val waiting_newcome,
+      executing_compression, completed_compression,
+      executing_transmission, completed_transmission,
+      waiting_suspended,
+      completed_exit,
+      other = Value;
+}
+
 object KMFlow {
   def initWithFlowInfo(flowInfo: KMFlowInfo): KMFlow = new KMFlow(flowInfo)
 }
@@ -12,26 +23,41 @@ class KMFlow (val flowInfo: KMFlowInfo) extends Serializable {
   val flowTotalSizeIfCompressed: Double = KMScalaKit.bigDemicalDoubleMul(this.flowInfo.totalSize, compressionRatio);
 
   var hasBeenCompressed: Boolean   = false;
+  var compressionIsCompleted: Boolean = false;
 
   var consumedTime: Double = 0.0;
-//  var remSize: Double = flowInfo.totalSize;
-//  var remCompressionTime: Double = 0.0;
 
   var usedBandwidth: Long = 0;
   var usedCPU: Long = 0;
 
   var remSize: KMFlowSize = new KMFlowSize(compressedSize = 0.0, rawSize = flowInfo.totalSize);
+  var flowState: KMFlowState.FlowState = KMFlowState.waiting_newcome;
 
-  def updateFlowWithCompressSize(compressedSize: Double): Unit = {
-    if (this.remSize.compressedSize < this.flowTotalSizeIfCompressed) {
-      val sum: Double = KMScalaKit.bigDemicalDoubleAdd(this.remSize.compressedSize, compressedSize);
-      this.remSize.updateWithCompressedSize(sum);
-    }
 
-    // TODO: if this.remSize.compressedSize > this.flowTotalSizeIfCompressed , throw an exception
+
+  def updateFlowState(state: KMFlowState.FlowState): Unit = {
+    this.flowState = state;
   }
 
-  def updateFlowWithTransmittedSize(transmittedSize: Double) = {
+  def updateFlowWithCompressSize(compressedSize: Double): Unit = {
+
+    if (this.remSize.compressedSize < this.flowTotalSizeIfCompressed) {
+      val comp: Double = KMScalaKit.bigDemicalDoubleMul(compressedSize, this.compressionRatio);
+      val sum: Double = KMScalaKit.bigDemicalDoubleAdd(this.remSize.compressedSize, comp);
+      val sub: Double = KMScalaKit.bigDemicalDoubleSub(this.remSize.rawSize, comp);
+      this.remSize.updateWith(compressedSize = sum, rawSize = sub);
+
+      if (this.remSize.compressedSize >= this.flowTotalSizeIfCompressed) {
+        this.remSize.updateWith(compressedSize = this.flowTotalSizeIfCompressed, rawSize = 0.0);
+        this.compressionIsCompleted = true;
+      }
+    }
+    else {
+      // TODO: if this.remSize.compressedSize > this.flowTotalSizeIfCompressed , throw an exception
+    }
+  }
+
+  def updateFlowWithTransmittedSize(transmittedSize: Double): Unit = {
     if (this.remSize.mixedSize > transmittedSize) {
       this.remSize.updateWithTransmittedSize(transmittedSize);
     }
@@ -94,19 +120,33 @@ class KMFlow (val flowInfo: KMFlowInfo) extends Serializable {
   }
 
   def description: Unit = {
-    println("[KMFlow Description]:                              \n" +
-            s"flowId              : ${this.flowInfo.flowId}     \n" +
-            s"compressionRatio    : ${this.compressionRatio}    \n" +
-            s"hasBeenCompressed   : ${this.hasBeenCompressed}   \n" +
-            s"consumedTime        : ${this.consumedTime}        \n" +
-            s"remSize             : ${this.remSize}             \n" +
-            //s"remCompressionTime  : ${this.remCompressionTime}  \n" +
-            s"usedBandwidth       : ${this.usedBandwidth}       \n" +
-            s"usedCPU             : ${this.usedCPU}");
+    println("[KMFlow Description]:                                      \n" +
+            s"flowId                  : ${this.flowInfo.flowId}         \n" +
+            s"compressionRatio        : ${this.compressionRatio}        \n" +
+            s"hasBeenCompressed       : ${this.hasBeenCompressed}       \n" +
+            s"consumedTime            : ${this.consumedTime}            \n" +
+            s"usedBandwidth           : ${this.usedBandwidth}           \n" +
+            s"usedCPU                 : ${this.usedCPU}                 \n" +
+            s"remSize.compressedSize  : ${this.remSize.compressedSize}  \n" +
+            s"remSize.rawSize         : ${this.remSize.rawSize}         \n" +
+            s"remSize.mixedSize       : ${this.remSize.mixedSize}"
+    );
   }
 }
 
-class KMFlowSize (var compressedSize: Double, var rawSize: Double) {
+class KMFlowInfo (val flowId: String,
+
+                  val ingress: KMPort,
+                  val egress: KMPort,
+                  val totalSize: Double,
+
+                  val arrivedDate: Long,
+                  val description: String
+                 ) extends Serializable {
+
+}
+
+class KMFlowSize (var compressedSize: Double, var rawSize: Double) extends Serializable {
   var mixedSize = this.compressedSize + rawSize;
 
   // TODO: override setter mothods
@@ -145,6 +185,4 @@ class KMFlowSize (var compressedSize: Double, var rawSize: Double) {
 
     this.mixedSize = this.compressedSize + this.rawSize;
   }
-
-
 }

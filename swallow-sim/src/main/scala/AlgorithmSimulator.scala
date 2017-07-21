@@ -86,7 +86,7 @@ object AlgorithmSimulator {
         //if all flows completed
         val flag: Boolean = flowsDidCompleted(testFlows);
         if(flag) {
-          println("************ Flows Completed !!! ************");
+          println("\n************************ Flows Completed !!! ************************\n");
           for (aFlow <- testFlows) {
             println(s"${aFlow.flowInfo.flowId} FCT: ${aFlow.consumedTime}");
           }
