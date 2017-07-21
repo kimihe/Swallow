@@ -61,26 +61,27 @@ object AlgorithmSimulator {
       *
       * 2. sort seq: flow1, flow2, flow7, flow3, flow8, flow5, flow9, flow0, flow4, flow6;
       *
-      * 3. FCT = Execution Time (network time + compression time) + Waiting Time (other flows are being transmitted);
+      * 3. FCT = Execution Time (network time + compression time) + Waiting Time (other flows are being compressed and transmitted => Execution Time);
       * flow1 = 0.75 + 0.0 = 0.75;
-      * flow2 = 0.75 + 0.5 = 1.25;
-      * flow7 = 0.75 + (0.5 + 0.5) = 1.75
-      * flow3 = 1.5 + (0.5 + 0.5 + 0.5) = 3.0;
-      * flow8 = 1.5 + (0.5 + 0.5 + 0.5 + 1.0) = 4.0;
-      * flow5 = 2.25 + (0.5 + 0.5 + 0.5 + 1.0 + 1.0) = 5.75;
-      * flow9 = 2.25 + (0.5 + 0.5 + 0.5 + 1.0 + 1.0 + 1.5) = 7.25;
-      * flow0 = 3.0 + (0.5 + 0.5 + 0.5 + 1.0 + 1.0 + 1.5 + 1.5) = 9.5;
-      * flow4 = 3.0 + (0.5 + 0.5 + 0.5 + 1.0 + 1.0 + 1.5 + 1.5 + 2.0) = 11.5;
-      * flow6 = 3.75 + (0.5 + 0.5 + 0.5 + 1.0 + 1.0 + 1.5 + 1.5 + 2.0 + 2.0) = 14.25;
+      * flow2 = 0.75 + 0.75 = 1.5;
+      * flow7 = 0.75 + 1.5 = 2.25;
+      * flow3 = 1.5 + 2.25 = 3.75;
+      * flow8 = 1.5 + 3.75 = 5.25;
+      * flow5 = 2.25 + 5.25 = 7.5;
+      * flow9 = 2.25 + 7.5 = 9.75;
+      * flow0 = 3.0 + 9.75 = 12.75;
+      * flow4 = 3.0 + 12.75 = 15.75;
+      * flow6 = 3.75 + 15.75 = 19.5;
     */
-    val testFlows: Array[KMFlow] = flows10;//Array(flow6, flow0);
+
+    val testFlows: Array[KMFlow] = flows10;
 
 
-    //when received msg, simulated with 'while'
+    // time slice, simulated with 'while'
     var iterationsNumber: Long = 0;
     breakable {
       while (true) {
-        schedulingFlows(timeSlice = 0.1, testFlows, ingress, egress, iterationsNumber);
+        schedulingFlows(timeSlice = 0.01, testFlows, ingress, egress, iterationsNumber);
         iterationsNumber = iterationsNumber+1;
 
         //if all flows completed
@@ -116,13 +117,6 @@ object AlgorithmSimulator {
 
     return flag;
   }
-
-  def flowTrafficInOneTimeSlice(timeSlice: Double, usedBandwidth: Long): Double = {
-    val traffic = timeSlice * usedBandwidth;
-
-    return traffic;
-  }
-
 
   /**
     * calculate completion time and sort
@@ -176,21 +170,21 @@ object AlgorithmSimulator {
 
 
 
-        // TODO: If a flow is compressed, do not compress it again
-        if (aFlow.hasBeenCompressed) {
-          FCT = aFlow.remSize.rawSize / bnBandwidth;
+        // TODO: If a flow is compressed totally, do not compress it again
+        if (aFlow.hasBeenCompressedTotally) {
+          FCT = aFlow.remSize.mixedSize / bnBandwidth;
           compressionFlag = false;
           compressionTime = 0.0;
         }
         else {
           // compltion time under uncompression
-          val T_uc_i: Double = aFlow.remSize.rawSize / bnBandwidth;
-          val T_uc_j: Double = aFlow.remSize.rawSize / bnBandwidth;
+          val T_uc_i: Double = aFlow.remSize.mixedSize / bnBandwidth;
+          val T_uc_j: Double = aFlow.remSize.mixedSize / bnBandwidth;
 
           // completion time under compression
-          val T_c_i: Double  = (aFlow.remSize.rawSize * aFlow.compressionRatio) / bnBandwidth +
+          val T_c_i: Double  = (aFlow.remSize.rawSize * aFlow.compressionRatio + aFlow.remSize.compressedSize) / bnBandwidth +
             aFlow.remSize.rawSize / aFlow.flowInfo.ingress.computationSpeed;
-          val T_c_j: Double  = (aFlow.remSize.rawSize * aFlow.compressionRatio) / bnBandwidth +
+          val T_c_j: Double  = (aFlow.remSize.rawSize * aFlow.compressionRatio + aFlow.remSize.compressedSize) / bnBandwidth +
             aFlow.remSize.rawSize / aFlow.flowInfo.egress.computationSpeed;
 
           // comparison of compression and uncompression
@@ -245,6 +239,7 @@ object AlgorithmSimulator {
       aFlow.resetFlow;
     }
 
+    // greedy algorithm
     while (ingress.isBandwidthFree && egress.isBandwidthFree) {
 
       // sort with SFSH(Simple Flow Scheduling Heuristic)
@@ -264,22 +259,36 @@ object AlgorithmSimulator {
       opFlow.description;
 
       // TODO: How to calculate the consumed time?
-      for (aFlow <- flows)
+      for (aFlow <- flows) {
         aFlow.updateFlowWithConsumedTime(consumedTime = timeSlice);
-      // TODO: Take Compression Time Into Account !!!
+      }
 
 
-      val flowTraffic: Double = flowTrafficInOneTimeSlice(timeSlice, opUsedBandwidth);
+      // compression or transmission
+      if (opCompressionFlag) {
+        // TODO: Take Compression Time Into Account !!!
+        opFlow.updateFlowWithCompressionTimeSlice(timeSlice);
+      }
+      else {
+        opFlow.updateFlowWith(opUsedBandwidth, opUsedCPU);
+        opFlow.updateFlowWithTransmissionTimeSlice(timeSlice);
 
-      opFlow.updateFlowWithCompressionArgs(compressionFlag = opCompressionFlag,
-                                          compressionTime = opCompressionTime);
-      opFlow.updateFlowWith(finishedSize  = flowTraffic,
-                           usedBandwidth = opUsedBandwidth,
-                           usedCPU       = opUsedCPU);
-      //opFlow.description;
+        ingress.updatePortWithFlow(opFlow);
+        egress.updatePortWithFlow(opFlow);
+      }
 
-      ingress.updatePortWithFlow(opFlow);
-      egress.updatePortWithFlow(opFlow);
+      opFlow.description;
     }
   }
+
+
+
+
+
+
+
+
+
+
+
 }
