@@ -74,14 +74,14 @@ object AlgorithmSimulator {
       * flow6 = 3.75 + 15.75 = 19.5;
     */
 
-    val testFlows: Array[KMFlow] = flows10;
+    val testFlows: Array[KMFlow] = Array(flow1);
 
 
     // time slice, simulated with 'while'
     var iterationsNumber: Long = 0;
     breakable {
       while (true) {
-        schedulingFlows(timeSlice = 0.01, testFlows, ingress, egress, iterationsNumber);
+        schedulingFlows(timeSlice = 0.1, testFlows, ingress, egress, iterationsNumber);
         iterationsNumber = iterationsNumber+1;
 
         //if all flows completed
@@ -239,6 +239,7 @@ object AlgorithmSimulator {
       aFlow.resetFlow;
     }
 
+    // TODO: How to expand to multi-channel ?
     // greedy algorithm
     while (ingress.isBandwidthFree && egress.isBandwidthFree) {
 
@@ -256,7 +257,7 @@ object AlgorithmSimulator {
       println(s"SFSH[$iterationsNumber]: " +
         s"(opFlow: ${opFlow.flowInfo.flowId}, opUsedBandwidth: $opUsedBandwidth, opUsedCPU: $opUsedCPU, opCompressionFlag: $opCompressionFlag," +
         s" opFlowFCT_thisRound: $opFlowFCT_thisRound, opCompressionTime: $opCompressionTime, opBottleneckPort: $opBottleneckPort)");
-      opFlow.description;
+      // opFlow.description;
 
       // TODO: How to calculate the consumed time?
       for (aFlow <- flows) {
