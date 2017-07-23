@@ -19,17 +19,17 @@ class KMPort (val portId: String, // physical address
   var remBandwidth: Long = totalBandwidth;
   var remCPU: Long       = totalCPU;
 
-  def updatePortWithFlow(flow: KMFlow): Unit = {
+  def updatePortWith(usedBandwidth: Long, usedCPU: Long): Unit = {
 
-    if (this.remBandwidth >= flow.usedBandwidth) {
-      this.remBandwidth = this.remBandwidth - flow.usedBandwidth;
+    if (this.remBandwidth >= usedBandwidth) {
+      this.remBandwidth = this.remBandwidth - usedBandwidth;
     }
     else {
       this.remBandwidth = 0;
     }
 
-    if (this.remCPU > flow.usedCPU) {
-      this.remCPU = this.remCPU - flow.usedCPU;
+    if (this.remCPU > usedCPU) {
+      this.remCPU = this.remCPU - usedCPU;
     }
     else {
       this.remCPU = 0;

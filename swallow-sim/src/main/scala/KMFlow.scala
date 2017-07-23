@@ -22,8 +22,6 @@ class KMFlow (val flowInfo: KMFlowInfo) extends Serializable {
   val compressionRatio: Double     = 0.5;
   private val flowTotalSizeIfCompressed: Double = KMScalaKit.bigDemicalDoubleMul(this.flowInfo.totalSize, compressionRatio);
 
-  var hasBeenCompressedTotally: Boolean   = false;
-
   var consumedTime: Double = 0.0;
 
   var usedBandwidth: Long = 0;
@@ -43,7 +41,7 @@ class KMFlow (val flowInfo: KMFlowInfo) extends Serializable {
     // TODO: if this.remSize.compressedSize > this.flowTotalSizeIfCompressed , throw an exception
     try {
       // if have not been totolly compressed, then flow can continue to being compressed
-      if (this.remSize.compressedSize < this.flowTotalSizeIfCompressed) {
+      if (!this.isTotallyCompressed) {
         val traffic: Double = KMScalaKit.bigDemicalDoubleMul(timeSlice, this.flowInfo.ingress.computationSpeed);
         val comp: Double = KMScalaKit.bigDemicalDoubleMul(traffic, this.compressionRatio);
 
@@ -52,9 +50,9 @@ class KMFlow (val flowInfo: KMFlowInfo) extends Serializable {
 
         this.remSize.updateWith(compressedSize = sum, rawSize = sub);
 
+        // if flow has been totolly compressed, adjust the size
         if (this.remSize.compressedSize >= this.flowTotalSizeIfCompressed) {
           this.remSize.updateWith(compressedSize = this.flowTotalSizeIfCompressed, rawSize = 0.0);
-          this.hasBeenCompressedTotally = true;
         }
       }
       else {
@@ -87,7 +85,7 @@ class KMFlow (val flowInfo: KMFlowInfo) extends Serializable {
       }
       else {
         throw {
-          new RuntimeException("Flow is completed, it should not be scheduled any more !!!");
+          new RuntimeException("Flow is completed, it should not be transmitted any more !!!");
         }
 
       }
@@ -139,6 +137,29 @@ class KMFlow (val flowInfo: KMFlowInfo) extends Serializable {
     }
   }
 
+  def updatePort: Unit = {
+    this.flowInfo.ingress.updatePortWith(this.usedBandwidth, this.usedCPU);
+    this.flowInfo.egress.updatePortWith(this.usedBandwidth, this.usedCPU);
+  }
+
+  /**
+  * N: total raw size
+  * X: size will be compressed
+  * K: compression ratio
+  *
+  * test case: (N-X) + K*X = K*N
+  * ==>  X = N
+  * ==>  When raw size is 0, flow is totally compressed !!!
+  */
+  def isTotallyCompressed: Boolean = {
+    if (this.remSize.rawSize == 0) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
   def isCompleted: Boolean = {
     if (this.remSize.mixedSize == 0) {
       return true;
@@ -157,13 +178,13 @@ class KMFlow (val flowInfo: KMFlowInfo) extends Serializable {
     println("[KMFlow Description]:                                      \n" +
             s"flowId                    : ${this.flowInfo.flowId}         \n" +
             s"compressionRatio          : ${this.compressionRatio}        \n" +
-            s"hasBeenCompressedTotally  : ${this.hasBeenCompressedTotally}       \n" +
             s"consumedTime              : ${this.consumedTime}            \n" +
             s"usedBandwidth             : ${this.usedBandwidth}           \n" +
             s"usedCPU                   : ${this.usedCPU}                 \n" +
             s"remSize.compressedSize    : ${this.remSize.compressedSize}  \n" +
             s"remSize.rawSize           : ${this.remSize.rawSize}         \n" +
-            s"remSize.mixedSize         : ${this.remSize.mixedSize}"
+            s"remSize.mixedSize         : ${this.remSize.mixedSize}       \n" +
+            s"flowState                 : ${this.flowState}"
     );
   }
 }

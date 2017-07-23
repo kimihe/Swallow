@@ -74,14 +74,22 @@ object AlgorithmSimulator {
       * flow6 = 3.75 + 15.75 = 19.5;
     */
 
-    val testFlows: Array[KMFlow] = Array(flow1);
+    val testFlows: Array[KMFlow] = flows10;
+
+    /**
+     * TEST CASE
+     */
+//    flow1.remSize.compressedSize = 49;
+//    flow1.remSize.rawSize = 0;
+//    flow1.updateFlowWithCompressionTimeSlice(0.1);
+//    return ;
 
 
     // time slice, simulated with 'while'
     var iterationsNumber: Long = 0;
     breakable {
       while (true) {
-        schedulingFlows(timeSlice = 0.1, testFlows, ingress, egress, iterationsNumber);
+        schedulingFlows(timeSlice = 0.01, testFlows, ingress, egress, iterationsNumber);
         iterationsNumber = iterationsNumber+1;
 
         //if all flows completed
@@ -171,7 +179,7 @@ object AlgorithmSimulator {
 
 
         // TODO: If a flow is compressed totally, do not compress it again
-        if (aFlow.hasBeenCompressedTotally) {
+        if (aFlow.isTotallyCompressed) {
           FCT = aFlow.remSize.mixedSize / bnBandwidth;
           compressionFlag = false;
           compressionTime = 0.0;
@@ -274,8 +282,7 @@ object AlgorithmSimulator {
         opFlow.updateFlowWith(opUsedBandwidth, opUsedCPU);
         opFlow.updateFlowWithTransmissionTimeSlice(timeSlice);
 
-        ingress.updatePortWithFlow(opFlow);
-        egress.updatePortWithFlow(opFlow);
+        opFlow.updatePort;
       }
 
       opFlow.description;
