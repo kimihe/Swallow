@@ -92,7 +92,6 @@ object AlgorithmSimulator {
     var iterationsNumber: Long = 0;
     breakable {
       while (true) {
-//        schedulingFlows(timeSlice = 0.01, testFlows, ingress, egress, iterationsNumber);
         scheduler.schedulingFlows(timeSlice = 0.01,
                                   ingress = ingress,
                                   egress = egress,
