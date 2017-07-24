@@ -60,7 +60,7 @@ class KMPort (val portId: String, // physical address
     this.remCPU       = totalCPU;
   }
 
-  def description: Unit = {
+  def description(): Unit = {
     println("[KMPort Description]:                        \n" +
             s"portId           : ${this.portId}           \n" +
             s"portType         : ${this.portType}         \n" +

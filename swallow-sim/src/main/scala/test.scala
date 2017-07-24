@@ -2,7 +2,7 @@
   * Created by zhouqihua on 2017/7/12.
   */
 
-import scala.collection.mutable.ArrayBuffer
+import scala.collection.mutable.{ArrayBuffer, Set}
 import scala.util.control.Breaks._
 
 object test {
@@ -45,13 +45,25 @@ object test {
     val flow8 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow8", ingress, egress, 200, 0, "this is flow-000008"));
     val flow9 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow9", ingress, egress, 300, 0, "this is flow-000009"));
 
-    val flows: ArrayBuffer[KMFlow] = ArrayBuffer[KMFlow]();
+//    val flows: ArrayBuffer[KMFlow] = ArrayBuffer[KMFlow]();
+//
+//    flows ++= Array(flow0, flow3, flow2, flow1);
+//
+//    flows --= Array(flow1, flow3, flow0, flow2);
 
-    flows ++= Array(flow0, flow3, flow2, flow1);
+    val ports: Set[KMPort] = Set[KMPort]();
+    ports += ingress;
+    ports += egress;
 
-    flows --= Array(flow1, flow3, flow0, flow2);
 
 
+    /**
+      * TEST CASE
+      */
+    //    flow1.remSize.compressedSize = 49;
+    //    flow1.remSize.rawSize = 0;
+    //    flow1.updateFlowWithCompressionTimeSlice(0.1);
+    //    return ;
 
 
 

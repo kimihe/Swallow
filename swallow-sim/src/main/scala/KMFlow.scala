@@ -174,7 +174,7 @@ class KMFlow (val flowInfo: KMFlowInfo) extends Serializable {
     this.usedCPU = 0;
   }
 
-  def description: Unit = {
+  def description(): Unit = {
     println("[KMFlow Description]:                                      \n" +
             s"flowId                    : ${this.flowInfo.flowId}         \n" +
             s"compressionRatio          : ${this.compressionRatio}        \n" +

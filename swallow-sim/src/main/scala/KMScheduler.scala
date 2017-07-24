@@ -2,15 +2,92 @@
   * Created by zhouqihua on 2017/7/23.
   */
 
-import scala.collection.mutable.ArrayBuffer
+import scala.collection.mutable.{ArrayBuffer, Set}
 import scala.util.control.Breaks.{break, breakable}
 
 class KMScheduler {
 
+  private var iterations: Long = 0;
+
+  val ports: Set[KMPort]         = Set[KMPort]();
+  val ingresses: Set[KMPort]     = Set[KMPort]();
+  val egresses:  Set[KMPort]     = Set[KMPort]();
   val flows: ArrayBuffer[KMFlow] = ArrayBuffer[KMFlow]();
 
-  def addNewFlows(newFlows:Array[KMFlow]): Unit = {
+  private def updateIterations(): Unit = {
+    this.iterations += 1;
+  }
+
+  def addOnePort(aPort: KMPort): Unit = {
+    try {
+      if(aPort.portType == KMPortType.ingress) {
+        this.ports += aPort;
+        this.ingresses += aPort;
+      }
+      else if(aPort.portType == KMPortType.egress) {
+        this.ports += aPort;
+        this.egresses += aPort;
+      }
+      else {
+        throw {
+          new RuntimeException("Unknown port type !!!");
+        }
+      }
+    }
+    catch {
+      case e: Exception => println(s"[Catched Exception: ${e.getMessage}]");
+    }
+    finally {
+      // sth
+    }
+  }
+
+  def removeOnePort(aPort: KMPort): Unit = {
+    try {
+      if(aPort.portType == KMPortType.ingress) {
+        this.ports -= aPort;
+        this.ingresses -= aPort;
+      }
+      else if(aPort.portType == KMPortType.egress) {
+        this.ports -= aPort;
+        this.egresses -= aPort;
+      }
+      else {
+        throw {
+          new RuntimeException("Unknown port type !!!");
+        }
+      }
+    }
+    catch {
+      case e: Exception => println(s"[Catched Exception: ${e.getMessage}]");
+    }
+    finally {
+      // sth
+    }
+  }
+
+  def addPorts(ports: Set[KMPort]): Unit = {
+    for (aPort <- ports) {
+      this.addOnePort(aPort);
+    }
+  }
+
+  def removePorts(ports: Set[KMPort]): Unit = {
+    for (aPort <- ports) {
+      this.removeOnePort(aPort);
+    }
+  }
+
+  def addNewFlows(newFlows: Array[KMFlow]): Unit = {
     this.flows ++= newFlows;
+
+    for (aFlow <- newFlows) {
+      val ingress: KMPort = aFlow.flowInfo.ingress;
+      val egress:  KMPort = aFlow.flowInfo.egress;
+
+      this.addOnePort(ingress);
+      this.addOnePort(egress);
+    }
   }
 
   def removeCompletedFlows(completedFlows: Array[KMFlow]): Unit = {
@@ -33,10 +110,24 @@ class KMScheduler {
     return flag;
   }
 
+  def description(): Unit = {
+
+
+    println("[KMScheduler Description]: \n" +
+      s"port       : ${this.ports}      \n" +
+      s"ingresses  : ${this.ingresses}  \n" +
+      s"egresses   : ${this.egresses}   \n" +
+      s"flows      : ${this.flows}"
+    );
+  }
+
+
+
+
   /**
     * calculate completion time and sort
     */
-  def SFSH: Tuple7[KMFlow, Long, Long, Boolean, Double, Double, KMPortType.PortType] = {
+  private def SFSH(): KMSchedulingResult = {
 
     // optimal(op) flow, bandwidth and CPU
     var opFlow: KMFlow                        = null;
@@ -120,8 +211,6 @@ class KMScheduler {
 
 
 
-
-
         // update and select
         if (FCT < opFlowFCT_thisRound) {
 
@@ -138,14 +227,19 @@ class KMScheduler {
 
 
 
-
-    val res: Tuple7[KMFlow, Long, Long, Boolean, Double, Double, KMPortType.PortType] = (
-      opFlow, opUsedBandwidth, opUsedCPU, opCompressionFlag, opFlowFCT_thisRound, opCompressionTime, opBottleneckPort);
+    val res: KMSchedulingResult = new KMSchedulingResult(
+      opFlow,
+      opUsedBandwidth,
+      opUsedCPU,
+      opCompressionFlag,
+      opFlowFCT_thisRound,
+      opCompressionTime,
+      opBottleneckPort);
 
     return res;
   }
 
-  def schedulingFlows(timeSlice: Double, ingress: KMPort, egress: KMPort, iterationsNumber: Long): Unit = {
+  private def schedulingFlows(timeSlice: Double, ingress: KMPort, egress: KMPort): Unit = {
 
     // each scheduling time point reset all resources
     ingress.resetPort;
@@ -154,51 +248,60 @@ class KMScheduler {
       aFlow.resetFlow;
     }
 
+
+    // sort with SFSH(Simple Flow Scheduling Heuristic)
+    val schedulingRes: KMSchedulingResult = this.SFSH();
+
+    val opFlow: KMFlow                        = schedulingRes.opFlow;
+    var opUsedBandwidth: Long                 = schedulingRes.opUsedBandwidth;
+    var opUsedCPU: Long                       = schedulingRes.opUsedCPU;
+    val opCompressionFlag                     = schedulingRes.opCompressionFlag;
+    val opFlowFCT_thisRound: Double           = schedulingRes.opFlowFCT_thisRound;
+    val opCompressionTime: Double             = schedulingRes.opCompressionTime;
+    val opBottleneckPort: KMPortType.PortType = schedulingRes.opBottleneckPort;
+
+    println(s"SFSH[${this.iterations}]: " +
+      s"(opFlow: ${opFlow.flowInfo.flowId}, opUsedBandwidth: $opUsedBandwidth, opUsedCPU: $opUsedCPU, opCompressionFlag: $opCompressionFlag," +
+      s" opFlowFCT_thisRound: $opFlowFCT_thisRound, opCompressionTime: $opCompressionTime, opBottleneckPort: $opBottleneckPort)");
+    // opFlow.description();
+
+    // TODO: How to calculate the consumed time?
+    for (aFlow <- this.flows) {
+      aFlow.updateFlowWithConsumedTime(consumedTime = timeSlice);
+    }
+
+
+    // compression or transmission
+    if (opCompressionFlag) {
+      // TODO: Take Compression Time Into Account !!!
+      opFlow.updateFlowWithCompressionTimeSlice(timeSlice);
+    }
+    else {
+      opFlow.updateFlowWith(opUsedBandwidth, opUsedCPU);
+      opFlow.updateFlowWithTransmissionTimeSlice(timeSlice);
+
+      opFlow.updatePort;
+    }
+
+    opFlow.description();
+
+    this.updateIterations();
+  }
+
+  def scheduling(timeSlice: Double): Unit = {
     // TODO: How to expand to multi-channel ?
     // greedy algorithm
-    while (ingress.isBandwidthFree && egress.isBandwidthFree) {
+//        while (ingress.isBandwidthFree && egress.isBandwidthFree) {
+//
+//        }
 
-      // sort with SFSH(Simple Flow Scheduling Heuristic)
-      val aTuple: Tuple7[KMFlow, Long, Long, Boolean, Double, Double, KMPortType.PortType] = SFSH;
-
-      val opFlow: KMFlow                        = aTuple._1;
-      var opUsedBandwidth: Long                 = aTuple._2;
-      var opUsedCPU: Long                       = aTuple._3;
-      val opCompressionFlag                     = aTuple._4;
-      val opFlowFCT_thisRound: Double           = aTuple._5;
-      val opCompressionTime: Double             = aTuple._6;
-      val opBottleneckPort: KMPortType.PortType = aTuple._7;
-
-      println(s"SFSH[$iterationsNumber]: " +
-        s"(opFlow: ${opFlow.flowInfo.flowId}, opUsedBandwidth: $opUsedBandwidth, opUsedCPU: $opUsedCPU, opCompressionFlag: $opCompressionFlag," +
-        s" opFlowFCT_thisRound: $opFlowFCT_thisRound, opCompressionTime: $opCompressionTime, opBottleneckPort: $opBottleneckPort)");
-      // opFlow.description;
-
-      // TODO: How to calculate the consumed time?
-      for (aFlow <- this.flows) {
-        aFlow.updateFlowWithConsumedTime(consumedTime = timeSlice);
+    for (ingress <- this.ingresses) {
+      for (egress <- this.egresses) {
+        this.schedulingFlows(timeSlice, ingress, egress);
       }
-
-
-      // compression or transmission
-      if (opCompressionFlag) {
-        // TODO: Take Compression Time Into Account !!!
-        opFlow.updateFlowWithCompressionTimeSlice(timeSlice);
-      }
-      else {
-        opFlow.updateFlowWith(opUsedBandwidth, opUsedCPU);
-        opFlow.updateFlowWithTransmissionTimeSlice(timeSlice);
-
-        opFlow.updatePort;
-      }
-
-      opFlow.description;
     }
   }
 
-  
-  
-  
-  
-  
+
+
 }
