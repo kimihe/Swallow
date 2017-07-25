@@ -12,13 +12,14 @@ class KMScheduler {
   val ports: Set[KMPort]         = Set[KMPort]();
   val ingresses: Set[KMPort]     = Set[KMPort]();
   val egresses:  Set[KMPort]     = Set[KMPort]();
+  val channels: Set[KMChannel]   = Set[KMChannel]();
   val flows: ArrayBuffer[KMFlow] = ArrayBuffer[KMFlow]();
 
   private def updateIterations(): Unit = {
     this.iterations += 1;
   }
 
-  def addOnePort(aPort: KMPort): Unit = {
+  private def addOnePort(aPort: KMPort): Unit = {
     try {
       if(aPort.portType == KMPortType.ingress) {
         this.ports += aPort;
@@ -42,7 +43,7 @@ class KMScheduler {
     }
   }
 
-  def removeOnePort(aPort: KMPort): Unit = {
+  private def removeOnePort(aPort: KMPort): Unit = {
     try {
       if(aPort.portType == KMPortType.ingress) {
         this.ports -= aPort;
@@ -78,15 +79,23 @@ class KMScheduler {
     }
   }
 
+  def addOneChannel(aChannel: KMChannel): Unit = {
+    this.channels += aChannel;
+    this.addOnePort(aChannel.ingress);
+    this.addOnePort(aChannel.egress);
+  }
+
+  def removeOneChannel(aChannel: KMChannel): Unit = {
+    this.channels -= aChannel;
+    this.removeOnePort(aChannel.ingress);
+    this.removeOnePort(aChannel.egress);
+  }
+
   def addNewFlows(newFlows: Array[KMFlow]): Unit = {
     this.flows ++= newFlows;
 
     for (aFlow <- newFlows) {
-      val ingress: KMPort = aFlow.flowInfo.ingress;
-      val egress:  KMPort = aFlow.flowInfo.egress;
-
-      this.addOnePort(ingress);
-      this.addOnePort(egress);
+      this.addOneChannel(aFlow.flowInfo.channel);
     }
   }
 
@@ -159,8 +168,8 @@ class KMScheduler {
 
 
         // bandwidth bottleneck(bn)
-        val ingressBandwidth: Long = aFlow.flowInfo.ingress.remBandwidth;
-        val egressBandwidth: Long  = aFlow.flowInfo.egress.remBandwidth;
+        val ingressBandwidth: Long = aFlow.flowInfo.channel.ingress.remBandwidth;
+        val egressBandwidth: Long  = aFlow.flowInfo.channel.egress.remBandwidth;
 
         if (ingressBandwidth <= egressBandwidth) {
           bnBandwidth = ingressBandwidth;
@@ -189,9 +198,9 @@ class KMScheduler {
 
           // completion time under compressed
           val T_c_i: Double  = (aFlow.remSize.rawSize * aFlow.compressionRatio + aFlow.remSize.compressedSize) / bnBandwidth +
-            aFlow.remSize.rawSize / aFlow.flowInfo.ingress.computationSpeed;
+            aFlow.remSize.rawSize / aFlow.flowInfo.channel.ingress.computationSpeed;
           val T_c_j: Double  = (aFlow.remSize.rawSize * aFlow.compressionRatio + aFlow.remSize.compressedSize) / bnBandwidth +
-            aFlow.remSize.rawSize / aFlow.flowInfo.egress.computationSpeed;
+            aFlow.remSize.rawSize / aFlow.flowInfo.channel.egress.computationSpeed;
 
           // comparison of compressed and uncompressed
           val T_c_max: Double  = math.max(T_c_i, T_c_j);
@@ -200,7 +209,7 @@ class KMScheduler {
           if (T_c_max <= T_uc_max) {
             FCT = T_c_max;
             compressionFlag = true;
-            compressionTime = aFlow.remSize.rawSize / aFlow.flowInfo.ingress.computationSpeed;
+            compressionTime = aFlow.remSize.rawSize / aFlow.flowInfo.channel.ingress.computationSpeed;
           }
           else {
             FCT = T_uc_max;
@@ -239,11 +248,10 @@ class KMScheduler {
     return res;
   }
 
-  private def schedulingFlows(timeSlice: Double, ingress: KMPort, egress: KMPort): Unit = {
+  private def schedulingFlows(timeSlice: Double, channel: KMChannel): Unit = {
 
     // each scheduling time point reset all resources
-    ingress.resetPort;
-    egress.resetPort;
+    channel.resetChannel;
     for (aFlow <- this.flows) {
       aFlow.resetFlow;
     }
@@ -280,7 +288,7 @@ class KMScheduler {
       opFlow.updateFlowWith(opUsedBandwidth, opUsedCPU);
       opFlow.updateFlowWithTransmissionTimeSlice(timeSlice);
 
-      opFlow.updatePort;
+      opFlow.updateChannel;
     }
 
     opFlow.description();
@@ -295,10 +303,9 @@ class KMScheduler {
 //
 //        }
 
-    for (ingress <- this.ingresses) {
-      for (egress <- this.egresses) {
-        this.schedulingFlows(timeSlice, ingress, egress);
-      }
+
+    for (aChannel <- this.channels) {
+      this.schedulingFlows(timeSlice, aChannel);
     }
   }
 

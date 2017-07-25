@@ -13,10 +13,6 @@ object KMFlowState extends Enumeration {
       other = Value;
 }
 
-object KMFlow {
-  def initWithFlowInfo(flowInfo: KMFlowInfo): KMFlow = new KMFlow(flowInfo)
-}
-
 class KMFlow (val flowInfo: KMFlowInfo) extends Serializable {
 
   val compressionRatio: Double     = 0.5;
@@ -42,7 +38,7 @@ class KMFlow (val flowInfo: KMFlowInfo) extends Serializable {
     try {
       // if have not been totolly compressed, then flow can continue to being compressed
       if (!this.isTotallyCompressed) {
-        val traffic: Double = KMScalaKit.bigDemicalDoubleMul(timeSlice, this.flowInfo.ingress.computationSpeed);
+        val traffic: Double = KMScalaKit.bigDemicalDoubleMul(timeSlice, this.flowInfo.channel.ingress.computationSpeed);
         val comp: Double = KMScalaKit.bigDemicalDoubleMul(traffic, this.compressionRatio);
 
         val sum: Double = KMScalaKit.bigDemicalDoubleAdd(this.remSize.compressedSize, comp);
@@ -137,9 +133,9 @@ class KMFlow (val flowInfo: KMFlowInfo) extends Serializable {
     }
   }
 
-  def updatePort: Unit = {
-    this.flowInfo.ingress.updatePortWith(this.usedBandwidth, this.usedCPU);
-    this.flowInfo.egress.updatePortWith(this.usedBandwidth, this.usedCPU);
+  def updateChannel: Unit = {
+    this.flowInfo.channel.updateChannelWith(this.usedBandwidth, this.usedCPU);
+    this.flowInfo.channel.updateChannelWith(this.usedBandwidth, this.usedCPU);
   }
 
   /**
@@ -189,10 +185,12 @@ class KMFlow (val flowInfo: KMFlowInfo) extends Serializable {
   }
 }
 
-class KMFlowInfo (val flowId: String,
+object KMFlow {
+  def initWithFlowInfo(flowInfo: KMFlowInfo): KMFlow = new KMFlow(flowInfo)
+}
 
-                  val ingress: KMPort,
-                  val egress: KMPort,
+class KMFlowInfo (val flowId: String,
+                  val channel: KMChannel,
                   val totalSize: Double,
 
                   val arrivedDate: Long,
