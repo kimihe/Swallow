@@ -133,8 +133,7 @@ class KMFlow (val flowInfo: KMFlowInfo) extends Serializable {
     }
   }
 
-  def updateChannel: Unit = {
-    this.flowInfo.channel.updateChannelWith(this.usedBandwidth, this.usedCPU);
+  def updateChannel(): Unit = {
     this.flowInfo.channel.updateChannelWith(this.usedBandwidth, this.usedCPU);
   }
 

@@ -5,15 +5,16 @@
 import scala.collection.mutable.{ArrayBuffer, Set}
 import scala.util.control.Breaks.{break, breakable}
 
-class KMScheduler {
+class KMScheduler() {
 
-  private var iterations: Long = 0;
+  private var iterations: Long = 1;
 
-  val ports: Set[KMPort]         = Set[KMPort]();
-  val ingresses: Set[KMPort]     = Set[KMPort]();
-  val egresses:  Set[KMPort]     = Set[KMPort]();
-  val channels: Set[KMChannel]   = Set[KMChannel]();
-  val flows: ArrayBuffer[KMFlow] = ArrayBuffer[KMFlow]();
+  val ports:            Set[KMPort]         = Set[KMPort]();
+  val ingresses:        Set[KMPort]         = Set[KMPort]();
+  val egresses:         Set[KMPort]         = Set[KMPort]();
+  val channels:         Set[KMChannel]      = Set[KMChannel]();
+  val uncompletedFlows: ArrayBuffer[KMFlow] = ArrayBuffer[KMFlow]();
+  val completedFlows:   ArrayBuffer[KMFlow] = ArrayBuffer[KMFlow]();
 
   private def updateIterations(): Unit = {
     this.iterations += 1;
@@ -91,8 +92,18 @@ class KMScheduler {
     this.removeOnePort(aChannel.egress);
   }
 
+  def resetOneChannel(aChannel: KMChannel): Unit = {
+    aChannel.resetChannel();
+  }
+
+  def resetAllChannels(): Unit = {
+    for (aChannel <- this.channels) {
+      this.resetOneChannel(aChannel);
+    }
+  }
+
   def addNewFlows(newFlows: Array[KMFlow]): Unit = {
-    this.flows ++= newFlows;
+    this.uncompletedFlows ++= newFlows;
 
     for (aFlow <- newFlows) {
       this.addOneChannel(aFlow.flowInfo.channel);
@@ -100,21 +111,67 @@ class KMScheduler {
   }
 
   def removeCompletedFlows(completedFlows: Array[KMFlow]): Unit = {
-    this.flows --= completedFlows;
+    this.uncompletedFlows --= completedFlows;
   }
 
-  def flowsDidCompleted: Boolean = {
+  def resetAllFlows(): Unit = {
+    for (aFLow <- this.uncompletedFlows) {
+      aFLow.resetFlow;
+    }
+  }
 
-    var flag: Boolean = true;
-    // pass a function to the breakable method
-    breakable {
-      for (aFlow <- this.flows) {
-        if (!aFlow.isCompleted) {
-          flag = false;
-          break();
+  def updateFlowArraysWithOneFlow(aFlow: KMFlow): Unit = {
+    if (aFlow.isCompleted) {
+      try {
+        if (this.uncompletedFlows.contains(aFlow)) {
+          this.uncompletedFlows -= aFlow;
+
+          if (!this.completedFlows.contains(aFlow)) {
+            this.completedFlows += aFlow;
+          }
+          else {
+            throw {
+              new RuntimeException(s"This flow[${aFlow.flowInfo.flowId}] is already contained in ArrayBuffer: completedFlows.\n It should not be added again !!!");
+            }
+          }
+        }
+        else {
+          throw {
+            new RuntimeException(s"This flow[${aFlow.flowInfo.flowId}] is not contained in ArrayBuffer: uncompletedFlows.\n The remove operation should not be executed !!!");
+          }
         }
       }
+      catch {
+        case e: Exception => println(s"[Catched Exception: ${e.getMessage}]");
+      }
+      finally {
+        // sth
+      }
     }
+  }
+
+  def updateUncompletedFlowsWithConsumedTime(consumedTime: Double): Unit = {
+    for (aFlow <- this.uncompletedFlows) {
+      aFlow.updateFlowWithConsumedTime(consumedTime);
+    }
+  }
+
+  def allFlowsIsCompleted: Boolean = {
+
+//    var flag: Boolean = true;
+//    // pass a function to the breakable method
+//    breakable {
+//      for (aFlow <- this.uncompletedFlows) {
+//        if (!aFlow.isCompleted) {
+//          flag = false;
+//          break();
+//        }
+//      }
+//    }
+
+    var flag: Boolean = false;
+    if (this.uncompletedFlows.isEmpty)
+      flag = true;
 
     return flag;
   }
@@ -122,21 +179,28 @@ class KMScheduler {
   def description(): Unit = {
 
 
-    println("[KMScheduler Description]: \n" +
-      s"port       : ${this.ports}      \n" +
-      s"ingresses  : ${this.ingresses}  \n" +
-      s"egresses   : ${this.egresses}   \n" +
-      s"flows      : ${this.flows}"
+    println("[KMScheduler Description]:               \n" +
+      s"port              : ${this.ports}             \n" +
+      s"channels          : ${this.channels}          \n" +
+      s"ingresses         : ${this.ingresses}         \n" +
+      s"egresses          : ${this.egresses}          \n" +
+      s"uncompletedFlows  : ${this.uncompletedFlows}  \n" +
+      s"completedFlows    : ${this.completedFlows}"
     );
   }
 
+  def printCompletedFlowsInOrder(): Unit = {
+    for (aFlow <- this.completedFlows) {
+      println(s"${aFlow.flowInfo.flowId} FCT: ${aFlow.consumedTime}");
+    }
+  }
 
 
 
   /**
     * calculate completion time and sort
     */
-  private def SFSH(): KMSchedulingResult = {
+  private def SFSH(inOneChannel: KMChannel): KMSchedulingResult = {
 
     // optimal(op) flow, bandwidth and CPU
     var opFlow: KMFlow                        = null;
@@ -150,11 +214,19 @@ class KMScheduler {
 
 
     // iteration
-    for (aFlow <- this.flows) {
+    for (aFlow <- this.uncompletedFlows) {
       breakable {
+        if (!aFlow.flowInfo.channel.equals(inOneChannel))
+          break();
 
-        if (aFlow.isCompleted)
+        if (aFlow.isCompleted) {
+          println("Should never go here !!!");
+          throw {
+            new RuntimeException("Should never go here !!!");
+          }
           break();   // continue
+        }
+
 
 
         // init variables
@@ -181,7 +253,7 @@ class KMScheduler {
         }
 
         if (bnBandwidth == 0)
-          break(); // equivalent to 'continue'
+          break(); // equivalent to 'continue', when no bandwidth resources, skip this iteration
 
 
 
@@ -193,23 +265,22 @@ class KMScheduler {
         }
         else {
           // completion time under uncompressed
-          val T_uc_i: Double = aFlow.remSize.mixedSize / bnBandwidth;
-          val T_uc_j: Double = aFlow.remSize.mixedSize / bnBandwidth;
+          val T_uc_i: Double = KMScalaKit.bigDemicalDoubleDiv(aFlow.remSize.mixedSize, bnBandwidth);
+          val T_uc_j: Double = T_uc_i;
+          val T_uc_max: Double = T_uc_i;
 
           // completion time under compressed
           val T_c_i: Double  = (aFlow.remSize.rawSize * aFlow.compressionRatio + aFlow.remSize.compressedSize) / bnBandwidth +
             aFlow.remSize.rawSize / aFlow.flowInfo.channel.ingress.computationSpeed;
           val T_c_j: Double  = (aFlow.remSize.rawSize * aFlow.compressionRatio + aFlow.remSize.compressedSize) / bnBandwidth +
             aFlow.remSize.rawSize / aFlow.flowInfo.channel.egress.computationSpeed;
+          val T_c_max: Double  = math.max(T_c_i, T_c_j);
 
           // comparison of compressed and uncompressed
-          val T_c_max: Double  = math.max(T_c_i, T_c_j);
-          val T_uc_max: Double = math.max(T_uc_i, T_uc_j);
-
           if (T_c_max <= T_uc_max) {
             FCT = T_c_max;
             compressionFlag = true;
-            compressionTime = aFlow.remSize.rawSize / aFlow.flowInfo.channel.ingress.computationSpeed;
+            compressionTime = KMScalaKit.bigDemicalDoubleDiv(aFlow.remSize.rawSize, aFlow.flowInfo.channel.ingress.computationSpeed);
           }
           else {
             FCT = T_uc_max;
@@ -250,15 +321,8 @@ class KMScheduler {
 
   private def schedulingFlows(timeSlice: Double, channel: KMChannel): Unit = {
 
-    // each scheduling time point reset all resources
-    channel.resetChannel;
-    for (aFlow <- this.flows) {
-      aFlow.resetFlow;
-    }
-
-
     // sort with SFSH(Simple Flow Scheduling Heuristic)
-    val schedulingRes: KMSchedulingResult = this.SFSH();
+    val schedulingRes: KMSchedulingResult = this.SFSH(inOneChannel = channel);
 
     val opFlow: KMFlow                        = schedulingRes.opFlow;
     var opUsedBandwidth: Long                 = schedulingRes.opUsedBandwidth;
@@ -273,11 +337,16 @@ class KMScheduler {
       s" opFlowFCT_thisRound: $opFlowFCT_thisRound, opCompressionTime: $opCompressionTime, opBottleneckPort: $opBottleneckPort)");
     // opFlow.description();
 
-    // TODO: How to calculate the consumed time?
-    for (aFlow <- this.flows) {
-      aFlow.updateFlowWithConsumedTime(consumedTime = timeSlice);
-    }
 
+//    // TODO: How to calculate the consumed time?
+//    this.updateUncompletedFlowsWithConsumedTime(consumedTime = timeSlice);
+
+
+    /**
+      * When the time slice is used for compression, the bandwidth and CPU resources still need to be cut for transmission conservation in the future
+      */
+    opFlow.updateFlowWith(opUsedBandwidth, opUsedCPU);
+    opFlow.updateChannel();
 
     // compression or transmission
     if (opCompressionFlag) {
@@ -285,28 +354,34 @@ class KMScheduler {
       opFlow.updateFlowWithCompressionTimeSlice(timeSlice);
     }
     else {
-      opFlow.updateFlowWith(opUsedBandwidth, opUsedCPU);
       opFlow.updateFlowWithTransmissionTimeSlice(timeSlice);
-
-      opFlow.updateChannel;
     }
 
     opFlow.description();
 
-    this.updateIterations();
+    this.updateFlowArraysWithOneFlow(opFlow);
+//    this.updateIterations();
   }
 
   def scheduling(timeSlice: Double): Unit = {
+
+    // each scheduling time point release all resources
+    this.resetAllChannels();
+    this.resetAllFlows();
+
+    // TODO: How to calculate the consumed time?
+    this.updateUncompletedFlowsWithConsumedTime(consumedTime = timeSlice);
+
     // TODO: How to expand to multi-channel ?
     // greedy algorithm
-//        while (ingress.isBandwidthFree && egress.isBandwidthFree) {
-//
-//        }
-
-
     for (aChannel <- this.channels) {
-      this.schedulingFlows(timeSlice, aChannel);
+      // Work Conserving Allocation: utilize the unallocated bandwidth through this channel as much as possible
+      while (aChannel.isBandwidthFree()) {
+        this.schedulingFlows(timeSlice, aChannel);
+      }
     }
+
+    this.updateIterations();
   }
 
 

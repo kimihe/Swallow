@@ -79,7 +79,7 @@ object AlgorithmSimulator {
 
     val testFlows: Array[KMFlow] = flows10;
 
-    val scheduler: KMScheduler = new KMScheduler;
+    val scheduler: KMScheduler = new KMScheduler();
     scheduler.addNewFlows(testFlows);
 
     // time slice, simulated with 'while'
@@ -88,12 +88,9 @@ object AlgorithmSimulator {
         scheduler.scheduling(timeSlice = 0.01);
 
         //if all flows completed
-        val flag: Boolean = scheduler.flowsDidCompleted;
-        if(flag) {
-          println("\n************************ Flows Completed !!! ************************\n");
-          for (aFlow <- testFlows) {
-            println(s"${aFlow.flowInfo.flowId} FCT: ${aFlow.consumedTime}");
-          }
+        if(scheduler.allFlowsIsCompleted) {
+          println("\n************************ All Flows Is Completed !!! ************************\n");
+          scheduler.printCompletedFlowsInOrder();
 
           break();
         }

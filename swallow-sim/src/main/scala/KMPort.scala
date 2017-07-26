@@ -38,7 +38,7 @@ class KMPort (val portId: String, // physical address
   }
 
   def isBandwidthFree: Boolean = {
-    if (remBandwidth > 0) {
+    if (this.remBandwidth > 0) {
       return true;
     }
     else {
@@ -47,7 +47,7 @@ class KMPort (val portId: String, // physical address
   }
 
   def isCPUFree: Boolean = {
-    if (remCPU > 0) {
+    if (this.remCPU > 0) {
       return  true;
     }
     else {
