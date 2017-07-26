@@ -235,6 +235,6 @@ class KMFlowSize (var compressedSize: Double, var rawSize: Double) extends Seria
   }
 
   def mixedSize: Double = {
-    return (this.compressedSize + this.rawSize);
+    return this.compressedSize + this.rawSize;
   }
 }
