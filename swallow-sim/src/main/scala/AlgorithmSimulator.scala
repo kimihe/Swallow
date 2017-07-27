@@ -5,7 +5,8 @@
 // TODO: Remove a flow from flowArrays when it is completed.
 // TODO: Update flow size after determining whether compress or not
 
-import scala.util.control.Breaks._
+import scala.collection.mutable.{ArrayBuffer, Set}
+import scala.util.control.Breaks.{break, breakable}
 
 object AlgorithmSimulator {
 
@@ -88,9 +89,9 @@ object AlgorithmSimulator {
     val flow9_ch3 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow9_ch3", channel3, 300, 0, "this is flow-000009"));
 
 
-    val flows10_ch1: Array[KMFlow] = Array(flow0_ch1, flow1_ch1, flow2_ch1, flow3_ch1, flow4_ch1, flow5_ch1, flow6_ch1, flow7_ch1, flow8_ch1, flow9_ch1);
-    val flows10_ch2: Array[KMFlow] = Array(flow0_ch2, flow1_ch2, flow2_ch2, flow3_ch2, flow4_ch2, flow5_ch2)//, flow6_ch2, flow7_ch2, flow8_ch2, flow9_ch2);
-    val flows10_ch3: Array[KMFlow] = Array(flow0_ch3, flow1_ch3, flow2_ch3)//, flow3_ch3, flow4_ch3, flow5_ch3, flow6_ch3, flow7_ch3, flow8_ch3, flow9_ch3);
+    val flows10_ch1: Set[KMFlow] = Set(flow0_ch1, flow1_ch1, flow2_ch1, flow3_ch1, flow4_ch1, flow5_ch1, flow6_ch1, flow7_ch1, flow8_ch1, flow9_ch1);
+    val flows10_ch2: Set[KMFlow] = Set(flow0_ch2, flow1_ch2, flow2_ch2, flow3_ch2, flow4_ch2, flow5_ch2)//, flow6_ch2, flow7_ch2, flow8_ch2, flow9_ch2);
+    val flows10_ch3: Set[KMFlow] = Set(flow0_ch3, flow1_ch3, flow2_ch3)//, flow3_ch3, flow4_ch3, flow5_ch3, flow6_ch3, flow7_ch3, flow8_ch3, flow9_ch3);
 
 
     /**
@@ -126,9 +127,9 @@ object AlgorithmSimulator {
     */
 
 
-    val testFlows_ch1: Array[KMFlow] = flows10_ch1;
-    val testFlows_ch2: Array[KMFlow] = flows10_ch2;
-    val testFlows_ch3: Array[KMFlow] = flows10_ch3;
+    val testFlows_ch1: Set[KMFlow] = flows10_ch1;
+    val testFlows_ch2: Set[KMFlow] = flows10_ch2;
+    val testFlows_ch3: Set[KMFlow] = flows10_ch3;
 
     val scheduler: KMScheduler = new KMScheduler();
     scheduler.addNewFlows(testFlows_ch1);

@@ -9,11 +9,15 @@ class KMScheduler() {
 
   private var iterations: Long = 1;
 
+  /**
+    * Use "Set" to guarantee idempotence (幂等)
+    */
+
   val ports:            Set[KMPort]         = Set[KMPort]();
   val ingresses:        Set[KMPort]         = Set[KMPort]();
   val egresses:         Set[KMPort]         = Set[KMPort]();
   val channels:         Set[KMChannel]      = Set[KMChannel]();
-  val uncompletedFlows: ArrayBuffer[KMFlow] = ArrayBuffer[KMFlow]();
+  val uncompletedFlows: Set[KMFlow]         = Set[KMFlow]();
   val completedFlows:   ArrayBuffer[KMFlow] = ArrayBuffer[KMFlow]();
 
   private def updateIterations(): Unit = {
@@ -102,7 +106,7 @@ class KMScheduler() {
     }
   }
 
-  def addNewFlows(newFlows: Array[KMFlow]): Unit = {
+  def addNewFlows(newFlows: Set[KMFlow]): Unit = {
     this.uncompletedFlows ++= newFlows;
 
     for (aFlow <- newFlows) {
@@ -110,7 +114,7 @@ class KMScheduler() {
     }
   }
 
-  def removeCompletedFlows(completedFlows: Array[KMFlow]): Unit = {
+  def removeCompletedFlows(completedFlows: Set[KMFlow]): Unit = {
     this.uncompletedFlows --= completedFlows;
   }
 
