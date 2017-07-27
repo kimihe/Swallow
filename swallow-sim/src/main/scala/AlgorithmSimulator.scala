@@ -5,7 +5,7 @@
 // TODO: Remove a flow from flowArrays when it is completed.
 // TODO: Update flow size after determining whether compress or not
 
-import scala.collection.mutable.{ArrayBuffer, Set}
+import scala.collection.mutable.{Set}
 import scala.util.control.Breaks.{break, breakable}
 
 object AlgorithmSimulator {
@@ -131,10 +131,17 @@ object AlgorithmSimulator {
     val testFlows_ch2: Set[KMFlow] = flows10_ch2;
     val testFlows_ch3: Set[KMFlow] = flows10_ch3;
 
+
+
     val scheduler: KMScheduler = new KMScheduler();
-    scheduler.addNewFlows(testFlows_ch1);
-    scheduler.addNewFlows(testFlows_ch2);
-    scheduler.addNewFlows(testFlows_ch3);
+//    scheduler.addNewFlows(testFlows_ch1);
+//    scheduler.addNewFlows(testFlows_ch2);
+//    scheduler.addNewFlows(testFlows_ch3);
+
+    val flowTraces: Set[KMFlow] = KMTraceGenerator.generateFlows();
+    scheduler.addNewFlows(flowTraces);
+
+    println("\n************************ Flows Are Scheduling ... Please Wait ... ************************\n");
 
     // time slice, simulated with 'while'
     breakable {
@@ -143,7 +150,7 @@ object AlgorithmSimulator {
 
         //if all flows completed
         if(scheduler.allFlowsIsCompleted) {
-          println("\n************************ All Flows Is Completed !!! ************************\n");
+          println("\n************************ All Flows Are Completed !!! ************************\n");
           scheduler.printCompletedFlowsInOrderPrettyily();
 
           break();

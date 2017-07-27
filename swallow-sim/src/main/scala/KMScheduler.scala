@@ -20,6 +20,9 @@ class KMScheduler() {
   val uncompletedFlows: Set[KMFlow]         = Set[KMFlow]();
   val completedFlows:   ArrayBuffer[KMFlow] = ArrayBuffer[KMFlow]();
 
+
+  private var printDebugInfo: Boolean = false;
+
   private def updateIterations(): Unit = {
     this.iterations += 1;
   }
@@ -180,23 +183,26 @@ class KMScheduler() {
     return flag;
   }
 
-  def description(): Unit = {
+  def averageFlowCompletionTime(): Double = {
+    val len: Int = this.completedFlows.length;
+    var sum: Double = 0.0;
 
+    for (aFlow <- this.completedFlows) {
+      sum += aFlow.consumedTime;
+    }
 
-    println("[KMScheduler Description]:               \n" +
-      s"port              : ${this.ports}             \n" +
-      s"channels          : ${this.channels}          \n" +
-      s"ingresses         : ${this.ingresses}         \n" +
-      s"egresses          : ${this.egresses}          \n" +
-      s"uncompletedFlows  : ${this.uncompletedFlows}  \n" +
-      s"completedFlows    : ${this.completedFlows}"
-    );
+    val avg: Double = sum / len;
+
+    return avg;
   }
 
   def printCompletedFlowsInOrder(): Unit = {
     for (aFlow <- this.completedFlows) {
       println(s"FLOW: ${aFlow.flowInfo.flowId}, FCT: ${aFlow.consumedTime}");
     }
+
+    val avgFCT: Double = this.averageFlowCompletionTime();
+    println(s"AVG FCT: $avgFCT");
   }
 
   def printCompletedFlowsInOrderPrettyily(): Unit = {
@@ -210,6 +216,28 @@ class KMScheduler() {
       }
       println("\n");
     }
+
+    val avgFCT: Double = this.averageFlowCompletionTime();
+    println(s"AVG FCT: $avgFCT");
+  }
+
+  def printDebugInfoOff(): Unit = {
+    this.printDebugInfo = false;
+  }
+
+  def printDebugInfoOn(): Unit = {
+    this.printDebugInfo = true;
+  }
+
+  def description(): Unit = {
+    println("[KMScheduler Description]:               \n" +
+      s"port              : ${this.ports}             \n" +
+      s"channels          : ${this.channels}          \n" +
+      s"ingresses         : ${this.ingresses}         \n" +
+      s"egresses          : ${this.egresses}          \n" +
+      s"uncompletedFlows  : ${this.uncompletedFlows}  \n" +
+      s"completedFlows    : ${this.completedFlows}"
+    );
   }
 
 
@@ -360,11 +388,12 @@ class KMScheduler() {
     val opCompressionTime: Double             = schedulingRes.opCompressionTime;
     val opBottleneckPort: KMPortType.PortType = schedulingRes.opBottleneckPort;
 
-    println(s"Time Slice[${this.iterations}] on Channel[${channel.channelId}] - SFSH:\n" +
-      s"(opFlow: ${opFlow.flowInfo.flowId}, opUsedBandwidth: $opUsedBandwidth, opUsedCPU: $opUsedCPU, opCompressionFlag: $opCompressionFlag," +
-      s" opFlowFCT_thisRound: $opFlowFCT_thisRound, opCompressionTime: $opCompressionTime, opBottleneckPort: $opBottleneckPort)");
-    // opFlow.description();
-
+    if (printDebugInfo) {
+      println(s"Time Slice[${this.iterations}] on Channel[${channel.channelId}] - SFSH:\n" +
+        s"(opFlow: ${opFlow.flowInfo.flowId}, opUsedBandwidth: $opUsedBandwidth, opUsedCPU: $opUsedCPU, opCompressionFlag: $opCompressionFlag," +
+        s" opFlowFCT_thisRound: $opFlowFCT_thisRound, opCompressionTime: $opCompressionTime, opBottleneckPort: $opBottleneckPort)");
+      // opFlow.description();
+    }
 
 //    // TODO: How to calculate the consumed time?
 //    this.updateUncompletedFlowsWithConsumedTime(consumedTime = timeSlice);
@@ -385,7 +414,10 @@ class KMScheduler() {
       opFlow.updateFlowWithTransmissionTimeSlice(timeSlice);
     }
 
-    opFlow.description();
+
+    if (printDebugInfo) {
+      opFlow.description();
+    }
 
     this.updateFlowArraysWithOneFlow(opFlow);
 //    this.updateIterations();

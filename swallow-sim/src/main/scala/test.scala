@@ -54,10 +54,15 @@ object test {
 //
 //    flows --= Array(flow1, flow3, flow0, flow2);
 
-    val ports: Set[KMPort] = Set[KMPort]();
-    ports += ingress;
-    ports += egress;
-    ports += egress;
+
+
+//    val ports: Set[KMPort] = Set[KMPort]();
+//    ports += ingress;
+//    ports += egress;
+//    ports += egress;
+
+
+
 
 //    val flow1cp = KMFlow.initWithFlowInfo(new KMFlowInfo("flow1", channel, 100, 0, "this is flow-000001"));
 //    val flag: Boolean = flow1.equals(flow1cp);
@@ -75,6 +80,12 @@ object test {
     //    flow1.updateFlowWithCompressionTimeSlice(0.1);
     //    return ;
 
+
+
+
+    val arr: Array[Double] = Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
+    val avg: Double = arr.sum / arr.length;
+    println(s"avg: $avg");
 
 
     val end = 0;
