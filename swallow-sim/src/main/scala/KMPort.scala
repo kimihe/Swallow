@@ -68,7 +68,7 @@ class KMPort (val portId: String, // physical address
             s"totalCPU         : ${this.totalCPU}         \n" +
             s"remBandwidth     : ${this.remBandwidth}     \n" +
             s"remCPU           : ${this.remCPU}           \n" +
-            s"computationSpeed : ${this.computationSpeed}"
+            s"computationSpeed : ${this.computationSpeed} \n"
     );
   }
 

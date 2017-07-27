@@ -170,16 +170,17 @@ class KMFlow (val flowInfo: KMFlowInfo) extends Serializable {
   }
 
   def description(): Unit = {
-    println("[KMFlow Description]:                                      \n" +
-            s"flowId                    : ${this.flowInfo.flowId}         \n" +
-            s"compressionRatio          : ${this.compressionRatio}        \n" +
-            s"consumedTime              : ${this.consumedTime}            \n" +
-            s"usedBandwidth             : ${this.usedBandwidth}           \n" +
-            s"usedCPU                   : ${this.usedCPU}                 \n" +
-            s"remSize.compressedSize    : ${this.remSize.compressedSize}  \n" +
-            s"remSize.rawSize           : ${this.remSize.rawSize}         \n" +
-            s"remSize.mixedSize         : ${this.remSize.mixedSize}       \n" +
-            s"flowState                 : ${this.flowState}"
+    println("[KMFlow Description]:                                            \n" +
+            s"flowId                    : ${this.flowInfo.flowId}             \n" +
+            s"flowOnWhichChannel        : ${this.flowInfo.channel.channelId}  \n" +
+            s"compressionRatio          : ${this.compressionRatio}            \n" +
+            s"consumedTime              : ${this.consumedTime}                \n" +
+            s"usedBandwidth             : ${this.usedBandwidth}               \n" +
+            s"usedCPU                   : ${this.usedCPU}                     \n" +
+            s"remSize.compressedSize    : ${this.remSize.compressedSize}      \n" +
+            s"remSize.rawSize           : ${this.remSize.rawSize}             \n" +
+            s"remSize.mixedSize         : ${this.remSize.mixedSize}           \n" +
+            s"flowState                 : ${this.flowState}                   \n"
     );
   }
 }
@@ -193,7 +194,7 @@ class KMFlowInfo (val flowId: String,
                   val totalSize: Double,
 
                   val arrivedDate: Long,
-                  val description: String
+                  val flowDescription: String
                  ) extends Serializable {
 
 }

@@ -10,39 +10,88 @@ import scala.util.control.Breaks._
 object AlgorithmSimulator {
 
   def main(args: Array[String]): Unit = {
-    val ingress: KMPort = new KMPort(
-                              portId = "ingress",
+    val ingress1: KMPort = new KMPort(
+                              portId = "ingress1",
                               portType =  KMPortType.ingress,
                               totalBandwidth =  200,
                               totalCPU =  1,
                               computationSpeed =  400);
-    val egress: KMPort  = new KMPort(
-                              portId =  "egress",
+    val egress1: KMPort  = new KMPort(
+                              portId =  "egress1",
+                              portType = KMPortType.egress,
+                              totalBandwidth = 100,
+                              totalCPU = 1,
+                              computationSpeed = 800);
+    val ingress2: KMPort = new KMPort(
+                              portId = "ingress2",
+                              portType =  KMPortType.ingress,
+                              totalBandwidth =  200,
+                              totalCPU =  1,
+                              computationSpeed =  400);
+    val egress2: KMPort  = new KMPort(
+                              portId =  "egress2",
                               portType = KMPortType.egress,
                               totalBandwidth = 100,
                               totalCPU = 1,
                               computationSpeed = 800);
 
-    val channel: KMChannel = new KMChannel(ingress, egress);
+    val ingress3: KMPort = new KMPort(
+                               portId = "ingress3",
+                               portType =  KMPortType.ingress,
+                               totalBandwidth =  200,
+                               totalCPU =  1,
+                               computationSpeed =  400);
+    val egress3: KMPort  = new KMPort(
+                               portId =  "egress3",
+                               portType = KMPortType.egress,
+                               totalBandwidth = 100,
+                               totalCPU = 1,
+                               computationSpeed = 800);
 
 
-    val flow0 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow0", channel, 400, 0, "this is flow-000000"));
-    val flow1 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow1", channel, 100, 0, "this is flow-000001"));
-    val flow2 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow2", channel, 100, 0, "this is flow-000002"));
-    val flow3 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow3", channel, 200, 0, "this is flow-000003"));
-    val flow4 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow4", channel, 400, 0, "this is flow-000004"));
-    val flow5 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow5", channel, 300, 0, "this is flow-000005"));
-    val flow6 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow6", channel, 500, 0, "this is flow-000006"));
-    val flow7 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow7", channel, 100, 0, "this is flow-000007"));
-    val flow8 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow8", channel, 200, 0, "this is flow-000008"));
-    val flow9 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow9", channel, 300, 0, "this is flow-000009"));
+    val channel1: KMChannel = new KMChannel("channel1", ingress1, egress1, "ingress1-egress1");
+    val channel2: KMChannel = new KMChannel("channel2", ingress2, egress2, "ingress2-egress2");
+    val channel3: KMChannel = new KMChannel("channel3", ingress3, egress3, "ingress3-egress3");
 
 
+    val flow0_ch1 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow0_ch1", channel1, 400, 0, "this is flow-000000"));
+    val flow1_ch1 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow1_ch1", channel1, 100, 0, "this is flow-000001"));
+    val flow2_ch1 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow2_ch1", channel1, 100, 0, "this is flow-000002"));
+    val flow3_ch1 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow3_ch1", channel1, 200, 0, "this is flow-000003"));
+    val flow4_ch1 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow4_ch1", channel1, 400, 0, "this is flow-000004"));
+    val flow5_ch1 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow5_ch1", channel1, 300, 0, "this is flow-000005"));
+    val flow6_ch1 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow6_ch1", channel1, 500, 0, "this is flow-000006"));
+    val flow7_ch1 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow7_ch1", channel1, 100, 0, "this is flow-000007"));
+    val flow8_ch1 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow8_ch1", channel1, 200, 0, "this is flow-000008"));
+    val flow9_ch1 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow9_ch1", channel1, 300, 0, "this is flow-000009"));
 
-    val flows10: Array[KMFlow] = Array(flow0, flow1, flow2, flow3, flow4, flow5, flow6, flow7, flow8, flow9);
-    val flows3:  Array[KMFlow] = Array(flow1, flow2, flow7);
-    val flows2:  Array[KMFlow] = Array(flow1, flow7);
-    val flows1:  Array[KMFlow] = Array(flow1);
+    val flow0_ch2 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow0_ch2", channel2, 400, 0, "this is flow-000000"));
+    val flow1_ch2 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow1_ch2", channel2, 100, 0, "this is flow-000001"));
+    val flow2_ch2 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow2_ch2", channel2, 100, 0, "this is flow-000002"));
+    val flow3_ch2 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow3_ch2", channel2, 200, 0, "this is flow-000003"));
+    val flow4_ch2 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow4_ch2", channel2, 400, 0, "this is flow-000004"));
+    val flow5_ch2 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow5_ch2", channel2, 300, 0, "this is flow-000005"));
+    val flow6_ch2 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow6_ch2", channel2, 500, 0, "this is flow-000006"));
+    val flow7_ch2 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow7_ch2", channel2, 100, 0, "this is flow-000007"));
+    val flow8_ch2 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow8_ch2", channel2, 200, 0, "this is flow-000008"));
+    val flow9_ch2 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow9_ch2", channel2, 300, 0, "this is flow-000009"));
+
+    val flow0_ch3 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow0_ch3", channel3, 400, 0, "this is flow-000000"));
+    val flow1_ch3 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow1_ch3", channel3, 100, 0, "this is flow-000001"));
+    val flow2_ch3 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow2_ch3", channel3, 100, 0, "this is flow-000002"));
+    val flow3_ch3 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow3_ch3", channel3, 200, 0, "this is flow-000003"));
+    val flow4_ch3 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow4_ch3", channel3, 400, 0, "this is flow-000004"));
+    val flow5_ch3 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow5_ch3", channel3, 300, 0, "this is flow-000005"));
+    val flow6_ch3 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow6_ch3", channel3, 500, 0, "this is flow-000006"));
+    val flow7_ch3 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow7_ch3", channel3, 100, 0, "this is flow-000007"));
+    val flow8_ch3 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow8_ch3", channel3, 200, 0, "this is flow-000008"));
+    val flow9_ch3 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow9_ch3", channel3, 300, 0, "this is flow-000009"));
+
+
+    val flows10_ch1: Array[KMFlow] = Array(flow0_ch1, flow1_ch1, flow2_ch1, flow3_ch1, flow4_ch1, flow5_ch1, flow6_ch1, flow7_ch1, flow8_ch1, flow9_ch1);
+    val flows10_ch2: Array[KMFlow] = Array(flow0_ch2, flow1_ch2, flow2_ch2, flow3_ch2, flow4_ch2, flow5_ch2)//, flow6_ch2, flow7_ch2, flow8_ch2, flow9_ch2);
+    val flows10_ch3: Array[KMFlow] = Array(flow0_ch3, flow1_ch3, flow2_ch3)//, flow3_ch3, flow4_ch3, flow5_ch3, flow6_ch3, flow7_ch3, flow8_ch3, flow9_ch3);
+
 
     /**
       * EXAMPLE 1:
@@ -77,10 +126,14 @@ object AlgorithmSimulator {
     */
 
 
-    val testFlows: Array[KMFlow] = flows10;
+    val testFlows_ch1: Array[KMFlow] = flows10_ch1;
+    val testFlows_ch2: Array[KMFlow] = flows10_ch2;
+    val testFlows_ch3: Array[KMFlow] = flows10_ch3;
 
     val scheduler: KMScheduler = new KMScheduler();
-    scheduler.addNewFlows(testFlows);
+    scheduler.addNewFlows(testFlows_ch1);
+    scheduler.addNewFlows(testFlows_ch2);
+    scheduler.addNewFlows(testFlows_ch3);
 
     // time slice, simulated with 'while'
     breakable {
@@ -90,7 +143,7 @@ object AlgorithmSimulator {
         //if all flows completed
         if(scheduler.allFlowsIsCompleted) {
           println("\n************************ All Flows Is Completed !!! ************************\n");
-          scheduler.printCompletedFlowsInOrder();
+          scheduler.printCompletedFlowsInOrderPrettyily();
 
           break();
         }

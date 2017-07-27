@@ -1,8 +1,10 @@
 /**
   * Created by zhouqihua on 2017/7/25.
   */
-class KMChannel(val ingress: KMPort,
-                val egress: KMPort) extends Serializable {
+class KMChannel(val channelId: String,
+                val ingress: KMPort,
+                val egress: KMPort,
+                val channelDesciption: String) extends Serializable {
 
   def updateChannelWith(usedBandwidth: Long, usedCPU: Long): Unit = {
     this.ingress.updatePortWith(usedBandwidth, usedCPU);
@@ -31,8 +33,9 @@ class KMChannel(val ingress: KMPort,
 
   def description(): Unit = {
     println("[KMChannel Description]:      \n" +
+      s"channelId:     : ${this.channelId} \n" +
       s"ingress        : ${this.ingress}   \n" +
-      s"egress         : ${this.egress}"
+      s"egress         : ${this.egress}    \n"
     );
   }
 

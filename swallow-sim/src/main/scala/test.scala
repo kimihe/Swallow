@@ -34,7 +34,7 @@ object test {
       totalCPU = 1,
       computationSpeed = 800);
 
-    val channel: KMChannel = new KMChannel(ingress, egress);
+    val channel: KMChannel = new KMChannel("channel1", ingress, egress, "ingress-egress");
 
 
     val flow0 = KMFlow.initWithFlowInfo(new KMFlowInfo("flow0", channel, 400, 0, "this is flow-000000"));
@@ -54,17 +54,18 @@ object test {
 //
 //    flows --= Array(flow1, flow3, flow0, flow2);
 
-//    val ports: Set[KMPort] = Set[KMPort]();
-//    ports += ingress;
-//    ports += egress;
+    val ports: Set[KMPort] = Set[KMPort]();
+    ports += ingress;
+    ports += egress;
+    ports += egress;
 
-    val flow1cp = KMFlow.initWithFlowInfo(new KMFlowInfo("flow1", channel, 100, 0, "this is flow-000001"));
-    val flag: Boolean = flow1.equals(flow1cp);
-
-    val flows: ArrayBuffer[KMFlow] = ArrayBuffer[KMFlow]();
-    flows += flow1cp;
-    val res1: Boolean = flows.contains(flow1);
-    val res2: Boolean = flows.contains(flow1cp);
+//    val flow1cp = KMFlow.initWithFlowInfo(new KMFlowInfo("flow1", channel, 100, 0, "this is flow-000001"));
+//    val flag: Boolean = flow1.equals(flow1cp);
+//
+//    val flows: ArrayBuffer[KMFlow] = ArrayBuffer[KMFlow]();
+//    flows += flow1cp;
+//    val res1: Boolean = flows.contains(flow1);
+//    val res2: Boolean = flows.contains(flow1cp);
 
     /**
       * TEST CASE

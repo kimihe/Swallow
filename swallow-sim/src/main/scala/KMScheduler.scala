@@ -191,7 +191,20 @@ class KMScheduler() {
 
   def printCompletedFlowsInOrder(): Unit = {
     for (aFlow <- this.completedFlows) {
-      println(s"${aFlow.flowInfo.flowId} FCT: ${aFlow.consumedTime}");
+      println(s"FLOW: ${aFlow.flowInfo.flowId}, FCT: ${aFlow.consumedTime}");
+    }
+  }
+
+  def printCompletedFlowsInOrderPrettyily(): Unit = {
+    for (aChannel <- this.channels) {
+      var order: Long = 1;
+      for (aFlow <- this.completedFlows) {
+        if (aFlow.flowInfo.channel.equals(aChannel)) {
+          println(s"ORDER[${order}], CHANNEL: ${aChannel.channelId}, FLOW: ${aFlow.flowInfo.flowId}, FCT: ${aFlow.consumedTime}");
+          order += 1;
+        }
+      }
+      println("\n");
     }
   }
 
@@ -306,6 +319,13 @@ class KMScheduler() {
     }
 
 
+    /**
+     * (opFlow == null) means that: there are no uncompleted flows belong to this channel. Therefore, SFSH will return KMSchedulingResult with null
+     */
+
+    if (opFlow == null) {
+      return null;
+    }
 
     val res: KMSchedulingResult = new KMSchedulingResult(
       opFlow,
@@ -324,6 +344,10 @@ class KMScheduler() {
     // sort with SFSH(Simple Flow Scheduling Heuristic)
     val schedulingRes: KMSchedulingResult = this.SFSH(inOneChannel = channel);
 
+    if (schedulingRes == null) {
+      return ; // there are no uncompleted flows belong to this channel, skip scheduling on this channel
+    }
+
     val opFlow: KMFlow                        = schedulingRes.opFlow;
     var opUsedBandwidth: Long                 = schedulingRes.opUsedBandwidth;
     var opUsedCPU: Long                       = schedulingRes.opUsedCPU;
@@ -332,7 +356,7 @@ class KMScheduler() {
     val opCompressionTime: Double             = schedulingRes.opCompressionTime;
     val opBottleneckPort: KMPortType.PortType = schedulingRes.opBottleneckPort;
 
-    println(s"SFSH[${this.iterations}]: " +
+    println(s"Time Slice[${this.iterations}] on Channel[${channel.channelId}] - SFSH:\n" +
       s"(opFlow: ${opFlow.flowInfo.flowId}, opUsedBandwidth: $opUsedBandwidth, opUsedCPU: $opUsedCPU, opCompressionFlag: $opCompressionFlag," +
       s" opFlowFCT_thisRound: $opFlowFCT_thisRound, opCompressionTime: $opCompressionTime, opBottleneckPort: $opBottleneckPort)");
     // opFlow.description();
@@ -376,7 +400,7 @@ class KMScheduler() {
     // greedy algorithm
     for (aChannel <- this.channels) {
       // Work Conserving Allocation: utilize the unallocated bandwidth through this channel as much as possible
-      while (aChannel.isBandwidthFree()) {
+      if (aChannel.isBandwidthFree()) {
         this.schedulingFlows(timeSlice, aChannel);
       }
     }
