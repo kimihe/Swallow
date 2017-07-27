@@ -133,7 +133,7 @@ object AlgorithmSimulator {
 
 
 
-    val scheduler: KMScheduler = new KMScheduler();
+    val scheduler: KMSchedulerSFSH = new KMSchedulerSFSH();
 //    scheduler.addNewFlows(testFlows_ch1);
 //    scheduler.addNewFlows(testFlows_ch2);
 //    scheduler.addNewFlows(testFlows_ch3);

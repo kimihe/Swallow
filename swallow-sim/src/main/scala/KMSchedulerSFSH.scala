@@ -5,9 +5,7 @@
 import scala.collection.mutable.{ArrayBuffer, Set}
 import scala.util.control.Breaks.{break, breakable}
 
-class KMScheduler() {
-
-  private var iterations: Long = 1;
+class KMSchedulerSFSH() {
 
   /**
     * Use "Set" to guarantee idempotence (幂等)
@@ -21,13 +19,14 @@ class KMScheduler() {
   val completedFlows:   ArrayBuffer[KMFlow] = ArrayBuffer[KMFlow]();
 
 
-  private var printDebugInfo: Boolean = false;
+  protected var printDebugInfo: Boolean = false;
+  protected var iterations: Long = 1;
 
-  private def updateIterations(): Unit = {
+  protected def updateIterations(): Unit = {
     this.iterations += 1;
   }
 
-  private def addOnePort(aPort: KMPort): Unit = {
+  protected def addOnePort(aPort: KMPort): Unit = {
     try {
       if(aPort.portType == KMPortType.ingress) {
         this.ports += aPort;
@@ -51,7 +50,7 @@ class KMScheduler() {
     }
   }
 
-  private def removeOnePort(aPort: KMPort): Unit = {
+  protected def removeOnePort(aPort: KMPort): Unit = {
     try {
       if(aPort.portType == KMPortType.ingress) {
         this.ports -= aPort;
@@ -245,7 +244,7 @@ class KMScheduler() {
   /**
     * calculate completion time and sort
     */
-  private def SFSH(inOneChannel: KMChannel): KMSchedulingResult = {
+  protected def coreSchedulingAlgorithm(inOneChannel: KMChannel): KMSchedulingResult = {
 
     // optimal(op) flow, bandwidth and CPU
     var opFlow: KMFlow                        = null;
@@ -304,7 +303,7 @@ class KMScheduler() {
 
         // TODO: If a flow is compressed totally, do not compress it again
         if (aFlow.isTotallyCompressed) {
-          FCT = aFlow.remSize.mixedSize / bnBandwidth;
+          FCT = KMScalaKit.bigDemicalDoubleDiv(aFlow.remSize.mixedSize, bnBandwidth);
           compressionFlag = false;
           compressionTime = 0.0;
         }
@@ -371,10 +370,10 @@ class KMScheduler() {
     return res;
   }
 
-  private def schedulingFlows(timeSlice: Double, channel: KMChannel): Unit = {
+  protected def schedulingFlows(timeSlice: Double, channel: KMChannel): Unit = {
 
     // sort with SFSH(Simple Flow Scheduling Heuristic)
-    val schedulingRes: KMSchedulingResult = this.SFSH(inOneChannel = channel);
+    val schedulingRes: KMSchedulingResult = this.coreSchedulingAlgorithm(inOneChannel = channel);
 
     if (schedulingRes == null) {
       return ; // there are no uncompleted flows belong to this channel, skip scheduling on this channel
@@ -432,7 +431,7 @@ class KMScheduler() {
     // TODO: How to calculate the consumed time?
     this.updateUncompletedFlowsWithConsumedTime(consumedTime = timeSlice);
 
-    // TODO: How to expand to multi-channel ?
+    // TODO: How to expand to multi-channel?  Sort channels by min bnPort.
     // greedy algorithm
     for (aChannel <- this.channels) {
       // Work Conserving Allocation: utilize the unallocated bandwidth through this channel as much as possible
