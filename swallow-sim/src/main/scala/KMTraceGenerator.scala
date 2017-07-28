@@ -2,10 +2,10 @@
   * Created by zhouqihua on 2017/7/27.
   */
 
-import scala.collection.mutable.{Set}
+import scala.collection.mutable.{ArrayBuffer}
 
 object KMTraceGenerator {
-  def generateFlows(): Set[KMFlow] = {
+  def generateFlows(): Array[KMFlow] = {
 
     val ingress1: KMPort = new KMPort(
       portId = "ingress1",
@@ -21,7 +21,7 @@ object KMTraceGenerator {
       computationSpeed = 800);
 
     val channel1: KMChannel = new KMChannel("channel1", ingress1, egress1, "ingress1-egress1");
-    val flows: Set[KMFlow] = Set[KMFlow]();
+    val flows: ArrayBuffer[KMFlow] = ArrayBuffer[KMFlow]();
 
 
     /**
@@ -33,20 +33,20 @@ object KMTraceGenerator {
 
 
 
-    var i: Long = 1;
+    var i: Long = 0;
     for (aTrace <- traceArr) {
       val flowId: String = s"flow$i";
       val flowDescription = s"$flowId: $aTrace";
       val aFlow: KMFlow = KMFlow.initWithFlowInfo(new KMFlowInfo(flowId = flowId,
-                                                                  channel = channel1,
-                                                                  totalSize = aTrace,
-                                                                   arrivedDate = 0,
-                                                                   flowDescription = flowDescription));
+                                                                 channel = channel1,
+                                                                 totalSize = aTrace,
+                                                                 arrivedDate = 0,
+                                                                 flowDescription = flowDescription));
       flows += aFlow;
       i += 1;
     }
 
-    return flows;
+    return flows.toArray;
   }
 }
 

@@ -8,6 +8,8 @@ import scala.util.control.Breaks.{break, breakable}
 
 class KMSchedulerFIFO extends KMSchedulerSFSH {
 
+  override protected val schedulerType: String = "FIFO";
+
   override def coreSchedulingAlgorithm(inOneChannel: KMChannel): KMSchedulingResult = {
 
     // optimal(op) flow, bandwidth and CPU
@@ -22,7 +24,8 @@ class KMSchedulerFIFO extends KMSchedulerSFSH {
 
 
     // iteration
-    for (aFlow <- this.uncompletedFlows) {
+    var stepOut: Boolean = false;
+    for (aFlow <- this.uncompletedFlows; if(!stepOut)) {
       breakable {
         if (!aFlow.flowInfo.channel.equals(inOneChannel))
           break();
@@ -34,7 +37,6 @@ class KMSchedulerFIFO extends KMSchedulerSFSH {
           }
           break();   // continue
         }
-
 
 
         // init variables
@@ -65,9 +67,13 @@ class KMSchedulerFIFO extends KMSchedulerSFSH {
 
 
 
+
         FCT = KMScalaKit.bigDemicalDoubleDiv(aFlow.remSize.mixedSize, bnBandwidth);
 
-        // update and select
+        /**
+          * FIFO
+          */
+
         opFlow              = aFlow;
         opUsedBandwidth     = bnBandwidth;
         opUsedCPU           = usedCPU;
@@ -76,6 +82,7 @@ class KMSchedulerFIFO extends KMSchedulerSFSH {
         opCompressionTime   = compressionTime;
         opBottleneckPort    = bnPort;
 
+        stepOut = true;
       }
     }
 

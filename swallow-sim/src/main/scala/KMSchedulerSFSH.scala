@@ -15,12 +15,14 @@ class KMSchedulerSFSH() {
   val ingresses:        Set[KMPort]         = Set[KMPort]();
   val egresses:         Set[KMPort]         = Set[KMPort]();
   val channels:         Set[KMChannel]      = Set[KMChannel]();
-  val uncompletedFlows: Set[KMFlow]         = Set[KMFlow]();
+  val uncompletedFlows: ArrayBuffer[KMFlow] = ArrayBuffer[KMFlow]();
   val completedFlows:   ArrayBuffer[KMFlow] = ArrayBuffer[KMFlow]();
 
-
+  protected val schedulerType: String = "SFSH";
   protected var printDebugInfo: Boolean = false;
   protected var iterations: Long = 1;
+
+
 
   protected def updateIterations(): Unit = {
     this.iterations += 1;
@@ -74,19 +76,7 @@ class KMSchedulerSFSH() {
     }
   }
 
-  def addPorts(ports: Set[KMPort]): Unit = {
-    for (aPort <- ports) {
-      this.addOnePort(aPort);
-    }
-  }
-
-  def removePorts(ports: Set[KMPort]): Unit = {
-    for (aPort <- ports) {
-      this.removeOnePort(aPort);
-    }
-  }
-
-  def addOneChannel(aChannel: KMChannel): Unit = {
+  protected def addOneChannel(aChannel: KMChannel): Unit = {
     this.channels += aChannel;
     this.addOnePort(aChannel.ingress);
     this.addOnePort(aChannel.egress);
@@ -98,35 +88,42 @@ class KMSchedulerSFSH() {
     this.removeOnePort(aChannel.egress);
   }
 
-  def resetOneChannel(aChannel: KMChannel): Unit = {
+  protected def resetOneChannel(aChannel: KMChannel): Unit = {
     aChannel.resetChannel();
   }
 
-  def resetAllChannels(): Unit = {
+  protected def resetAllChannels(): Unit = {
     for (aChannel <- this.channels) {
       this.resetOneChannel(aChannel);
     }
   }
 
-  def addNewFlows(newFlows: Set[KMFlow]): Unit = {
-    this.uncompletedFlows ++= newFlows;
-
-    for (aFlow <- newFlows) {
-      this.addOneChannel(aFlow.flowInfo.channel);
+  def addNewFlows(newFlows: Array[KMFlow]): Unit = {
+    try {
+      for (aFlow <- newFlows) {
+        if (!this.uncompletedFlows.contains(aFlow)) {
+          this.uncompletedFlows += aFlow;
+          this.addOneChannel(aFlow.flowInfo.channel);
+        }
+        else {
+          throw {
+            new RuntimeException(s"This flow[${aFlow.flowInfo.flowId}] is already contained in ArrayBuffer: uncompletedFlows.\n It should not be added again !!!");
+          }
+        }
+      }
+    }
+    catch {
+      case e: Exception => println(s"[Catched Exception: ${e.getMessage}]");
     }
   }
 
-  def removeCompletedFlows(completedFlows: Set[KMFlow]): Unit = {
-    this.uncompletedFlows --= completedFlows;
-  }
-
-  def resetAllFlows(): Unit = {
-    for (aFLow <- this.uncompletedFlows) {
-      aFLow.resetFlow;
+  protected def resetAllFlows(): Unit = {
+    for (aFlow <- this.uncompletedFlows) {
+      aFlow.resetFlow;
     }
   }
 
-  def updateFlowArraysWithOneFlow(aFlow: KMFlow): Unit = {
+  protected def updateFlowArraysWithOneFlow(aFlow: KMFlow): Unit = {
     if (aFlow.isCompleted) {
       try {
         if (this.uncompletedFlows.contains(aFlow)) {
@@ -156,7 +153,7 @@ class KMSchedulerSFSH() {
     }
   }
 
-  def updateUncompletedFlowsWithConsumedTime(consumedTime: Double): Unit = {
+  protected def updateUncompletedFlowsWithConsumedTime(consumedTime: Double): Unit = {
     for (aFlow <- this.uncompletedFlows) {
       aFlow.updateFlowWithConsumedTime(consumedTime);
     }
@@ -176,13 +173,14 @@ class KMSchedulerSFSH() {
 //    }
 
     var flag: Boolean = false;
-    if (this.uncompletedFlows.isEmpty)
+    if (this.uncompletedFlows.isEmpty) {
       flag = true;
+    }
 
     return flag;
   }
 
-  def averageFlowCompletionTime(): Double = {
+  protected def averageFlowCompletionTime(): Double = {
     val len: Int = this.completedFlows.length;
     var sum: Double = 0.0;
 
@@ -201,7 +199,7 @@ class KMSchedulerSFSH() {
     }
 
     val avgFCT: Double = this.averageFlowCompletionTime();
-    println(s"AVG FCT: $avgFCT");
+    println(s"${this.schedulerType} AVG-FCT: $avgFCT");
   }
 
   def printCompletedFlowsInOrderPrettyily(): Unit = {
@@ -209,7 +207,7 @@ class KMSchedulerSFSH() {
       var order: Long = 1;
       for (aFlow <- this.completedFlows) {
         if (aFlow.flowInfo.channel.equals(aChannel)) {
-          println(s"ORDER[${order}], CHANNEL: ${aChannel.channelId}, FLOW: ${aFlow.flowInfo.flowId}, FCT: ${aFlow.consumedTime}");
+          println(s"${this.schedulerType}[${order}], CHANNEL: ${aChannel.channelId}, FLOW: ${aFlow.flowInfo.flowId}, FCT: ${aFlow.consumedTime}");
           order += 1;
         }
       }
@@ -217,7 +215,7 @@ class KMSchedulerSFSH() {
     }
 
     val avgFCT: Double = this.averageFlowCompletionTime();
-    println(s"AVG FCT: $avgFCT");
+    println(s"${this.schedulerType} AVG-FCT: $avgFCT");
   }
 
   def printDebugInfoOff(): Unit = {
@@ -226,6 +224,15 @@ class KMSchedulerSFSH() {
 
   def printDebugInfoOn(): Unit = {
     this.printDebugInfo = true;
+  }
+
+  def clear(): Unit = {
+    this.ports.clear();
+    this.ingresses.clear();
+    this.egresses.clear();
+    this.channels.clear();
+    this.uncompletedFlows.clear();
+    this.completedFlows.clear();
   }
 
   def description(): Unit = {
@@ -334,6 +341,10 @@ class KMSchedulerSFSH() {
         }
 
 
+
+        /**
+          * SFSH
+          */
 
         // update and select
         if (FCT < opFlowFCT_thisRound) {

@@ -7,8 +7,7 @@ import scala.util.control.Breaks.{break, breakable}
 
 class KMSchedulerSRTF extends KMSchedulerSFSH {
 
-  private val flowsQueue: ArrayBuffer[KMFlow] = ArrayBuffer[KMFlow]();
-
+  override protected val schedulerType: String = "SRTF";
 
   override def coreSchedulingAlgorithm(inOneChannel: KMChannel): KMSchedulingResult = {
 
@@ -68,8 +67,11 @@ class KMSchedulerSRTF extends KMSchedulerSFSH {
 
 
 
-
         FCT = KMScalaKit.bigDemicalDoubleDiv(aFlow.remSize.mixedSize, bnBandwidth);
+
+        /**
+          * SRTF
+          */
 
         // update and select
         if (FCT < opFlowFCT_thisRound) {
