@@ -391,8 +391,8 @@ class KMSchedulerSFSH() {
     }
 
     val opFlow: KMFlow                        = schedulingRes.opFlow;
-    var opUsedBandwidth: Long                 = schedulingRes.opUsedBandwidth;
-    var opUsedCPU: Long                       = schedulingRes.opUsedCPU;
+    val opUsedBandwidth: Long                 = schedulingRes.opUsedBandwidth;
+    val opUsedCPU: Long                       = schedulingRes.opUsedCPU;
     val opCompressionFlag                     = schedulingRes.opCompressionFlag;
     val opFlowFCT_thisRound: Double           = schedulingRes.opFlowFCT_thisRound;
     val opCompressionTime: Double             = schedulingRes.opCompressionTime;
