@@ -6007,7 +6007,7 @@
 [debug] 	[NOT REQUIRED] org.scala-sbt#template-resolver;0.1!template-resolver.jar
 [debug] 	[NOT REQUIRED] org.scala-lang#jline;2.10.6!jline.jar
 [debug] 	[NOT REQUIRED] org.fusesource.jansi#jansi;1.4!jansi.jar
-[debug] :: resolution report :: resolve 895ms :: artifacts dl 31ms
+[debug] :: resolution report :: resolve 2441ms :: artifacts dl 39ms
 [debug] 	report for default#swallow-sim-build;0.1-SNAPSHOT compile produced in /Users/zhouqihua/Desktop/Swallow-master/swallow-sim/project/target/resolution-cache/reports/default-swallow-sim-build-compile.xml
 [debug] 	report for default#swallow-sim-build;0.1-SNAPSHOT runtime produced in /Users/zhouqihua/Desktop/Swallow-master/swallow-sim/project/target/resolution-cache/reports/default-swallow-sim-build-runtime.xml
 [debug] 	report for default#swallow-sim-build;0.1-SNAPSHOT test produced in /Users/zhouqihua/Desktop/Swallow-master/swallow-sim/project/target/resolution-cache/reports/default-swallow-sim-build-test.xml
@@ -6021,5 +6021,5 @@
 [debug] 	report for default#swallow-sim-build;0.1-SNAPSHOT docs produced in /Users/zhouqihua/Desktop/Swallow-master/swallow-sim/project/target/resolution-cache/reports/default-swallow-sim-build-docs.xml
 [debug] 	report for default#swallow-sim-build;0.1-SNAPSHOT pom produced in /Users/zhouqihua/Desktop/Swallow-master/swallow-sim/project/target/resolution-cache/reports/default-swallow-sim-build-pom.xml
 [debug] 	report for default#swallow-sim-build;0.1-SNAPSHOT scala-tool produced in /Users/zhouqihua/Desktop/Swallow-master/swallow-sim/project/target/resolution-cache/reports/default-swallow-sim-build-scala-tool.xml
-[debug] 	resolve done (895ms resolve - 31ms download)
+[debug] 	resolve done (2441ms resolve - 39ms download)
 [info] Done updating.

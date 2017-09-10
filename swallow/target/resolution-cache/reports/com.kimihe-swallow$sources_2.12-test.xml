@@ -7,7 +7,7 @@
 		revision="0.3-SNAPSHOT"
 		conf="test"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
-		date="20170627212938"/>
+		date="20170910192516"/>
 	<dependencies>
 		<module organisation="org.scala-lang" name="scala-reflect">
 			<revision name="2.12.2" status="release" pubdate="20170413161812" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" extra-info.apiURL="http://www.scala-lang.org/api/2.12.2/" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="16">
@@ -27,7 +27,7 @@
 				<metadata-artifact status="no" details="" size="4168" time="0" location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-contrib_2.12/ivy-2.5.3.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/akka/akka-contrib_2.12/2.5.3/akka-contrib_2.12-2.5.3.pom"/>
 				<caller organisation="com.kimihe" name="swallow$sources_2.12" conf="test, compile, runtime" rev="2.5.3" rev-constraint-default="2.5.3" rev-constraint-dynamic="2.5.3" callerrev="0.3-SNAPSHOT"/>
 				<artifacts>
-					<artifact name="akka-contrib_2.12" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="21827" time="1458" location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-contrib_2.12/srcs/akka-contrib_2.12-2.5.3-sources.jar">
+					<artifact name="akka-contrib_2.12" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="21827" time="0" location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-contrib_2.12/srcs/akka-contrib_2.12-2.5.3-sources.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/typesafe/akka/akka-contrib_2.12/2.5.3/akka-contrib_2.12-2.5.3-sources.jar"/>
 					</artifact>
 				</artifacts>
@@ -39,7 +39,7 @@
 				<metadata-artifact status="no" details="" size="3060" time="0" location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-cluster-tools_2.12/ivy-2.5.3.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/akka/akka-cluster-tools_2.12/2.5.3/akka-cluster-tools_2.12-2.5.3.pom"/>
 				<caller organisation="com.kimihe" name="swallow$sources_2.12" conf="test, compile, runtime" rev="2.5.3" rev-constraint-default="2.5.3" rev-constraint-dynamic="2.5.3" callerrev="0.3-SNAPSHOT"/>
 				<artifacts>
-					<artifact name="akka-cluster-tools_2.12" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="63403" time="1497" location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-cluster-tools_2.12/srcs/akka-cluster-tools_2.12-2.5.3-sources.jar">
+					<artifact name="akka-cluster-tools_2.12" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="63403" time="0" location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-cluster-tools_2.12/srcs/akka-cluster-tools_2.12-2.5.3-sources.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/typesafe/akka/akka-cluster-tools_2.12/2.5.3/akka-cluster-tools_2.12-2.5.3-sources.jar"/>
 					</artifact>
 				</artifacts>
@@ -159,7 +159,7 @@
 				<metadata-artifact status="no" details="" size="4007" time="0" location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-persistence_2.12/ivy-2.5.3.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/akka/akka-persistence_2.12/2.5.3/akka-persistence_2.12-2.5.3.pom"/>
 				<caller organisation="com.kimihe" name="swallow$sources_2.12" conf="test, compile, runtime" rev="2.5.3" rev-constraint-default="2.5.3" rev-constraint-dynamic="2.5.3" callerrev="0.3-SNAPSHOT"/>
 				<artifacts>
-					<artifact name="akka-persistence_2.12" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="111609" time="1517" location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-persistence_2.12/srcs/akka-persistence_2.12-2.5.3-sources.jar">
+					<artifact name="akka-persistence_2.12" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="111609" time="0" location="/Users/zhouqihua/.ivy2/cache/com.typesafe.akka/akka-persistence_2.12/srcs/akka-persistence_2.12-2.5.3-sources.jar">
 						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/typesafe/akka/akka-persistence_2.12/2.5.3/akka-persistence_2.12-2.5.3-sources.jar"/>
 					</artifact>
 				</artifacts>

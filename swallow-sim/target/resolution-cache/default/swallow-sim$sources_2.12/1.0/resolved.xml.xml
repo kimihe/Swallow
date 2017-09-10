@@ -4,7 +4,7 @@
 		module="swallow-sim$sources_2.12"
 		revision="1.0"
 		status="integration"
-		publication="20170708142942"
+		publication="20170910195217"
 	/>
 	<configurations>
 		<conf name="compile" visibility="public" description=""/>

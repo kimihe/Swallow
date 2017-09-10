@@ -4,7 +4,7 @@
 		module="swallow$sources_2.12"
 		revision="0.3-SNAPSHOT"
 		status="integration"
-		publication="20170627212938"
+		publication="20170910192516"
 	/>
 	<configurations>
 		<conf name="compile" visibility="public" description=""/>
