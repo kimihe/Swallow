@@ -99,17 +99,17 @@ public class Constants {
   public static final int SIMULATION_ENDTIME_MILLIS = 86400 * SIMULATION_SECOND_MILLIS;
 
   /**
-   * {@link CoflowSimulatorSmartCompression#useCompression(double)} completes after this time.
+   * {@link CoflowSimulatorSmartCompression#useCompression(double)} CPU idle ratio.
    */
   public static final double SIMULATION_CPU_IDLE_THRESHOLD = 70;
 
   /**
-   * {@link CoflowSimulatorSmartCompression#useCompression(double)} completes after this time.
+   * {@link CoflowSimulatorSmartCompression#useCompression(double)} compression speed.
    */
   public static final double SIMULATION_COMPRESSION_SPEED = 625; // MB/s  LZ4 default (v1.7.3)
 
   /**
-   * {@link CoflowSimulatorSmartCompression#useCompression(double)} completes after this time.
+   * {@link CoflowSimulatorSmartCompression#useCompression(double)} compression ratio.
    */
   public static final double SIMULATION_COMPRESSION_RARIO = 0.48;// LZ4 default (v1.7.3)
 }

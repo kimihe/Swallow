@@ -103,7 +103,7 @@ public class CoflowSimulatorSmartCompression extends Simulator {
     /** {@inheritDoc} */
     @Override
     protected void onSchedule(long curTime) {
-        proceedFlowsInAllRacks(curTime, Constants.SIMULATION_QUANTA, 100/8);
+        proceedFlowsInAllRacks(curTime, Constants.SIMULATION_QUANTA, 1000/8);
     }
 
     /** {@inheritDoc} */
