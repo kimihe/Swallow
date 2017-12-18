@@ -1,0 +1,569 @@
+17/12/17 15:29:00 INFO SparkContext: Running Spark version 2.2.0
+17/12/17 15:29:00 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+17/12/17 15:29:00 INFO SparkContext: Submitted application: ScalaTeraSort
+17/12/17 15:29:00 INFO SecurityManager: Changing view acls to: hadoop
+17/12/17 15:29:00 INFO SecurityManager: Changing modify acls to: hadoop
+17/12/17 15:29:00 INFO SecurityManager: Changing view acls groups to:
+17/12/17 15:29:00 INFO SecurityManager: Changing modify acls groups to:
+17/12/17 15:29:00 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(hadoop); groups with view permissions: Set(); users  with modify permissions: Set(hadoop); groups with modify permissions: Set()
+17/12/17 15:29:01 INFO Utils: Successfully started service 'sparkDriver' on port 42011.
+compressShuffle => [spark.shuffle.compress : false]
+17/12/17 15:29:01 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+codecName: org.apache.spark.io.LZFCompressionCodec
+
+17/12/17 15:29:01 INFO SparkEnv: Registering MapOutputTracker
+17/12/17 15:29:01 INFO SparkEnv: Registering BlockManagerMaster
+17/12/17 15:29:01 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+17/12/17 15:29:01 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+17/12/17 15:29:01 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-bb6b7ead-5c8c-4424-88ba-460295492cf3
+17/12/17 15:29:01 INFO MemoryStore: MemoryStore started with capacity 366.3 MB
+17/12/17 15:29:01 INFO SparkEnv: Registering OutputCommitCoordinator
+17/12/17 15:29:01 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+17/12/17 15:29:01 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://10.10.43.130:4040
+17/12/17 15:29:01 INFO SparkContext: Added JAR file:/home/hadoop/hadoopTest/HiBench/sparkbench/assembly/target/sparkbench-assembly-6.1-SNAPSHOT-dist.jar at spark://10.10.43.130:42011/jars/sparkbench-assembly-6.1-SNAPSHOT-dist.jar with timestamp 1513495741641
+17/12/17 15:29:01 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://cluster209-hadoop-master:7077...
+17/12/17 15:29:01 INFO TransportClientFactory: Successfully created connection to cluster209-hadoop-master/10.10.43.130:7077 after 25 ms (0 ms spent in bootstraps)
+17/12/17 15:29:01 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20171217152901-0002
+17/12/17 15:29:01 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20171217152901-0002/0 on worker-20171217150826-10.10.43.132-38987 (10.10.43.132:38987) with 4 cores
+17/12/17 15:29:01 INFO StandaloneSchedulerBackend: Granted executor ID app-20171217152901-0002/0 on hostPort 10.10.43.132:38987 with 4 cores, 1024.0 MB RAM
+17/12/17 15:29:01 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20171217152901-0002/1 on worker-20171217150835-10.10.43.131-33910 (10.10.43.131:33910) with 4 cores
+17/12/17 15:29:01 INFO StandaloneSchedulerBackend: Granted executor ID app-20171217152901-0002/1 on hostPort 10.10.43.131:33910 with 4 cores, 1024.0 MB RAM
+17/12/17 15:29:02 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 43421.
+17/12/17 15:29:02 INFO NettyBlockTransferService: Server created on 10.10.43.130:43421
+17/12/17 15:29:02 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+17/12/17 15:29:02 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 10.10.43.130, 43421, None)
+17/12/17 15:29:02 INFO BlockManagerMasterEndpoint: Registering block manager 10.10.43.130:43421 with 366.3 MB RAM, BlockManagerId(driver, 10.10.43.130, 43421, None)
+17/12/17 15:29:02 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 10.10.43.130, 43421, None)
+17/12/17 15:29:02 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 10.10.43.130, 43421, None)
+17/12/17 15:29:02 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20171217152901-0002/1 is now RUNNING
+17/12/17 15:29:02 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20171217152901-0002/0 is now RUNNING
+17/12/17 15:29:04 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+17/12/17 15:29:05 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.10.43.131:60258) with ID 1
+17/12/17 15:29:05 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.10.43.132:41588) with ID 0
+17/12/17 15:29:06 INFO BlockManagerMasterEndpoint: Registering block manager 10.10.43.132:35329 with 366.3 MB RAM, BlockManagerId(0, 10.10.43.132, 35329, None)
+17/12/17 15:29:06 INFO BlockManagerMasterEndpoint: Registering block manager 10.10.43.131:40703 with 366.3 MB RAM, BlockManagerId(1, 10.10.43.131, 40703, None)
+17/12/17 15:29:07 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+codecName: org.apache.spark.io.LZFCompressionCodec
+
+17/12/17 15:29:08 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 220.2 KB, free 366.1 MB)
+17/12/17 15:29:08 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 20.7 KB, free 366.1 MB)
+17/12/17 15:29:08 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.10.43.130:43421 (size: 20.7 KB, free: 366.3 MB)
+17/12/17 15:29:08 INFO SparkContext: Created broadcast 0 from newAPIHadoopFile at ScalaTeraSort.scala:52
+17/12/17 15:29:08 INFO FileInputFormat: Total input paths to process : 8
+Spent 118ms computing base-splits.
+Spent 2ms computing TeraScheduler splits.
+17/12/17 15:29:08 INFO SparkContext: Starting job: BaseRangePartitioner at ScalaTeraSort.scala:59
+17/12/17 15:29:08 INFO DAGScheduler: Got job 0 (BaseRangePartitioner at ScalaTeraSort.scala:59) with 8 output partitions
+17/12/17 15:29:08 INFO DAGScheduler: Final stage: ResultStage 0 (BaseRangePartitioner at ScalaTeraSort.scala:59)
+17/12/17 15:29:08 INFO DAGScheduler: Parents of final stage: List()
+17/12/17 15:29:08 INFO DAGScheduler: Missing parents: List()
+17/12/17 15:29:08 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[4] at BaseRangePartitioner at ScalaTeraSort.scala:59), which has no missing parents
+17/12/17 15:29:08 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+codecName: org.apache.spark.io.LZFCompressionCodec
+
+17/12/17 15:29:08 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 3.5 KB, free 366.1 MB)
+17/12/17 15:29:08 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 1956.0 B, free 366.1 MB)
+17/12/17 15:29:08 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.10.43.130:43421 (size: 1956.0 B, free: 366.3 MB)
+17/12/17 15:29:08 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:1006
+17/12/17 15:29:08 INFO DAGScheduler: Submitting 8 missing tasks from ResultStage 0 (MapPartitionsRDD[4] at BaseRangePartitioner at ScalaTeraSort.scala:59) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6, 7))
+17/12/17 15:29:08 INFO TaskSchedulerImpl: Adding task set 0.0 with 8 tasks
+17/12/17 15:29:08 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, 10.10.43.132, executor 0, partition 0, ANY, 5054 bytes)
+17/12/17 15:29:08 INFO TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1, 10.10.43.131, executor 1, partition 1, ANY, 5054 bytes)
+17/12/17 15:29:08 INFO TaskSetManager: Starting task 2.0 in stage 0.0 (TID 2, 10.10.43.132, executor 0, partition 2, ANY, 5054 bytes)
+17/12/17 15:29:08 INFO TaskSetManager: Starting task 3.0 in stage 0.0 (TID 3, 10.10.43.131, executor 1, partition 3, ANY, 5054 bytes)
+17/12/17 15:29:08 INFO TaskSetManager: Starting task 4.0 in stage 0.0 (TID 4, 10.10.43.132, executor 0, partition 4, ANY, 5054 bytes)
+17/12/17 15:29:08 INFO TaskSetManager: Starting task 5.0 in stage 0.0 (TID 5, 10.10.43.131, executor 1, partition 5, ANY, 5054 bytes)
+17/12/17 15:29:08 INFO TaskSetManager: Starting task 6.0 in stage 0.0 (TID 6, 10.10.43.132, executor 0, partition 6, ANY, 5054 bytes)
+17/12/17 15:29:08 INFO TaskSetManager: Starting task 7.0 in stage 0.0 (TID 7, 10.10.43.131, executor 1, partition 7, ANY, 5054 bytes)
+17/12/17 15:29:10 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.10.43.132:35329 (size: 1956.0 B, free: 366.3 MB)
+17/12/17 15:29:10 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.10.43.132:35329 (size: 20.7 KB, free: 366.3 MB)
+17/12/17 15:29:10 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.10.43.131:40703 (size: 1956.0 B, free: 366.3 MB)
+17/12/17 15:29:11 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.10.43.131:40703 (size: 20.7 KB, free: 366.3 MB)
+17/12/17 15:29:13 INFO TaskSetManager: Finished task 6.0 in stage 0.0 (TID 6) in 4608 ms on 10.10.43.132 (executor 0) (1/8)
+17/12/17 15:29:13 INFO TaskSetManager: Finished task 7.0 in stage 0.0 (TID 7) in 5329 ms on 10.10.43.131 (executor 1) (2/8)
+17/12/17 15:29:14 INFO TaskSetManager: Finished task 2.0 in stage 0.0 (TID 2) in 6059 ms on 10.10.43.132 (executor 0) (3/8)
+17/12/17 15:29:15 INFO TaskSetManager: Finished task 3.0 in stage 0.0 (TID 3) in 6618 ms on 10.10.43.131 (executor 1) (4/8)
+17/12/17 15:29:15 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 6886 ms on 10.10.43.132 (executor 0) (5/8)
+17/12/17 15:29:15 INFO TaskSetManager: Finished task 4.0 in stage 0.0 (TID 4) in 6915 ms on 10.10.43.132 (executor 0) (6/8)
+17/12/17 15:29:15 INFO TaskSetManager: Finished task 5.0 in stage 0.0 (TID 5) in 6966 ms on 10.10.43.131 (executor 1) (7/8)
+17/12/17 15:29:15 INFO TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 7098 ms on 10.10.43.131 (executor 1) (8/8)
+17/12/17 15:29:15 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool
+17/12/17 15:29:15 INFO DAGScheduler: ResultStage 0 (BaseRangePartitioner at ScalaTeraSort.scala:59) finished in 7.120 s
+17/12/17 15:29:15 INFO DAGScheduler: Job 0 finished: BaseRangePartitioner at ScalaTeraSort.scala:59, took 7.213664 s
+17/12/17 15:29:15 INFO SparkContext: Starting job: runJob at SparkHadoopMapReduceWriter.scala:88
+17/12/17 15:29:15 INFO DAGScheduler: Registering RDD 1 (map at ScalaTeraSort.scala:52)
+17/12/17 15:29:15 INFO DAGScheduler: Got job 1 (runJob at SparkHadoopMapReduceWriter.scala:88) with 8 output partitions
+17/12/17 15:29:15 INFO DAGScheduler: Final stage: ResultStage 2 (runJob at SparkHadoopMapReduceWriter.scala:88)
+17/12/17 15:29:15 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 1)
+17/12/17 15:29:15 INFO DAGScheduler: Missing parents: List(ShuffleMapStage 1)
+17/12/17 15:29:15 INFO DAGScheduler: Submitting ShuffleMapStage 1 (MapPartitionsRDD[1] at map at ScalaTeraSort.scala:52), which has no missing parents
+17/12/17 15:29:15 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+codecName: org.apache.spark.io.LZFCompressionCodec
+
+17/12/17 15:29:15 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 4.2 KB, free 366.1 MB)
+17/12/17 15:29:15 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 2.5 KB, free 366.1 MB)
+17/12/17 15:29:15 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.10.43.130:43421 (size: 2.5 KB, free: 366.3 MB)
+17/12/17 15:29:15 INFO SparkContext: Created broadcast 2 from broadcast at DAGScheduler.scala:1006
+17/12/17 15:29:15 INFO DAGScheduler: Submitting 24 missing tasks from ShuffleMapStage 1 (MapPartitionsRDD[1] at map at ScalaTeraSort.scala:52) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14))
+17/12/17 15:29:15 INFO TaskSchedulerImpl: Adding task set 1.0 with 24 tasks
+17/12/17 15:29:15 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 8, 10.10.43.131, executor 1, partition 0, ANY, 4946 bytes)
+17/12/17 15:29:15 INFO TaskSetManager: Starting task 1.0 in stage 1.0 (TID 9, 10.10.43.132, executor 0, partition 1, ANY, 4946 bytes)
+17/12/17 15:29:15 INFO TaskSetManager: Starting task 2.0 in stage 1.0 (TID 10, 10.10.43.131, executor 1, partition 2, ANY, 4946 bytes)
+17/12/17 15:29:15 INFO TaskSetManager: Starting task 3.0 in stage 1.0 (TID 11, 10.10.43.132, executor 0, partition 3, ANY, 4946 bytes)
+17/12/17 15:29:15 INFO TaskSetManager: Starting task 4.0 in stage 1.0 (TID 12, 10.10.43.131, executor 1, partition 4, ANY, 4946 bytes)
+17/12/17 15:29:15 INFO TaskSetManager: Starting task 5.0 in stage 1.0 (TID 13, 10.10.43.132, executor 0, partition 5, ANY, 4946 bytes)
+17/12/17 15:29:15 INFO TaskSetManager: Starting task 6.0 in stage 1.0 (TID 14, 10.10.43.131, executor 1, partition 6, ANY, 4946 bytes)
+17/12/17 15:29:15 INFO TaskSetManager: Starting task 7.0 in stage 1.0 (TID 15, 10.10.43.132, executor 0, partition 7, ANY, 4946 bytes)
+17/12/17 15:29:15 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.10.43.132:35329 (size: 2.5 KB, free: 366.3 MB)
+17/12/17 15:29:15 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.10.43.131:40703 (size: 2.5 KB, free: 366.3 MB)
+17/12/17 15:29:19 INFO TaskSetManager: Starting task 8.0 in stage 1.0 (TID 16, 10.10.43.132, executor 0, partition 8, ANY, 4946 bytes)
+17/12/17 15:29:19 INFO TaskSetManager: Finished task 7.0 in stage 1.0 (TID 15) in 3643 ms on 10.10.43.132 (executor 0) (1/24)
+17/12/17 15:29:19 INFO TaskSetManager: Starting task 9.0 in stage 1.0 (TID 17, 10.10.43.132, executor 0, partition 9, ANY, 4946 bytes)
+17/12/17 15:29:19 INFO TaskSetManager: Finished task 3.0 in stage 1.0 (TID 11) in 3721 ms on 10.10.43.132 (executor 0) (2/24)
+17/12/17 15:29:21 INFO TaskSetManager: Starting task 10.0 in stage 1.0 (TID 18, 10.10.43.131, executor 1, partition 10, ANY, 4946 bytes)
+17/12/17 15:29:21 INFO TaskSetManager: Finished task 6.0 in stage 1.0 (TID 14) in 5397 ms on 10.10.43.131 (executor 1) (3/24)
+17/12/17 15:29:21 INFO TaskSetManager: Starting task 11.0 in stage 1.0 (TID 19, 10.10.43.131, executor 1, partition 11, ANY, 4946 bytes)
+17/12/17 15:29:21 INFO TaskSetManager: Finished task 4.0 in stage 1.0 (TID 12) in 5614 ms on 10.10.43.131 (executor 1) (4/24)
+17/12/17 15:29:21 INFO TaskSetManager: Starting task 12.0 in stage 1.0 (TID 20, 10.10.43.131, executor 1, partition 12, ANY, 4946 bytes)
+17/12/17 15:29:21 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 8) in 5645 ms on 10.10.43.131 (executor 1) (5/24)
+17/12/17 15:29:22 INFO TaskSetManager: Starting task 13.0 in stage 1.0 (TID 21, 10.10.43.132, executor 0, partition 13, ANY, 4946 bytes)
+17/12/17 15:29:22 INFO TaskSetManager: Finished task 8.0 in stage 1.0 (TID 16) in 2687 ms on 10.10.43.132 (executor 0) (6/24)
+17/12/17 15:29:23 INFO TaskSetManager: Starting task 14.0 in stage 1.0 (TID 22, 10.10.43.132, executor 0, partition 14, ANY, 4946 bytes)
+17/12/17 15:29:23 INFO TaskSetManager: Finished task 9.0 in stage 1.0 (TID 17) in 4011 ms on 10.10.43.132 (executor 0) (7/24)
+17/12/17 15:29:25 INFO BlockManagerInfo: Removed broadcast_1_piece0 on 10.10.43.130:43421 in memory (size: 1956.0 B, free: 366.3 MB)
+17/12/17 15:29:25 INFO BlockManagerInfo: Removed broadcast_1_piece0 on 10.10.43.132:35329 in memory (size: 1956.0 B, free: 366.3 MB)
+17/12/17 15:29:25 INFO BlockManagerInfo: Removed broadcast_1_piece0 on 10.10.43.131:40703 in memory (size: 1956.0 B, free: 366.3 MB)
+17/12/17 15:29:26 INFO TaskSetManager: Starting task 15.0 in stage 1.0 (TID 23, 10.10.43.131, executor 1, partition 15, ANY, 4946 bytes)
+17/12/17 15:29:26 INFO TaskSetManager: Finished task 11.0 in stage 1.0 (TID 19) in 5269 ms on 10.10.43.131 (executor 1) (8/24)
+17/12/17 15:29:27 INFO TaskSetManager: Starting task 16.0 in stage 1.0 (TID 24, 10.10.43.131, executor 1, partition 16, ANY, 4946 bytes)
+17/12/17 15:29:27 INFO TaskSetManager: Finished task 10.0 in stage 1.0 (TID 18) in 6101 ms on 10.10.43.131 (executor 1) (9/24)
+17/12/17 15:29:27 INFO TaskSetManager: Starting task 17.0 in stage 1.0 (TID 25, 10.10.43.131, executor 1, partition 17, ANY, 4946 bytes)
+17/12/17 15:29:27 INFO TaskSetManager: Finished task 12.0 in stage 1.0 (TID 20) in 6163 ms on 10.10.43.131 (executor 1) (10/24)
+17/12/17 15:29:29 INFO TaskSetManager: Starting task 18.0 in stage 1.0 (TID 26, 10.10.43.132, executor 0, partition 18, ANY, 4946 bytes)
+17/12/17 15:29:29 INFO TaskSetManager: Finished task 5.0 in stage 1.0 (TID 13) in 13441 ms on 10.10.43.132 (executor 0) (11/24)
+17/12/17 15:29:29 INFO TaskSetManager: Starting task 19.0 in stage 1.0 (TID 27, 10.10.43.132, executor 0, partition 19, ANY, 4946 bytes)
+17/12/17 15:29:29 INFO TaskSetManager: Finished task 13.0 in stage 1.0 (TID 21) in 7530 ms on 10.10.43.132 (executor 0) (12/24)
+17/12/17 15:29:30 INFO TaskSetManager: Starting task 20.0 in stage 1.0 (TID 28, 10.10.43.131, executor 1, partition 20, ANY, 4946 bytes)
+17/12/17 15:29:30 INFO TaskSetManager: Finished task 2.0 in stage 1.0 (TID 10) in 14311 ms on 10.10.43.131 (executor 1) (13/24)
+17/12/17 15:29:32 INFO TaskSetManager: Starting task 21.0 in stage 1.0 (TID 29, 10.10.43.132, executor 0, partition 21, ANY, 4946 bytes)
+17/12/17 15:29:32 INFO TaskSetManager: Finished task 1.0 in stage 1.0 (TID 9) in 16659 ms on 10.10.43.132 (executor 0) (14/24)
+17/12/17 15:29:32 INFO TaskSetManager: Starting task 22.0 in stage 1.0 (TID 30, 10.10.43.132, executor 0, partition 22, ANY, 4946 bytes)
+17/12/17 15:29:32 INFO TaskSetManager: Finished task 14.0 in stage 1.0 (TID 22) in 8933 ms on 10.10.43.132 (executor 0) (15/24)
+17/12/17 15:29:39 INFO TaskSetManager: Starting task 23.0 in stage 1.0 (TID 31, 10.10.43.131, executor 1, partition 23, ANY, 4946 bytes)
+17/12/17 15:29:39 INFO TaskSetManager: Finished task 20.0 in stage 1.0 (TID 28) in 9518 ms on 10.10.43.131 (executor 1) (16/24)
+17/12/17 15:29:40 INFO TaskSetManager: Finished task 18.0 in stage 1.0 (TID 26) in 11065 ms on 10.10.43.132 (executor 0) (17/24)
+17/12/17 15:29:42 INFO TaskSetManager: Finished task 22.0 in stage 1.0 (TID 30) in 9968 ms on 10.10.43.132 (executor 0) (18/24)
+17/12/17 15:29:42 INFO TaskSetManager: Finished task 16.0 in stage 1.0 (TID 24) in 15386 ms on 10.10.43.131 (executor 1) (19/24)
+17/12/17 15:29:48 INFO TaskSetManager: Finished task 21.0 in stage 1.0 (TID 29) in 16047 ms on 10.10.43.132 (executor 0) (20/24)
+17/12/17 15:29:53 INFO TaskSetManager: Finished task 23.0 in stage 1.0 (TID 31) in 13941 ms on 10.10.43.131 (executor 1) (21/24)
+17/12/17 15:29:56 INFO TaskSetManager: Finished task 15.0 in stage 1.0 (TID 23) in 30205 ms on 10.10.43.131 (executor 1) (22/24)
+17/12/17 15:30:03 INFO TaskSetManager: Finished task 17.0 in stage 1.0 (TID 25) in 36035 ms on 10.10.43.131 (executor 1) (23/24)
+17/12/17 15:30:04 INFO TaskSetManager: Finished task 19.0 in stage 1.0 (TID 27) in 34734 ms on 10.10.43.132 (executor 0) (24/24)
+17/12/17 15:30:04 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool
+17/12/17 15:30:04 INFO DAGScheduler: ShuffleMapStage 1 (map at ScalaTeraSort.scala:52) finished in 48.593 s
+17/12/17 15:30:04 INFO DAGScheduler: looking for newly runnable stages
+17/12/17 15:30:04 INFO DAGScheduler: running: Set()
+17/12/17 15:30:04 INFO DAGScheduler: waiting: Set(ResultStage 2)
+17/12/17 15:30:04 INFO DAGScheduler: failed: Set()
+17/12/17 15:30:04 INFO DAGScheduler: Submitting ResultStage 2 (MapPartitionsRDD[6] at map at ScalaTeraSort.scala:61), which has no missing parents
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+codecName: org.apache.spark.io.LZFCompressionCodec
+
+17/12/17 15:30:04 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 65.7 KB, free 366.0 MB)
+17/12/17 15:30:04 INFO MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 23.8 KB, free 366.0 MB)
+17/12/17 15:30:04 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.10.43.130:43421 (size: 23.8 KB, free: 366.3 MB)
+17/12/17 15:30:04 INFO SparkContext: Created broadcast 3 from broadcast at DAGScheduler.scala:1006
+17/12/17 15:30:04 INFO DAGScheduler: Submitting 8 missing tasks from ResultStage 2 (MapPartitionsRDD[6] at map at ScalaTeraSort.scala:61) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6, 7))
+17/12/17 15:30:04 INFO TaskSchedulerImpl: Adding task set 2.0 with 8 tasks
+17/12/17 15:30:04 INFO TaskSetManager: Starting task 0.0 in stage 2.0 (TID 32, 10.10.43.132, executor 0, partition 0, NODE_LOCAL, 4625 bytes)
+17/12/17 15:30:04 INFO TaskSetManager: Starting task 1.0 in stage 2.0 (TID 33, 10.10.43.131, executor 1, partition 1, NODE_LOCAL, 4625 bytes)
+17/12/17 15:30:04 INFO TaskSetManager: Starting task 2.0 in stage 2.0 (TID 34, 10.10.43.132, executor 0, partition 2, NODE_LOCAL, 4625 bytes)
+17/12/17 15:30:04 INFO TaskSetManager: Starting task 3.0 in stage 2.0 (TID 35, 10.10.43.131, executor 1, partition 3, NODE_LOCAL, 4625 bytes)
+17/12/17 15:30:04 INFO TaskSetManager: Starting task 4.0 in stage 2.0 (TID 36, 10.10.43.132, executor 0, partition 4, NODE_LOCAL, 4625 bytes)
+17/12/17 15:30:04 INFO TaskSetManager: Starting task 5.0 in stage 2.0 (TID 37, 10.10.43.131, executor 1, partition 5, NODE_LOCAL, 4625 bytes)
+17/12/17 15:30:04 INFO TaskSetManager: Starting task 6.0 in stage 2.0 (TID 38, 10.10.43.132, executor 0, partition 6, NODE_LOCAL, 4625 bytes)
+17/12/17 15:30:04 INFO TaskSetManager: Starting task 7.0 in stage 2.0 (TID 39, 10.10.43.131, executor 1, partition 7, NODE_LOCAL, 4625 bytes)
+17/12/17 15:30:04 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.10.43.132:35329 (size: 23.8 KB, free: 366.3 MB)
+17/12/17 15:30:04 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 10.10.43.132:41588
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+retBytes: null
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses.length: 24
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(0): KMGetBlockInfo:
+location: BlockManagerId(1, 10.10.43.131, 40703, None)
+uncompressedSizes(0): 17527497
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 19280246
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(1): KMGetBlockInfo:
+location: BlockManagerId(0, 10.10.43.132, 35329, None)
+uncompressedSizes(0): 17527497
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 19280246
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(2): KMGetBlockInfo:
+location: BlockManagerId(1, 10.10.43.131, 40703, None)
+uncompressedSizes(0): 19280246
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 19280246
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(3): KMGetBlockInfo:
+location: BlockManagerId(0, 10.10.43.132, 35329, None)
+uncompressedSizes(0): 19280246
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 19280246
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(4): KMGetBlockInfo:
+location: BlockManagerId(1, 10.10.43.131, 40703, None)
+uncompressedSizes(0): 17527497
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 17527497
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(5): KMGetBlockInfo:
+location: BlockManagerId(0, 10.10.43.132, 35329, None)
+uncompressedSizes(0): 17527497
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 19280246
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(6): KMGetBlockInfo:
+location: BlockManagerId(1, 10.10.43.131, 40703, None)
+uncompressedSizes(0): 19280246
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 19280246
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(7): KMGetBlockInfo:
+location: BlockManagerId(0, 10.10.43.132, 35329, None)
+uncompressedSizes(0): 17527497
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 17527497
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(8): KMGetBlockInfo:
+location: BlockManagerId(0, 10.10.43.132, 35329, None)
+uncompressedSizes(0): 19280246
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 19280246
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(9): KMGetBlockInfo:
+location: BlockManagerId(0, 10.10.43.132, 35329, None)
+uncompressedSizes(0): 17527497
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 19280246
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(10): KMGetBlockInfo:
+location: BlockManagerId(1, 10.10.43.131, 40703, None)
+uncompressedSizes(0): 17527497
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 17527497
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(11): KMGetBlockInfo:
+location: BlockManagerId(1, 10.10.43.131, 40703, None)
+uncompressedSizes(0): 17527497
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 19280246
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(12): KMGetBlockInfo:
+location: BlockManagerId(1, 10.10.43.131, 40703, None)
+uncompressedSizes(0): 19280246
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 19280246
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(13): KMGetBlockInfo:
+location: BlockManagerId(0, 10.10.43.132, 35329, None)
+uncompressedSizes(0): 17527497
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 17527497
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(14): KMGetBlockInfo:
+location: BlockManagerId(0, 10.10.43.132, 35329, None)
+uncompressedSizes(0): 19280246
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 19280246
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(15): KMGetBlockInfo:
+location: BlockManagerId(1, 10.10.43.131, 40703, None)
+uncompressedSizes(0): 19280246
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 19280246
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(16): KMGetBlockInfo:
+location: BlockManagerId(1, 10.10.43.131, 40703, None)
+uncompressedSizes(0): 17527497
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 17527497
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(17): KMGetBlockInfo:
+location: BlockManagerId(1, 10.10.43.131, 40703, None)
+uncompressedSizes(0): 19280246
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 19280246
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(18): KMGetBlockInfo:
+location: BlockManagerId(0, 10.10.43.132, 35329, None)
+uncompressedSizes(0): 19280246
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 19280246
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(19): KMGetBlockInfo:
+location: BlockManagerId(0, 10.10.43.132, 35329, None)
+uncompressedSizes(0): 17527497
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 17527497
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(20): KMGetBlockInfo:
+location: BlockManagerId(1, 10.10.43.131, 40703, None)
+uncompressedSizes(0): 17527497
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 19280246
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(21): KMGetBlockInfo:
+location: BlockManagerId(0, 10.10.43.132, 35329, None)
+uncompressedSizes(0): 17527497
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 19280246
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(22): KMGetBlockInfo:
+location: BlockManagerId(0, 10.10.43.132, 35329, None)
+uncompressedSizes(0): 17527497
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 17527497
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(23): KMGetBlockInfo:
+location: BlockManagerId(1, 10.10.43.131, 40703, None)
+uncompressedSizes(0): 17527497
+uncompressedSizes(1): 17527497
+uncompressedSizes(2): 21208271
+uncompressedSizes(3): 17527497
+uncompressedSizes(4): 19280246
+uncompressedSizes(5): 19280246
+uncompressedSizes(6): 15934088
+uncompressedSizes(7): 17527497
+
+
+17/12/17 15:30:04 INFO MapOutputTrackerMaster: Size of output statuses for shuffle 0 is 215 bytes
+17/12/17 15:30:05 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.10.43.131:40703 (size: 23.8 KB, free: 366.3 MB)
+17/12/17 15:30:05 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 10.10.43.131:60258
+17/12/17 15:30:05 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+retBytes: [B@78525f2b
+
+
+17/12/17 15:31:33 INFO TaskSetManager: Finished task 6.0 in stage 2.0 (TID 38) in 89487 ms on 10.10.43.132 (executor 0) (1/8)
+17/12/17 15:32:13 INFO TaskSetManager: Finished task 0.0 in stage 2.0 (TID 32) in 129471 ms on 10.10.43.132 (executor 0) (2/8)
+17/12/17 15:32:16 INFO TaskSetManager: Finished task 1.0 in stage 2.0 (TID 33) in 132106 ms on 10.10.43.131 (executor 1) (3/8)
+17/12/17 15:32:20 INFO TaskSetManager: Finished task 4.0 in stage 2.0 (TID 36) in 135929 ms on 10.10.43.132 (executor 0) (4/8)
+17/12/17 15:32:20 INFO TaskSetManager: Finished task 2.0 in stage 2.0 (TID 34) in 136269 ms on 10.10.43.132 (executor 0) (5/8)
+17/12/17 15:32:25 INFO TaskSetManager: Finished task 3.0 in stage 2.0 (TID 35) in 141578 ms on 10.10.43.131 (executor 1) (6/8)
+17/12/17 15:32:30 INFO TaskSetManager: Finished task 7.0 in stage 2.0 (TID 39) in 145858 ms on 10.10.43.131 (executor 1) (7/8)
+17/12/17 15:32:30 INFO TaskSetManager: Finished task 5.0 in stage 2.0 (TID 37) in 146556 ms on 10.10.43.131 (executor 1) (8/8)
+17/12/17 15:32:30 INFO TaskSchedulerImpl: Removed TaskSet 2.0, whose tasks have all completed, from pool
+17/12/17 15:32:30 INFO DAGScheduler: ResultStage 2 (runJob at SparkHadoopMapReduceWriter.scala:88) finished in 146.559 s
+17/12/17 15:32:30 INFO DAGScheduler: Job 1 finished: runJob at SparkHadoopMapReduceWriter.scala:88, took 195.217559 s
+17/12/17 15:32:31 INFO SparkHadoopMapReduceWriter: Job job_20171217152915_0006 committed.
+17/12/17 15:32:31 INFO SparkUI: Stopped Spark web UI at http://10.10.43.130:4040
+17/12/17 15:32:31 INFO StandaloneSchedulerBackend: Shutting down all executors
+17/12/17 15:32:31 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Asking each executor to shut down
+17/12/17 15:32:31 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+17/12/17 15:32:31 INFO MemoryStore: MemoryStore cleared
+17/12/17 15:32:31 INFO BlockManager: BlockManager stopped
+17/12/17 15:32:31 INFO BlockManagerMaster: BlockManagerMaster stopped
+17/12/17 15:32:31 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+17/12/17 15:32:31 INFO SparkContext: Successfully stopped SparkContext
+17/12/17 15:32:31 INFO ShutdownHookManager: Shutdown hook called
+17/12/17 15:32:31 INFO ShutdownHookManager: Deleting directory /tmp/spark-ccb5a1c1-d5c2-4bae-beb7-6f42bb3b25d4
