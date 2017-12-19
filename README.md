@@ -1,5 +1,7 @@
 # Project Guide
-In the root directory `Swallow-master`, three subprojects are contained: **swallow**, **swallow-sim**, and **swallow-benchmark**.  
+* A prototype of **Swallow**.   
+* You can also found our implementation in Spark-2.2.0 at: [Modified-Spark](https://github.com/kimihe/SparkInternals/tree/master/Source%20Codes%20Development/For_Source_Codes_Modifying_spark-2.2.0-debug). As the full source code project is large, we just put modified codes, mainly in module of `spark-core` and `network-common`.  
+* In root directory `Swallow-master`, four subprojects are contained: **swallow**, **swallow-sim**, **swallow-benchmark** and **swallow-trace**.  
 
 ### swallow
 Efficient flow scheduling system in data-intensive clusters, based on [Akka](http://akka.io/).  
