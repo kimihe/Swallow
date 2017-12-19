@@ -12,8 +12,12 @@ Trace-driven simulator for flow scheduling used in swallow.
 **Full project:** [swallow-sim](https://github.com/kimihe/Swallow/tree/master/swallow-sim).
 
 ### swallow-benchmark
-Synthesized data from real-world traces of data-intensive clusters.   
+Modified [Hibench](https://github.com/intel-hadoop/HiBench) for swallow evaluation. It is also suitable for evaluating other big data frameworks (e.g., [Spark](https://spark.apache.org/) and [Hadoop](http://hadoop.apache.org/)).  
 **Full project:** [swallow-benchmark](https://github.com/kimihe/Swallow/tree/master/swallow-benchmark).
+
+### swallow-trace
+Synthesized data from real-world traces of data-intensive clusters.  
+**Full project:**: [swallow-trace](https://github.com/kimihe/Swallow/tree/master/swallow-trace).
 
 # Prerequisites
 * JDK 8.
