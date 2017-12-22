@@ -1,0 +1,313 @@
+17/12/21 16:34:32 INFO SparkContext: Running Spark version 2.2.0
+17/12/21 16:34:33 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+17/12/21 16:34:33 INFO SparkContext: Submitted application: SVD with Params(4000,3000,true,1g,hdfs://cluster209-hadoop-master:9000/user/hadoop/HiBench/HiBench/SVD/Input)
+17/12/21 16:34:33 INFO SecurityManager: Changing view acls to: hadoop
+17/12/21 16:34:33 INFO SecurityManager: Changing modify acls to: hadoop
+17/12/21 16:34:33 INFO SecurityManager: Changing view acls groups to:
+17/12/21 16:34:33 INFO SecurityManager: Changing modify acls groups to:
+17/12/21 16:34:33 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(hadoop); groups with view permissions: Set(); users  with modify permissions: Set(hadoop); groups with modify permissions: Set()
+17/12/21 16:34:33 INFO Utils: Successfully started service 'sparkDriver' on port 33510.
+compressShuffle => [spark.shuffle.compress : false]
+17/12/21 16:34:33 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+codecName: org.apache.spark.io.LZFCompressionCodec
+
+17/12/21 16:34:33 INFO SparkEnv: Registering MapOutputTracker
+17/12/21 16:34:33 INFO SparkEnv: Registering BlockManagerMaster
+17/12/21 16:34:33 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+17/12/21 16:34:33 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+17/12/21 16:34:33 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-441e53af-1746-48f8-be9c-1594977088fd
+17/12/21 16:34:33 INFO MemoryStore: MemoryStore started with capacity 2004.6 MB
+17/12/21 16:34:33 INFO SparkEnv: Registering OutputCommitCoordinator
+17/12/21 16:34:34 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+17/12/21 16:34:34 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://10.10.43.130:4040
+17/12/21 16:34:34 INFO SparkContext: Added JAR file:/home/hadoop/hadoopTest/HiBench2/sparkbench/assembly/target/sparkbench-assembly-7.1-SNAPSHOT-dist.jar at spark://10.10.43.130:33510/jars/sparkbench-assembly-7.1-SNAPSHOT-dist.jar with timestamp 1513845274326
+17/12/21 16:34:34 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://cluster209-hadoop-master:7077...
+17/12/21 16:34:34 INFO TransportClientFactory: Successfully created connection to cluster209-hadoop-master/10.10.43.130:7077 after 24 ms (0 ms spent in bootstraps)
+17/12/21 16:34:34 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20171221163434-0029
+17/12/21 16:34:34 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20171221163434-0029/0 on worker-20171221142221-10.10.43.131-38700 (10.10.43.131:38700) with 4 cores
+17/12/21 16:34:34 INFO StandaloneSchedulerBackend: Granted executor ID app-20171221163434-0029/0 on hostPort 10.10.43.131:38700 with 4 cores, 4.0 GB RAM
+17/12/21 16:34:34 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20171221163434-0029/1 on worker-20171221142134-10.10.43.132-39910 (10.10.43.132:39910) with 4 cores
+17/12/21 16:34:34 INFO StandaloneSchedulerBackend: Granted executor ID app-20171221163434-0029/1 on hostPort 10.10.43.132:39910 with 4 cores, 4.0 GB RAM
+17/12/21 16:34:34 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 41488.
+17/12/21 16:34:34 INFO NettyBlockTransferService: Server created on 10.10.43.130:41488
+17/12/21 16:34:34 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+17/12/21 16:34:34 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 10.10.43.130, 41488, None)
+17/12/21 16:34:34 INFO BlockManagerMasterEndpoint: Registering block manager 10.10.43.130:41488 with 2004.6 MB RAM, BlockManagerId(driver, 10.10.43.130, 41488, None)
+17/12/21 16:34:34 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 10.10.43.130, 41488, None)
+17/12/21 16:34:34 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 10.10.43.130, 41488, None)
+17/12/21 16:34:34 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20171221163434-0029/1 is now RUNNING
+17/12/21 16:34:34 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20171221163434-0029/0 is now RUNNING
+17/12/21 16:34:37 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+17/12/21 16:34:38 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.10.43.131:56626) with ID 0
+17/12/21 16:34:38 INFO BlockManagerMasterEndpoint: Registering block manager 10.10.43.131:33024 with 2004.6 MB RAM, BlockManagerId(0, 10.10.43.131, 33024, None)
+17/12/21 16:34:39 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.10.43.132:38306) with ID 1
+17/12/21 16:34:39 INFO BlockManagerMasterEndpoint: Registering block manager 10.10.43.132:33422 with 2004.6 MB RAM, BlockManagerId(1, 10.10.43.132, 33422, None)
+17/12/21 16:34:39 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+codecName: org.apache.spark.io.LZFCompressionCodec
+
+17/12/21 16:34:39 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 219.1 KB, free 2004.4 MB)
+17/12/21 16:34:39 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 20.6 KB, free 2004.4 MB)
+17/12/21 16:34:39 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.10.43.130:41488 (size: 20.6 KB, free: 2004.6 MB)
+17/12/21 16:34:39 INFO SparkContext: Created broadcast 0 from objectFile at SVDExample.scala:83
+17/12/21 16:34:39 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+codecName: org.apache.spark.io.LZFCompressionCodec
+
+17/12/21 16:34:40 INFO FileInputFormat: Total input paths to process : 8
+17/12/21 16:34:40 INFO SparkContext: Starting job: first at RowMatrix.scala:61
+17/12/21 16:34:40 INFO DAGScheduler: Got job 0 (first at RowMatrix.scala:61) with 1 output partitions
+17/12/21 16:34:40 INFO DAGScheduler: Final stage: ResultStage 0 (first at RowMatrix.scala:61)
+17/12/21 16:34:40 INFO DAGScheduler: Parents of final stage: List()
+17/12/21 16:34:40 INFO DAGScheduler: Missing parents: List()
+17/12/21 16:34:40 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[1] at objectFile at SVDExample.scala:83), which has no missing parents
+17/12/21 16:34:40 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+codecName: org.apache.spark.io.LZFCompressionCodec
+
+17/12/21 16:34:40 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 3.3 KB, free 2004.4 MB)
+17/12/21 16:34:40 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 1939.0 B, free 2004.4 MB)
+17/12/21 16:34:40 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.10.43.130:41488 (size: 1939.0 B, free: 2004.6 MB)
+17/12/21 16:34:40 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:1006
+17/12/21 16:34:40 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[1] at objectFile at SVDExample.scala:83) (first 15 tasks are for partitions Vector(0))
+17/12/21 16:34:40 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks
+17/12/21 16:34:40 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, 10.10.43.132, executor 1, partition 0, ANY, 4908 bytes)
+17/12/21 16:34:41 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.10.43.132:33422 (size: 1939.0 B, free: 2004.6 MB)
+17/12/21 16:34:41 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.10.43.132:33422 (size: 20.6 KB, free: 2004.6 MB)
+17/12/21 16:34:43 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 2618 ms on 10.10.43.132 (executor 1) (1/1)
+17/12/21 16:34:43 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool
+17/12/21 16:34:43 INFO DAGScheduler: ResultStage 0 (first at RowMatrix.scala:61) finished in 2.627 s
+17/12/21 16:34:43 INFO DAGScheduler: Job 0 finished: first at RowMatrix.scala:61, took 2.722649 s
+17/12/21 16:34:43 INFO BlockManagerInfo: Removed broadcast_1_piece0 on 10.10.43.130:41488 in memory (size: 1939.0 B, free: 2004.6 MB)
+17/12/21 16:34:43 INFO BlockManagerInfo: Removed broadcast_1_piece0 on 10.10.43.132:33422 in memory (size: 1939.0 B, free: 2004.6 MB)
+17/12/21 16:34:43 INFO SparkContext: Starting job: treeAggregate at RowMatrix.scala:122
+17/12/21 16:34:43 INFO DAGScheduler: Registering RDD 3 (treeAggregate at RowMatrix.scala:122)
+17/12/21 16:34:43 INFO DAGScheduler: Got job 1 (treeAggregate at RowMatrix.scala:122) with 2 output partitions
+17/12/21 16:34:43 INFO DAGScheduler: Final stage: ResultStage 2 (treeAggregate at RowMatrix.scala:122)
+17/12/21 16:34:43 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 1)
+17/12/21 16:34:43 INFO DAGScheduler: Missing parents: List(ShuffleMapStage 1)
+17/12/21 16:34:43 INFO DAGScheduler: Submitting ShuffleMapStage 1 (MapPartitionsRDD[3] at treeAggregate at RowMatrix.scala:122), which has no missing parents
+17/12/21 16:34:43 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+codecName: org.apache.spark.io.LZFCompressionCodec
+
+17/12/21 16:34:43 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 61.1 MB, free 1943.3 MB)
+17/12/21 16:34:43 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 727.0 KB, free 1942.6 MB)
+17/12/21 16:34:43 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.10.43.130:41488 (size: 727.0 KB, free: 2003.9 MB)
+17/12/21 16:34:43 INFO SparkContext: Created broadcast 2 from broadcast at DAGScheduler.scala:1006
+17/12/21 16:34:43 INFO DAGScheduler: Submitting 8 missing tasks from ShuffleMapStage 1 (MapPartitionsRDD[3] at treeAggregate at RowMatrix.scala:122) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6, 7))
+17/12/21 16:34:43 INFO TaskSchedulerImpl: Adding task set 1.0 with 8 tasks
+17/12/21 16:34:43 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 1, 10.10.43.131, executor 0, partition 0, ANY, 4897 bytes)
+17/12/21 16:34:43 INFO TaskSetManager: Starting task 1.0 in stage 1.0 (TID 2, 10.10.43.132, executor 1, partition 1, ANY, 4897 bytes)
+17/12/21 16:34:43 INFO TaskSetManager: Starting task 2.0 in stage 1.0 (TID 3, 10.10.43.131, executor 0, partition 2, ANY, 4897 bytes)
+17/12/21 16:34:43 INFO TaskSetManager: Starting task 3.0 in stage 1.0 (TID 4, 10.10.43.132, executor 1, partition 3, ANY, 4897 bytes)
+17/12/21 16:34:43 INFO TaskSetManager: Starting task 4.0 in stage 1.0 (TID 5, 10.10.43.131, executor 0, partition 4, ANY, 4897 bytes)
+17/12/21 16:34:43 INFO TaskSetManager: Starting task 5.0 in stage 1.0 (TID 6, 10.10.43.132, executor 1, partition 5, ANY, 4897 bytes)
+17/12/21 16:34:43 INFO TaskSetManager: Starting task 6.0 in stage 1.0 (TID 7, 10.10.43.131, executor 0, partition 6, ANY, 4897 bytes)
+17/12/21 16:34:43 INFO TaskSetManager: Starting task 7.0 in stage 1.0 (TID 8, 10.10.43.132, executor 1, partition 7, ANY, 4897 bytes)
+17/12/21 16:34:44 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.10.43.132:33422 (size: 727.0 KB, free: 2003.9 MB)
+17/12/21 16:34:45 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.10.43.131:33024 (size: 727.0 KB, free: 2003.9 MB)
+17/12/21 16:34:46 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.10.43.131:33024 (size: 20.6 KB, free: 2003.9 MB)
+17/12/21 16:34:57 INFO TaskSetManager: Finished task 5.0 in stage 1.0 (TID 6) in 13999 ms on 10.10.43.132 (executor 1) (1/8)
+17/12/21 16:34:57 INFO TaskSetManager: Finished task 3.0 in stage 1.0 (TID 4) in 14030 ms on 10.10.43.132 (executor 1) (2/8)
+17/12/21 16:34:57 INFO TaskSetManager: Finished task 7.0 in stage 1.0 (TID 8) in 14042 ms on 10.10.43.132 (executor 1) (3/8)
+17/12/21 16:34:57 INFO TaskSetManager: Finished task 1.0 in stage 1.0 (TID 2) in 14064 ms on 10.10.43.132 (executor 1) (4/8)
+17/12/21 16:34:58 INFO TaskSetManager: Finished task 4.0 in stage 1.0 (TID 5) in 14584 ms on 10.10.43.131 (executor 0) (5/8)
+17/12/21 16:34:58 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 1) in 14588 ms on 10.10.43.131 (executor 0) (6/8)
+17/12/21 16:34:58 INFO TaskSetManager: Finished task 2.0 in stage 1.0 (TID 3) in 14596 ms on 10.10.43.131 (executor 0) (7/8)
+17/12/21 16:34:58 INFO TaskSetManager: Finished task 6.0 in stage 1.0 (TID 7) in 14704 ms on 10.10.43.131 (executor 0) (8/8)
+17/12/21 16:34:58 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool
+17/12/21 16:34:58 INFO DAGScheduler: ShuffleMapStage 1 (treeAggregate at RowMatrix.scala:122) finished in 14.709 s
+17/12/21 16:34:58 INFO DAGScheduler: looking for newly runnable stages
+17/12/21 16:34:58 INFO DAGScheduler: running: Set()
+17/12/21 16:34:58 INFO DAGScheduler: waiting: Set(ResultStage 2)
+17/12/21 16:34:58 INFO DAGScheduler: failed: Set()
+17/12/21 16:34:58 INFO DAGScheduler: Submitting ResultStage 2 (MapPartitionsRDD[5] at treeAggregate at RowMatrix.scala:122), which has no missing parents
+17/12/21 16:34:58 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+codecName: org.apache.spark.io.LZFCompressionCodec
+
+17/12/21 16:34:58 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 3.2 KB, free 1942.6 MB)
+17/12/21 16:34:58 INFO MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 1866.0 B, free 1942.6 MB)
+17/12/21 16:34:58 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.10.43.130:41488 (size: 1866.0 B, free: 2003.9 MB)
+17/12/21 16:34:58 INFO SparkContext: Created broadcast 3 from broadcast at DAGScheduler.scala:1006
+17/12/21 16:34:58 INFO DAGScheduler: Submitting 2 missing tasks from ResultStage 2 (MapPartitionsRDD[5] at treeAggregate at RowMatrix.scala:122) (first 15 tasks are for partitions Vector(0, 1))
+17/12/21 16:34:58 INFO TaskSchedulerImpl: Adding task set 2.0 with 2 tasks
+17/12/21 16:34:58 INFO TaskSetManager: Starting task 0.0 in stage 2.0 (TID 9, 10.10.43.131, executor 0, partition 0, NODE_LOCAL, 4625 bytes)
+17/12/21 16:34:58 INFO TaskSetManager: Starting task 1.0 in stage 2.0 (TID 10, 10.10.43.132, executor 1, partition 1, NODE_LOCAL, 4625 bytes)
+17/12/21 16:34:58 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.10.43.132:33422 (size: 1866.0 B, free: 2003.9 MB)
+17/12/21 16:34:58 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 10.10.43.132:38306
+17/12/21 16:34:58 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+retBytes: null
+
+
+17/12/21 16:34:58 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses.length: 8
+
+
+17/12/21 16:34:58 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(0): KMGetBlockInfo:
+location: BlockManagerId(0, 10.10.43.131, 33024, None)
+uncompressedSizes(0): 66560640
+uncompressedSizes(1): 0
+totalSize: 66560640
+
+
+17/12/21 16:34:58 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(1): KMGetBlockInfo:
+location: BlockManagerId(1, 10.10.43.132, 33422, None)
+uncompressedSizes(0): 0
+uncompressedSizes(1): 66560640
+totalSize: 66560640
+
+
+17/12/21 16:34:58 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(2): KMGetBlockInfo:
+location: BlockManagerId(0, 10.10.43.131, 33024, None)
+uncompressedSizes(0): 66560640
+uncompressedSizes(1): 0
+totalSize: 66560640
+
+
+17/12/21 16:34:58 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(3): KMGetBlockInfo:
+location: BlockManagerId(1, 10.10.43.132, 33422, None)
+uncompressedSizes(0): 0
+uncompressedSizes(1): 66560640
+totalSize: 66560640
+
+
+17/12/21 16:34:58 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(4): KMGetBlockInfo:
+location: BlockManagerId(0, 10.10.43.131, 33024, None)
+uncompressedSizes(0): 66560640
+uncompressedSizes(1): 0
+totalSize: 66560640
+
+
+17/12/21 16:34:58 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(5): KMGetBlockInfo:
+location: BlockManagerId(1, 10.10.43.132, 33422, None)
+uncompressedSizes(0): 0
+uncompressedSizes(1): 66560640
+totalSize: 66560640
+
+
+17/12/21 16:34:58 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(6): KMGetBlockInfo:
+location: BlockManagerId(0, 10.10.43.131, 33024, None)
+uncompressedSizes(0): 66560640
+uncompressedSizes(1): 0
+totalSize: 66560640
+
+
+17/12/21 16:34:58 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(7): KMGetBlockInfo:
+location: BlockManagerId(1, 10.10.43.132, 33422, None)
+uncompressedSizes(0): 0
+uncompressedSizes(1): 66560640
+totalSize: 66560640
+
+
+17/12/21 16:34:58 INFO MapOutputTrackerMaster: Size of output statuses for shuffle 0 is 166 bytes
+17/12/21 16:34:58 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.10.43.131:33024 (size: 1866.0 B, free: 2003.9 MB)
+17/12/21 16:34:58 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 0 to 10.10.43.131:56626
+17/12/21 16:34:58 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+retBytes: [B@175f5285
+
+
+17/12/21 16:34:59 INFO BlockManagerInfo: Added taskresult_10 in memory on 10.10.43.132:33422 (size: 61.4 MB, free: 1942.5 MB)
+17/12/21 16:34:59 INFO TransportClientFactory: Successfully created connection to /10.10.43.132:33422 after 4 ms (0 ms spent in bootstraps)
+17/12/21 16:34:59 INFO BlockManagerInfo: Added taskresult_9 in memory on 10.10.43.131:33024 (size: 61.4 MB, free: 1942.5 MB)
+17/12/21 16:34:59 INFO TransportClientFactory: Successfully created connection to /10.10.43.131:33024 after 2 ms (0 ms spent in bootstraps)
+17/12/21 16:35:00 INFO BlockManagerInfo: Removed broadcast_2_piece0 on 10.10.43.130:41488 in memory (size: 727.0 KB, free: 2004.6 MB)
+17/12/21 16:35:00 INFO BlockManagerInfo: Removed broadcast_2_piece0 on 10.10.43.132:33422 in memory (size: 727.0 KB, free: 1943.2 MB)
+17/12/21 16:35:00 INFO TaskSetManager: Finished task 1.0 in stage 2.0 (TID 10) in 1592 ms on 10.10.43.132 (executor 1) (1/2)
+17/12/21 16:35:00 INFO BlockManagerInfo: Removed taskresult_10 on 10.10.43.132:33422 in memory (size: 61.4 MB, free: 2004.6 MB)
+17/12/21 16:35:00 INFO BlockManagerInfo: Removed broadcast_2_piece0 on 10.10.43.131:33024 in memory (size: 727.0 KB, free: 1943.2 MB)
+17/12/21 16:35:00 INFO TaskSetManager: Finished task 0.0 in stage 2.0 (TID 9) in 1963 ms on 10.10.43.131 (executor 0) (2/2)
+17/12/21 16:35:00 INFO TaskSchedulerImpl: Removed TaskSet 2.0, whose tasks have all completed, from pool
+17/12/21 16:35:00 INFO DAGScheduler: ResultStage 2 (treeAggregate at RowMatrix.scala:122) finished in 1.964 s
+17/12/21 16:35:00 INFO BlockManagerInfo: Removed taskresult_9 on 10.10.43.131:33024 in memory (size: 61.4 MB, free: 2004.6 MB)
+17/12/21 16:35:00 INFO DAGScheduler: Job 1 finished: treeAggregate at RowMatrix.scala:122, took 17.050334 s
+17/12/21 16:35:00 INFO ContextCleaner: Cleaned shuffle 0
+17/12/21 16:35:00 INFO BlockManagerInfo: Removed broadcast_3_piece0 on 10.10.43.130:41488 in memory (size: 1866.0 B, free: 2004.6 MB)
+17/12/21 16:35:00 INFO BlockManagerInfo: Removed broadcast_3_piece0 on 10.10.43.132:33422 in memory (size: 1866.0 B, free: 2004.6 MB)
+17/12/21 16:35:00 INFO BlockManagerInfo: Removed broadcast_3_piece0 on 10.10.43.131:33024 in memory (size: 1866.0 B, free: 2004.6 MB)
+17/12/21 16:35:01 WARN LAPACK: Failed to load implementation from: com.github.fommil.netlib.NativeSystemLAPACK
+17/12/21 16:35:01 WARN LAPACK: Failed to load implementation from: com.github.fommil.netlib.NativeRefLAPACK
+17/12/21 16:40:00 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+codecName: org.apache.spark.io.LZFCompressionCodec
+
+17/12/21 16:40:00 INFO MemoryStore: Block broadcast_4 stored as values in memory (estimated size 91.6 MB, free 1912.8 MB)
+17/12/21 16:40:02 INFO MemoryStore: Block broadcast_4_piece0 stored as bytes in memory (estimated size 4.0 MB, free 1908.8 MB)
+17/12/21 16:40:02 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.10.43.130:41488 (size: 4.0 MB, free: 2000.6 MB)
+17/12/21 16:40:02 INFO MemoryStore: Block broadcast_4_piece1 stored as bytes in memory (estimated size 4.0 MB, free 1904.8 MB)
+17/12/21 16:40:02 INFO BlockManagerInfo: Added broadcast_4_piece1 in memory on 10.10.43.130:41488 (size: 4.0 MB, free: 1996.6 MB)
+17/12/21 16:40:02 INFO MemoryStore: Block broadcast_4_piece2 stored as bytes in memory (estimated size 4.0 MB, free 1900.8 MB)
+17/12/21 16:40:02 INFO BlockManagerInfo: Added broadcast_4_piece2 in memory on 10.10.43.130:41488 (size: 4.0 MB, free: 1992.6 MB)
+17/12/21 16:40:02 INFO MemoryStore: Block broadcast_4_piece3 stored as bytes in memory (estimated size 4.0 MB, free 1896.8 MB)
+17/12/21 16:40:02 INFO BlockManagerInfo: Added broadcast_4_piece3 in memory on 10.10.43.130:41488 (size: 4.0 MB, free: 1988.6 MB)
+17/12/21 16:40:02 INFO MemoryStore: Block broadcast_4_piece4 stored as bytes in memory (estimated size 4.0 MB, free 1892.8 MB)
+17/12/21 16:40:02 INFO BlockManagerInfo: Added broadcast_4_piece4 in memory on 10.10.43.130:41488 (size: 4.0 MB, free: 1984.6 MB)
+17/12/21 16:40:02 INFO MemoryStore: Block broadcast_4_piece5 stored as bytes in memory (estimated size 4.0 MB, free 1888.8 MB)
+17/12/21 16:40:02 INFO BlockManagerInfo: Added broadcast_4_piece5 in memory on 10.10.43.130:41488 (size: 4.0 MB, free: 1980.6 MB)
+17/12/21 16:40:02 INFO MemoryStore: Block broadcast_4_piece6 stored as bytes in memory (estimated size 4.0 MB, free 1884.8 MB)
+17/12/21 16:40:02 INFO BlockManagerInfo: Added broadcast_4_piece6 in memory on 10.10.43.130:41488 (size: 4.0 MB, free: 1976.6 MB)
+17/12/21 16:40:02 INFO MemoryStore: Block broadcast_4_piece7 stored as bytes in memory (estimated size 4.0 MB, free 1880.8 MB)
+17/12/21 16:40:02 INFO BlockManagerInfo: Added broadcast_4_piece7 in memory on 10.10.43.130:41488 (size: 4.0 MB, free: 1972.6 MB)
+17/12/21 16:40:02 INFO MemoryStore: Block broadcast_4_piece8 stored as bytes in memory (estimated size 4.0 MB, free 1876.8 MB)
+17/12/21 16:40:02 INFO BlockManagerInfo: Added broadcast_4_piece8 in memory on 10.10.43.130:41488 (size: 4.0 MB, free: 1968.6 MB)
+17/12/21 16:40:02 INFO MemoryStore: Block broadcast_4_piece9 stored as bytes in memory (estimated size 4.0 MB, free 1872.8 MB)
+17/12/21 16:40:02 INFO BlockManagerInfo: Added broadcast_4_piece9 in memory on 10.10.43.130:41488 (size: 4.0 MB, free: 1964.6 MB)
+17/12/21 16:40:02 INFO MemoryStore: Block broadcast_4_piece10 stored as bytes in memory (estimated size 4.0 MB, free 1868.8 MB)
+17/12/21 16:40:02 INFO BlockManagerInfo: Added broadcast_4_piece10 in memory on 10.10.43.130:41488 (size: 4.0 MB, free: 1960.6 MB)
+17/12/21 16:40:02 INFO MemoryStore: Block broadcast_4_piece11 stored as bytes in memory (estimated size 4.0 MB, free 1864.8 MB)
+17/12/21 16:40:02 INFO BlockManagerInfo: Added broadcast_4_piece11 in memory on 10.10.43.130:41488 (size: 4.0 MB, free: 1956.6 MB)
+17/12/21 16:40:02 INFO MemoryStore: Block broadcast_4_piece12 stored as bytes in memory (estimated size 4.0 MB, free 1860.8 MB)
+17/12/21 16:40:02 INFO BlockManagerInfo: Added broadcast_4_piece12 in memory on 10.10.43.130:41488 (size: 4.0 MB, free: 1952.6 MB)
+17/12/21 16:40:02 INFO MemoryStore: Block broadcast_4_piece13 stored as bytes in memory (estimated size 4.0 MB, free 1856.8 MB)
+17/12/21 16:40:02 INFO BlockManagerInfo: Added broadcast_4_piece13 in memory on 10.10.43.130:41488 (size: 4.0 MB, free: 1948.6 MB)
+17/12/21 16:40:02 INFO MemoryStore: Block broadcast_4_piece14 stored as bytes in memory (estimated size 4.0 MB, free 1852.8 MB)
+17/12/21 16:40:02 INFO BlockManagerInfo: Added broadcast_4_piece14 in memory on 10.10.43.130:41488 (size: 4.0 MB, free: 1944.6 MB)
+17/12/21 16:40:02 INFO MemoryStore: Block broadcast_4_piece15 stored as bytes in memory (estimated size 4.0 MB, free 1848.8 MB)
+17/12/21 16:40:02 INFO BlockManagerInfo: Added broadcast_4_piece15 in memory on 10.10.43.130:41488 (size: 4.0 MB, free: 1940.6 MB)
+17/12/21 16:40:02 INFO MemoryStore: Block broadcast_4_piece16 stored as bytes in memory (estimated size 4.0 MB, free 1844.8 MB)
+17/12/21 16:40:02 INFO BlockManagerInfo: Added broadcast_4_piece16 in memory on 10.10.43.130:41488 (size: 4.0 MB, free: 1936.6 MB)
+17/12/21 16:40:02 INFO MemoryStore: Block broadcast_4_piece17 stored as bytes in memory (estimated size 4.0 MB, free 1840.8 MB)
+17/12/21 16:40:02 INFO BlockManagerInfo: Added broadcast_4_piece17 in memory on 10.10.43.130:41488 (size: 4.0 MB, free: 1932.6 MB)
+17/12/21 16:40:02 INFO MemoryStore: Block broadcast_4_piece18 stored as bytes in memory (estimated size 4.0 MB, free 1836.8 MB)
+17/12/21 16:40:02 INFO BlockManagerInfo: Added broadcast_4_piece18 in memory on 10.10.43.130:41488 (size: 4.0 MB, free: 1928.6 MB)
+17/12/21 16:40:02 INFO MemoryStore: Block broadcast_4_piece19 stored as bytes in memory (estimated size 4.0 MB, free 1832.8 MB)
+17/12/21 16:40:02 INFO BlockManagerInfo: Added broadcast_4_piece19 in memory on 10.10.43.130:41488 (size: 4.0 MB, free: 1924.6 MB)
+17/12/21 16:40:02 INFO MemoryStore: Block broadcast_4_piece20 stored as bytes in memory (estimated size 4.0 MB, free 1828.8 MB)
+17/12/21 16:40:02 INFO BlockManagerInfo: Added broadcast_4_piece20 in memory on 10.10.43.130:41488 (size: 4.0 MB, free: 1920.6 MB)
+17/12/21 16:40:02 INFO MemoryStore: Block broadcast_4_piece21 stored as bytes in memory (estimated size 4.0 MB, free 1824.8 MB)
+17/12/21 16:40:02 INFO BlockManagerInfo: Added broadcast_4_piece21 in memory on 10.10.43.130:41488 (size: 4.0 MB, free: 1916.6 MB)
+17/12/21 16:40:02 INFO MemoryStore: Block broadcast_4_piece22 stored as bytes in memory (estimated size 3.6 MB, free 1821.3 MB)
+17/12/21 16:40:02 INFO BlockManagerInfo: Added broadcast_4_piece22 in memory on 10.10.43.130:41488 (size: 3.6 MB, free: 1913.0 MB)
+17/12/21 16:40:02 INFO SparkContext: Created broadcast 4 from broadcast at RowMatrix.scala:442
+17/12/21 16:40:02 INFO SparkUI: Stopped Spark web UI at http://10.10.43.130:4040
+17/12/21 16:40:02 INFO StandaloneSchedulerBackend: Shutting down all executors
+17/12/21 16:40:02 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Asking each executor to shut down
+17/12/21 16:40:02 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+17/12/21 16:40:02 INFO MemoryStore: MemoryStore cleared
+17/12/21 16:40:02 INFO BlockManager: BlockManager stopped
+17/12/21 16:40:02 INFO BlockManagerMaster: BlockManagerMaster stopped
+17/12/21 16:40:02 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+17/12/21 16:40:02 INFO SparkContext: Successfully stopped SparkContext
+17/12/21 16:40:02 INFO ShutdownHookManager: Shutdown hook called
+17/12/21 16:40:02 INFO ShutdownHookManager: Deleting directory /tmp/spark-0b9a893b-67ae-4271-aa7c-575ff77feee2

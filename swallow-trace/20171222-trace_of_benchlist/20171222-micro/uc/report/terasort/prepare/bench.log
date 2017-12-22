@@ -1,0 +1,90 @@
+17/12/22 14:13:08 INFO client.RMProxy: Connecting to ResourceManager at cluster209-hadoop-master/10.10.43.130:8032
+17/12/22 14:13:08 INFO terasort.TeraGen: Generating 32000000 using 8
+17/12/22 14:13:09 INFO mapreduce.JobSubmitter: number of splits:8
+17/12/22 14:13:09 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1513920089516_0008
+17/12/22 14:13:10 INFO impl.YarnClientImpl: Submitted application application_1513920089516_0008
+17/12/22 14:13:10 INFO mapreduce.Job: The url to track the job: http://cluster209-hadoop-master:8088/proxy/application_1513920089516_0008/
+17/12/22 14:13:10 INFO mapreduce.Job: Running job: job_1513920089516_0008
+17/12/22 14:13:40 INFO mapreduce.Job: Job job_1513920089516_0008 running in uber mode : false
+17/12/22 14:13:40 INFO mapreduce.Job:  map 0% reduce 0%
+17/12/22 14:14:12 INFO mapreduce.Job:  map 4% reduce 0%
+17/12/22 14:14:13 INFO mapreduce.Job:  map 9% reduce 0%
+17/12/22 14:14:15 INFO mapreduce.Job:  map 11% reduce 0%
+17/12/22 14:14:20 INFO mapreduce.Job:  map 17% reduce 0%
+17/12/22 14:14:23 INFO mapreduce.Job:  map 21% reduce 0%
+17/12/22 14:14:24 INFO mapreduce.Job:  map 25% reduce 0%
+17/12/22 14:14:26 INFO mapreduce.Job:  map 29% reduce 0%
+17/12/22 14:14:28 INFO mapreduce.Job:  map 30% reduce 0%
+17/12/22 14:14:30 INFO mapreduce.Job:  map 31% reduce 0%
+17/12/22 14:14:32 INFO mapreduce.Job:  map 38% reduce 0%
+17/12/22 14:14:34 INFO mapreduce.Job:  map 39% reduce 0%
+17/12/22 14:14:36 INFO mapreduce.Job:  map 42% reduce 0%
+17/12/22 14:14:37 INFO mapreduce.Job:  map 43% reduce 0%
+17/12/22 14:14:40 INFO mapreduce.Job:  map 51% reduce 0%
+17/12/22 14:14:42 INFO mapreduce.Job:  map 56% reduce 0%
+17/12/22 14:14:45 INFO mapreduce.Job:  map 57% reduce 0%
+17/12/22 14:14:47 INFO mapreduce.Job:  map 58% reduce 0%
+17/12/22 14:14:49 INFO mapreduce.Job:  map 63% reduce 0%
+17/12/22 14:14:51 INFO mapreduce.Job:  map 64% reduce 0%
+17/12/22 14:14:52 INFO mapreduce.Job:  map 66% reduce 0%
+17/12/22 14:14:54 INFO mapreduce.Job:  map 67% reduce 0%
+17/12/22 14:14:55 INFO mapreduce.Job:  map 69% reduce 0%
+17/12/22 14:14:59 INFO mapreduce.Job:  map 73% reduce 0%
+17/12/22 14:15:02 INFO mapreduce.Job:  map 75% reduce 0%
+17/12/22 14:15:05 INFO mapreduce.Job:  map 76% reduce 0%
+17/12/22 14:15:06 INFO mapreduce.Job:  map 77% reduce 0%
+17/12/22 14:15:07 INFO mapreduce.Job:  map 78% reduce 0%
+17/12/22 14:15:09 INFO mapreduce.Job:  map 79% reduce 0%
+17/12/22 14:15:10 INFO mapreduce.Job:  map 80% reduce 0%
+17/12/22 14:15:13 INFO mapreduce.Job:  map 83% reduce 0%
+17/12/22 14:15:18 INFO mapreduce.Job:  map 86% reduce 0%
+17/12/22 14:15:23 INFO mapreduce.Job:  map 87% reduce 0%
+17/12/22 14:15:25 INFO mapreduce.Job:  map 88% reduce 0%
+17/12/22 14:15:29 INFO mapreduce.Job:  map 89% reduce 0%
+17/12/22 14:15:31 INFO mapreduce.Job:  map 90% reduce 0%
+17/12/22 14:15:33 INFO mapreduce.Job:  map 91% reduce 0%
+17/12/22 14:15:35 INFO mapreduce.Job:  map 92% reduce 0%
+17/12/22 14:15:37 INFO mapreduce.Job:  map 93% reduce 0%
+17/12/22 14:15:39 INFO mapreduce.Job:  map 97% reduce 0%
+17/12/22 14:15:41 INFO mapreduce.Job:  map 99% reduce 0%
+17/12/22 14:15:42 INFO mapreduce.Job:  map 100% reduce 0%
+17/12/22 14:15:46 INFO mapreduce.Job: Job job_1513920089516_0008 completed successfully
+17/12/22 14:15:46 INFO mapreduce.Job: Counters: 32
+	File System Counters
+		FILE: Number of bytes read=0
+		FILE: Number of bytes written=1090408
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=680
+		HDFS: Number of bytes written=3200000000
+		HDFS: Number of read operations=32
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=16
+	Job Counters
+		Killed map tasks=1
+		Launched map tasks=9
+		Other local map tasks=9
+		Total time spent by all maps in occupied slots (ms)=869938
+		Total time spent by all reduces in occupied slots (ms)=0
+		Total time spent by all map tasks (ms)=869938
+		Total vcore-milliseconds taken by all map tasks=869938
+		Total megabyte-milliseconds taken by all map tasks=890816512
+	Map-Reduce Framework
+		Map input records=32000000
+		Map output records=32000000
+		Input split bytes=680
+		Spilled Records=0
+		Failed Shuffles=0
+		Merged Map outputs=0
+		GC time elapsed (ms)=38947
+		CPU time spent (ms)=171170
+		Physical memory (bytes) snapshot=1482366976
+		Virtual memory (bytes) snapshot=15453847552
+		Total committed heap usage (bytes)=1029177344
+	org.apache.hadoop.examples.terasort.TeraGen$Counters
+		CHECKSUM=68725593266726948
+	File Input Format Counters
+		Bytes Read=0
+	File Output Format Counters
+		Bytes Written=3200000000

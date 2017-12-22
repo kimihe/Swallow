@@ -1,0 +1,437 @@
+17/12/20 17:57:34 INFO SparkContext: Running Spark version 2.2.0
+17/12/20 17:57:34 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+17/12/20 17:57:34 INFO SparkContext: Submitted application: NWeightGraphX
+17/12/20 17:57:34 INFO SecurityManager: Changing view acls to: hadoop
+17/12/20 17:57:34 INFO SecurityManager: Changing modify acls to: hadoop
+17/12/20 17:57:34 INFO SecurityManager: Changing view acls groups to:
+17/12/20 17:57:34 INFO SecurityManager: Changing modify acls groups to:
+17/12/20 17:57:34 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(hadoop); groups with view permissions: Set(); users  with modify permissions: Set(hadoop); groups with modify permissions: Set()
+17/12/20 17:57:35 INFO Utils: Successfully started service 'sparkDriver' on port 46605.
+compressShuffle => [spark.shuffle.compress : true]
+17/12/20 17:57:35 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+codecName: org.apache.spark.io.LZFCompressionCodec
+
+17/12/20 17:57:35 INFO SparkEnv: Registering MapOutputTracker
+17/12/20 17:57:35 INFO SparkEnv: Registering BlockManagerMaster
+17/12/20 17:57:35 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+17/12/20 17:57:35 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+17/12/20 17:57:35 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-0dbb36c2-177e-41cf-8d1e-39196f3048b2
+17/12/20 17:57:35 INFO MemoryStore: MemoryStore started with capacity 366.3 MB
+17/12/20 17:57:35 INFO SparkEnv: Registering OutputCommitCoordinator
+17/12/20 17:57:35 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+17/12/20 17:57:35 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://10.10.43.130:4040
+17/12/20 17:57:35 INFO SparkContext: Added JAR file:/home/hadoop/hadoopTest/HiBench/sparkbench/assembly/target/sparkbench-assembly-6.1-SNAPSHOT-dist.jar at spark://10.10.43.130:46605/jars/sparkbench-assembly-6.1-SNAPSHOT-dist.jar with timestamp 1513763855501
+17/12/20 17:57:35 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://cluster209-hadoop-master:7077...
+17/12/20 17:57:35 INFO TransportClientFactory: Successfully created connection to cluster209-hadoop-master/10.10.43.130:7077 after 24 ms (0 ms spent in bootstraps)
+17/12/20 17:57:35 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20171220175735-0010
+17/12/20 17:57:35 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20171220175735-0010/0 on worker-20171220145248-10.10.43.132-42694 (10.10.43.132:42694) with 4 cores
+17/12/20 17:57:35 INFO StandaloneSchedulerBackend: Granted executor ID app-20171220175735-0010/0 on hostPort 10.10.43.132:42694 with 4 cores, 1024.0 MB RAM
+17/12/20 17:57:35 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20171220175735-0010/1 on worker-20171220145325-10.10.43.131-46830 (10.10.43.131:46830) with 4 cores
+17/12/20 17:57:35 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 33788.
+17/12/20 17:57:35 INFO StandaloneSchedulerBackend: Granted executor ID app-20171220175735-0010/1 on hostPort 10.10.43.131:46830 with 4 cores, 1024.0 MB RAM
+17/12/20 17:57:35 INFO NettyBlockTransferService: Server created on 10.10.43.130:33788
+17/12/20 17:57:35 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20171220175735-0010/1 is now RUNNING
+17/12/20 17:57:35 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+17/12/20 17:57:35 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 10.10.43.130, 33788, None)
+17/12/20 17:57:35 INFO BlockManagerMasterEndpoint: Registering block manager 10.10.43.130:33788 with 366.3 MB RAM, BlockManagerId(driver, 10.10.43.130, 33788, None)
+17/12/20 17:57:35 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20171220175735-0010/0 is now RUNNING
+17/12/20 17:57:35 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 10.10.43.130, 33788, None)
+17/12/20 17:57:35 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 10.10.43.130, 33788, None)
+17/12/20 17:57:37 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+17/12/20 17:57:39 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.10.43.131:54610) with ID 1
+17/12/20 17:57:40 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.10.43.132:35230) with ID 0
+17/12/20 17:57:40 INFO BlockManagerMasterEndpoint: Registering block manager 10.10.43.132:45486 with 366.3 MB RAM, BlockManagerId(0, 10.10.43.132, 45486, None)
+17/12/20 17:57:40 INFO BlockManagerMasterEndpoint: Registering block manager 10.10.43.131:35792 with 366.3 MB RAM, BlockManagerId(1, 10.10.43.131, 35792, None)
+17/12/20 17:57:40 INFO SparkContext:
+******************** [KMDebug] ********************
+Init with textFile
+17/12/20 17:57:41 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+codecName: org.apache.spark.io.LZFCompressionCodec
+
+17/12/20 17:57:41 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 219.1 KB, free 366.1 MB)
+17/12/20 17:57:41 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 20.6 KB, free 366.1 MB)
+17/12/20 17:57:41 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.10.43.130:33788 (size: 20.6 KB, free: 366.3 MB)
+17/12/20 17:57:41 INFO SparkContext: Created broadcast 0 from textFile at GraphxNWeight.scala:74
+17/12/20 17:57:42 INFO SparkContext: Starting job: saveAsTextFile at GraphxNWeight.scala:112
+17/12/20 17:57:42 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+codecName: org.apache.spark.io.LZFCompressionCodec
+
+17/12/20 17:57:42 INFO FileInputFormat: Total input paths to process : 8
+17/12/20 17:57:42 INFO DAGScheduler: Registering RDD 2 (flatMap at GraphxNWeight.scala:74)
+17/12/20 17:57:42 INFO DAGScheduler: Registering RDD 5 (map at GraphxNWeight.scala:85)
+17/12/20 17:57:42 INFO DAGScheduler: Registering RDD 7 (map at GraphxNWeight.scala:87)
+17/12/20 17:57:42 INFO DAGScheduler: Registering RDD 12 (mapPartitions at VertexRDD.scala:356)
+17/12/20 17:57:42 INFO DAGScheduler: Registering RDD 20 (mapPartitions at VertexRDDImpl.scala:247)
+17/12/20 17:57:42 INFO DAGScheduler: Registering RDD 24 (mapPartitions at GraphImpl.scala:207)
+17/12/20 17:57:42 INFO DAGScheduler: Registering RDD 32 (mapPartitions at VertexRDDImpl.scala:247)
+17/12/20 17:57:42 INFO DAGScheduler: Registering RDD 36 (mapPartitions at GraphImpl.scala:207)
+17/12/20 17:57:42 INFO DAGScheduler: Got job 0 (saveAsTextFile at GraphxNWeight.scala:112) with 8 output partitions
+17/12/20 17:57:42 INFO DAGScheduler: Final stage: ResultStage 8 (saveAsTextFile at GraphxNWeight.scala:112)
+17/12/20 17:57:42 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 5, ShuffleMapStage 2, ShuffleMapStage 3, ShuffleMapStage 7)
+17/12/20 17:57:42 INFO DAGScheduler: Missing parents: List(ShuffleMapStage 5, ShuffleMapStage 2, ShuffleMapStage 3, ShuffleMapStage 7)
+17/12/20 17:57:42 INFO DAGScheduler: Submitting ShuffleMapStage 0 (MapPartitionsRDD[2] at flatMap at GraphxNWeight.scala:74), which has no missing parents
+17/12/20 17:57:42 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+codecName: org.apache.spark.io.LZFCompressionCodec
+
+17/12/20 17:57:42 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 4.5 KB, free 366.1 MB)
+17/12/20 17:57:42 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 2.6 KB, free 366.1 MB)
+17/12/20 17:57:42 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.10.43.130:33788 (size: 2.6 KB, free: 366.3 MB)
+17/12/20 17:57:42 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:1006
+17/12/20 17:57:42 INFO DAGScheduler: Submitting 8 missing tasks from ShuffleMapStage 0 (MapPartitionsRDD[2] at flatMap at GraphxNWeight.scala:74) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6, 7))
+17/12/20 17:57:42 INFO TaskSchedulerImpl: Adding task set 0.0 with 8 tasks
+17/12/20 17:57:42 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, 10.10.43.132, executor 0, partition 0, ANY, 4901 bytes)
+17/12/20 17:57:42 INFO TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1, 10.10.43.131, executor 1, partition 1, ANY, 4901 bytes)
+17/12/20 17:57:42 INFO TaskSetManager: Starting task 2.0 in stage 0.0 (TID 2, 10.10.43.132, executor 0, partition 2, ANY, 4901 bytes)
+17/12/20 17:57:42 INFO TaskSetManager: Starting task 3.0 in stage 0.0 (TID 3, 10.10.43.131, executor 1, partition 3, ANY, 4901 bytes)
+17/12/20 17:57:42 INFO TaskSetManager: Starting task 4.0 in stage 0.0 (TID 4, 10.10.43.132, executor 0, partition 4, ANY, 4901 bytes)
+17/12/20 17:57:42 INFO TaskSetManager: Starting task 5.0 in stage 0.0 (TID 5, 10.10.43.131, executor 1, partition 5, ANY, 4901 bytes)
+17/12/20 17:57:42 INFO TaskSetManager: Starting task 6.0 in stage 0.0 (TID 6, 10.10.43.132, executor 0, partition 6, ANY, 4901 bytes)
+17/12/20 17:57:42 INFO TaskSetManager: Starting task 7.0 in stage 0.0 (TID 7, 10.10.43.131, executor 1, partition 7, ANY, 4901 bytes)
+17/12/20 17:57:44 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.10.43.132:45486 (size: 2.6 KB, free: 366.3 MB)
+17/12/20 17:57:45 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 10.10.43.131:35792 (size: 2.6 KB, free: 366.3 MB)
+17/12/20 17:57:45 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.10.43.132:45486 (size: 20.6 KB, free: 366.3 MB)
+17/12/20 17:57:45 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.10.43.131:35792 (size: 20.6 KB, free: 366.3 MB)
+17/12/20 17:58:01 INFO TaskSetManager: Finished task 4.0 in stage 0.0 (TID 4) in 19171 ms on 10.10.43.132 (executor 0) (1/8)
+17/12/20 17:58:01 INFO TaskSetManager: Finished task 6.0 in stage 0.0 (TID 6) in 19176 ms on 10.10.43.132 (executor 0) (2/8)
+17/12/20 17:58:01 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 19197 ms on 10.10.43.132 (executor 0) (3/8)
+17/12/20 17:58:01 INFO TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 19349 ms on 10.10.43.131 (executor 1) (4/8)
+17/12/20 17:58:02 INFO TaskSetManager: Finished task 7.0 in stage 0.0 (TID 7) in 20054 ms on 10.10.43.131 (executor 1) (5/8)
+17/12/20 17:58:02 INFO TaskSetManager: Finished task 3.0 in stage 0.0 (TID 3) in 20290 ms on 10.10.43.131 (executor 1) (6/8)
+17/12/20 17:58:02 INFO TaskSetManager: Finished task 5.0 in stage 0.0 (TID 5) in 20338 ms on 10.10.43.131 (executor 1) (7/8)
+17/12/20 17:58:04 INFO TaskSetManager: Finished task 2.0 in stage 0.0 (TID 2) in 21559 ms on 10.10.43.132 (executor 0) (8/8)
+17/12/20 17:58:04 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool
+17/12/20 17:58:04 INFO DAGScheduler: ShuffleMapStage 0 (flatMap at GraphxNWeight.scala:74) finished in 21.579 s
+17/12/20 17:58:04 INFO DAGScheduler: looking for newly runnable stages
+17/12/20 17:58:04 INFO DAGScheduler: running: Set()
+17/12/20 17:58:04 INFO DAGScheduler: waiting: Set(ShuffleMapStage 1, ShuffleMapStage 5, ShuffleMapStage 2, ShuffleMapStage 6, ShuffleMapStage 3, ShuffleMapStage 7, ShuffleMapStage 4, ResultStage 8)
+17/12/20 17:58:04 INFO DAGScheduler: failed: Set()
+17/12/20 17:58:04 INFO DAGScheduler: Submitting ShuffleMapStage 1 (MapPartitionsRDD[5] at map at GraphxNWeight.scala:85), which has no missing parents
+17/12/20 17:58:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+codecName: org.apache.spark.io.LZFCompressionCodec
+
+17/12/20 17:58:04 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 4.4 KB, free 366.1 MB)
+17/12/20 17:58:04 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 2.4 KB, free 366.1 MB)
+17/12/20 17:58:04 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.10.43.130:33788 (size: 2.4 KB, free: 366.3 MB)
+17/12/20 17:58:04 INFO SparkContext: Created broadcast 2 from broadcast at DAGScheduler.scala:1006
+17/12/20 17:58:04 INFO DAGScheduler: Submitting 8 missing tasks from ShuffleMapStage 1 (MapPartitionsRDD[5] at map at GraphxNWeight.scala:85) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6, 7))
+17/12/20 17:58:04 INFO TaskSchedulerImpl: Adding task set 1.0 with 8 tasks
+17/12/20 17:58:04 INFO DAGScheduler: Submitting ShuffleMapStage 3 (VertexRDD.createRoutingTables - vid2pid (aggregation) MapPartitionsRDD[12] at mapPartitions at VertexRDD.scala:356), which has no missing parents
+17/12/20 17:58:04 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 8, 10.10.43.132, executor 0, partition 0, NODE_LOCAL, 4614 bytes)
+17/12/20 17:58:04 INFO TaskSetManager: Starting task 1.0 in stage 1.0 (TID 9, 10.10.43.131, executor 1, partition 1, NODE_LOCAL, 4614 bytes)
+17/12/20 17:58:04 INFO TaskSetManager: Starting task 2.0 in stage 1.0 (TID 10, 10.10.43.132, executor 0, partition 2, NODE_LOCAL, 4614 bytes)
+17/12/20 17:58:04 INFO TaskSetManager: Starting task 3.0 in stage 1.0 (TID 11, 10.10.43.131, executor 1, partition 3, NODE_LOCAL, 4614 bytes)
+17/12/20 17:58:04 INFO TaskSetManager: Starting task 4.0 in stage 1.0 (TID 12, 10.10.43.132, executor 0, partition 4, NODE_LOCAL, 4614 bytes)
+17/12/20 17:58:04 INFO TaskSetManager: Starting task 5.0 in stage 1.0 (TID 13, 10.10.43.131, executor 1, partition 5, NODE_LOCAL, 4614 bytes)
+17/12/20 17:58:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+codecName: org.apache.spark.io.LZFCompressionCodec
+
+17/12/20 17:58:04 INFO TaskSetManager: Starting task 6.0 in stage 1.0 (TID 14, 10.10.43.132, executor 0, partition 6, NODE_LOCAL, 4614 bytes)
+17/12/20 17:58:04 INFO TaskSetManager: Starting task 7.0 in stage 1.0 (TID 15, 10.10.43.131, executor 1, partition 7, NODE_LOCAL, 4614 bytes)
+17/12/20 17:58:04 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 4.1 KB, free 366.0 MB)
+17/12/20 17:58:04 INFO MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 2.3 KB, free 366.0 MB)
+17/12/20 17:58:04 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.10.43.130:33788 (size: 2.3 KB, free: 366.3 MB)
+17/12/20 17:58:04 INFO SparkContext: Created broadcast 3 from broadcast at DAGScheduler.scala:1006
+17/12/20 17:58:04 INFO DAGScheduler: Submitting 8 missing tasks from ShuffleMapStage 3 (VertexRDD.createRoutingTables - vid2pid (aggregation) MapPartitionsRDD[12] at mapPartitions at VertexRDD.scala:356) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6, 7))
+17/12/20 17:58:04 INFO TaskSchedulerImpl: Adding task set 3.0 with 8 tasks
+17/12/20 17:58:04 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.10.43.131:35792 (size: 2.4 KB, free: 366.3 MB)
+17/12/20 17:58:04 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 7 to 10.10.43.131:54610
+17/12/20 17:58:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+retBytes: null
+
+
+17/12/20 17:58:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses.length: 8
+
+
+17/12/20 17:58:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(0): KMGetBlockInfo:
+location: BlockManagerId(0, 10.10.43.132, 45486, None)
+uncompressedSizes(0): 31051030
+uncompressedSizes(1): 0
+uncompressedSizes(2): 0
+uncompressedSizes(3): 0
+uncompressedSizes(4): 0
+uncompressedSizes(5): 0
+uncompressedSizes(6): 0
+uncompressedSizes(7): 0
+totalSize: 31051030
+
+
+17/12/20 17:58:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(1): KMGetBlockInfo:
+location: BlockManagerId(1, 10.10.43.131, 35792, None)
+uncompressedSizes(0): 0
+uncompressedSizes(1): 31051030
+uncompressedSizes(2): 0
+uncompressedSizes(3): 0
+uncompressedSizes(4): 0
+uncompressedSizes(5): 0
+uncompressedSizes(6): 0
+uncompressedSizes(7): 0
+totalSize: 31051030
+
+
+17/12/20 17:58:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(2): KMGetBlockInfo:
+location: BlockManagerId(0, 10.10.43.132, 45486, None)
+uncompressedSizes(0): 0
+uncompressedSizes(1): 0
+uncompressedSizes(2): 31051030
+uncompressedSizes(3): 0
+uncompressedSizes(4): 0
+uncompressedSizes(5): 0
+uncompressedSizes(6): 0
+uncompressedSizes(7): 0
+totalSize: 31051030
+
+
+17/12/20 17:58:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(3): KMGetBlockInfo:
+location: BlockManagerId(1, 10.10.43.131, 35792, None)
+uncompressedSizes(0): 0
+uncompressedSizes(1): 0
+uncompressedSizes(2): 0
+uncompressedSizes(3): 31051030
+uncompressedSizes(4): 0
+uncompressedSizes(5): 0
+uncompressedSizes(6): 0
+uncompressedSizes(7): 0
+totalSize: 31051030
+
+
+17/12/20 17:58:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(4): KMGetBlockInfo:
+location: BlockManagerId(0, 10.10.43.132, 45486, None)
+uncompressedSizes(0): 0
+uncompressedSizes(1): 0
+uncompressedSizes(2): 0
+uncompressedSizes(3): 0
+uncompressedSizes(4): 31051030
+uncompressedSizes(5): 0
+uncompressedSizes(6): 0
+uncompressedSizes(7): 0
+totalSize: 31051030
+
+
+17/12/20 17:58:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(5): KMGetBlockInfo:
+location: BlockManagerId(1, 10.10.43.131, 35792, None)
+uncompressedSizes(0): 0
+uncompressedSizes(1): 0
+uncompressedSizes(2): 0
+uncompressedSizes(3): 0
+uncompressedSizes(4): 0
+uncompressedSizes(5): 31051030
+uncompressedSizes(6): 0
+uncompressedSizes(7): 0
+totalSize: 31051030
+
+
+17/12/20 17:58:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(6): KMGetBlockInfo:
+location: BlockManagerId(0, 10.10.43.132, 45486, None)
+uncompressedSizes(0): 0
+uncompressedSizes(1): 0
+uncompressedSizes(2): 0
+uncompressedSizes(3): 0
+uncompressedSizes(4): 0
+uncompressedSizes(5): 0
+uncompressedSizes(6): 31051030
+uncompressedSizes(7): 0
+totalSize: 31051030
+
+
+17/12/20 17:58:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(7): KMGetBlockInfo:
+location: BlockManagerId(1, 10.10.43.131, 35792, None)
+uncompressedSizes(0): 0
+uncompressedSizes(1): 0
+uncompressedSizes(2): 0
+uncompressedSizes(3): 0
+uncompressedSizes(4): 0
+uncompressedSizes(5): 0
+uncompressedSizes(6): 0
+uncompressedSizes(7): 31051030
+totalSize: 31051030
+
+
+17/12/20 17:58:04 INFO MapOutputTrackerMaster: Size of output statuses for shuffle 7 is 195 bytes
+17/12/20 17:58:04 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 10.10.43.132:45486 (size: 2.4 KB, free: 366.3 MB)
+17/12/20 17:58:04 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 7 to 10.10.43.132:35230
+17/12/20 17:58:04 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+retBytes: [B@2f31f6cd
+
+
+17/12/20 17:58:15 INFO TaskSetManager: Starting task 0.0 in stage 3.0 (TID 16, 10.10.43.132, executor 0, partition 0, NODE_LOCAL, 4614 bytes)
+17/12/20 17:58:15 INFO TaskSetManager: Finished task 2.0 in stage 1.0 (TID 10) in 11169 ms on 10.10.43.132 (executor 0) (1/8)
+17/12/20 17:58:15 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.10.43.132:45486 (size: 2.3 KB, free: 366.3 MB)
+17/12/20 17:58:15 INFO TaskSetManager: Starting task 2.0 in stage 3.0 (TID 17, 10.10.43.132, executor 0, partition 2, NODE_LOCAL, 4614 bytes)
+17/12/20 17:58:15 INFO TaskSetManager: Finished task 4.0 in stage 1.0 (TID 12) in 11437 ms on 10.10.43.132 (executor 0) (2/8)
+17/12/20 17:58:15 INFO TaskSetManager: Starting task 4.0 in stage 3.0 (TID 18, 10.10.43.132, executor 0, partition 4, NODE_LOCAL, 4614 bytes)
+17/12/20 17:58:15 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 8) in 11467 ms on 10.10.43.132 (executor 0) (3/8)
+17/12/20 17:58:15 INFO TaskSetManager: Starting task 6.0 in stage 3.0 (TID 19, 10.10.43.132, executor 0, partition 6, NODE_LOCAL, 4614 bytes)
+17/12/20 17:58:15 INFO TaskSetManager: Finished task 6.0 in stage 1.0 (TID 14) in 11573 ms on 10.10.43.132 (executor 0) (4/8)
+17/12/20 17:58:15 INFO TaskSetManager: Starting task 1.0 in stage 3.0 (TID 20, 10.10.43.131, executor 1, partition 1, NODE_LOCAL, 4614 bytes)
+17/12/20 17:58:15 INFO TaskSetManager: Finished task 7.0 in stage 1.0 (TID 15) in 11664 ms on 10.10.43.131 (executor 1) (5/8)
+17/12/20 17:58:16 INFO TaskSetManager: Starting task 3.0 in stage 3.0 (TID 21, 10.10.43.131, executor 1, partition 3, NODE_LOCAL, 4614 bytes)
+17/12/20 17:58:16 INFO TaskSetManager: Finished task 5.0 in stage 1.0 (TID 13) in 12233 ms on 10.10.43.131 (executor 1) (6/8)
+17/12/20 17:58:16 INFO TaskSetManager: Starting task 5.0 in stage 3.0 (TID 22, 10.10.43.131, executor 1, partition 5, NODE_LOCAL, 4614 bytes)
+17/12/20 17:58:16 INFO TaskSetManager: Finished task 3.0 in stage 1.0 (TID 11) in 12348 ms on 10.10.43.131 (executor 1) (7/8)
+17/12/20 17:58:16 INFO TaskSetManager: Starting task 7.0 in stage 3.0 (TID 23, 10.10.43.131, executor 1, partition 7, NODE_LOCAL, 4614 bytes)
+17/12/20 17:58:16 INFO TaskSetManager: Finished task 1.0 in stage 1.0 (TID 9) in 12754 ms on 10.10.43.131 (executor 1) (8/8)
+17/12/20 17:58:16 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool
+17/12/20 17:58:16 INFO DAGScheduler: ShuffleMapStage 1 (map at GraphxNWeight.scala:85) finished in 12.757 s
+17/12/20 17:58:16 INFO DAGScheduler: looking for newly runnable stages
+17/12/20 17:58:16 INFO DAGScheduler: running: Set(ShuffleMapStage 3)
+17/12/20 17:58:16 INFO DAGScheduler: waiting: Set(ShuffleMapStage 5, ShuffleMapStage 2, ShuffleMapStage 6, ShuffleMapStage 7, ShuffleMapStage 4, ResultStage 8)
+17/12/20 17:58:16 INFO DAGScheduler: failed: Set()
+17/12/20 17:58:16 INFO DAGScheduler: Submitting ShuffleMapStage 2 (MapPartitionsRDD[7] at map at GraphxNWeight.scala:87), which has no missing parents
+17/12/20 17:58:16 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+codecName: org.apache.spark.io.LZFCompressionCodec
+
+17/12/20 17:58:16 INFO MemoryStore: Block broadcast_4 stored as values in memory (estimated size 5.0 KB, free 366.0 MB)
+17/12/20 17:58:16 INFO MemoryStore: Block broadcast_4_piece0 stored as bytes in memory (estimated size 2.6 KB, free 366.0 MB)
+17/12/20 17:58:16 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.10.43.130:33788 (size: 2.6 KB, free: 366.3 MB)
+17/12/20 17:58:16 INFO SparkContext: Created broadcast 4 from broadcast at DAGScheduler.scala:1006
+17/12/20 17:58:16 INFO DAGScheduler: Submitting 8 missing tasks from ShuffleMapStage 2 (MapPartitionsRDD[7] at map at GraphxNWeight.scala:87) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6, 7))
+17/12/20 17:58:16 INFO TaskSchedulerImpl: Adding task set 2.0 with 8 tasks
+17/12/20 17:58:17 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 10.10.43.131:35792 (size: 2.3 KB, free: 366.3 MB)
+17/12/20 17:58:29 INFO TaskSetManager: Starting task 1.0 in stage 2.0 (TID 24, 10.10.43.131, executor 1, partition 1, NODE_LOCAL, 4614 bytes)
+17/12/20 17:58:29 WARN TaskSetManager: Lost task 7.0 in stage 3.0 (TID 23, 10.10.43.131, executor 1): java.lang.OutOfMemoryError: Java heap space
+	at java.lang.reflect.Array.newInstance(Array.java:75)
+	at scala.reflect.ClassTag$class.newArray(ClassTag.scala:61)
+	at scala.reflect.ClassTag$$anon$1.newArray(ClassTag.scala:152)
+	at org.apache.spark.util.collection.PrimitiveVector.copyArrayWithLength(PrimitiveVector.scala:87)
+	at org.apache.spark.util.collection.PrimitiveVector.resize(PrimitiveVector.scala:74)
+	at org.apache.spark.util.collection.PrimitiveVector.$plus$eq(PrimitiveVector.scala:41)
+	at org.apache.spark.graphx.impl.EdgePartitionBuilder.add(EdgePartitionBuilder.scala:34)
+	at org.apache.spark.graphx.EdgeRDD$$anonfun$1$$anonfun$apply$1.apply(EdgeRDD.scala:108)
+	at org.apache.spark.graphx.EdgeRDD$$anonfun$1$$anonfun$apply$1.apply(EdgeRDD.scala:107)
+	at scala.collection.Iterator$class.foreach(Iterator.scala:893)
+	at scala.collection.AbstractIterator.foreach(Iterator.scala:1336)
+	at org.apache.spark.graphx.EdgeRDD$$anonfun$1.apply(EdgeRDD.scala:107)
+	at org.apache.spark.graphx.EdgeRDD$$anonfun$1.apply(EdgeRDD.scala:105)
+	at org.apache.spark.rdd.RDD$$anonfun$mapPartitionsWithIndex$1$$anonfun$apply$26.apply(RDD.scala:844)
+	at org.apache.spark.rdd.RDD$$anonfun$mapPartitionsWithIndex$1$$anonfun$apply$26.apply(RDD.scala:844)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:38)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:323)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:287)
+	at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:38)
+	at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:323)
+	at org.apache.spark.rdd.RDD.iterator(RDD.scala:287)
+	at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:96)
+	at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:53)
+	at org.apache.spark.scheduler.Task.run(Task.scala:108)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:335)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+17/12/20 17:58:30 INFO TaskSetManager: Starting task 3.0 in stage 2.0 (TID 25, 10.10.43.131, executor 1, partition 3, NODE_LOCAL, 4614 bytes)
+17/12/20 17:58:30 WARN TaskSetManager: Lost task 1.0 in stage 2.0 (TID 24, 10.10.43.131, executor 1): java.io.IOException: Failed to create local dir in /tmp/spark-74862ad5-2f41-4580-8c26-3b2e2d844da5/executor-5389fe78-7e21-47e2-b6d5-7d681b46caed/blockmgr-84e424dd-2a4a-4f9f-8701-fef2c9b64543/15.
+	at org.apache.spark.storage.DiskBlockManager.getFile(DiskBlockManager.scala:70)
+	at org.apache.spark.storage.DiskStore.remove(DiskStore.scala:135)
+	at org.apache.spark.storage.BlockManager.removeBlockInternal(BlockManager.scala:1460)
+	at org.apache.spark.storage.BlockManager.doPut(BlockManager.scala:992)
+	at org.apache.spark.storage.BlockManager.doPutBytes(BlockManager.scala:858)
+	at org.apache.spark.storage.BlockManager.putBytes(BlockManager.scala:834)
+	at org.apache.spark.broadcast.TorrentBroadcast$$anonfun$org$apache$spark$broadcast$TorrentBroadcast$$readBlocks$1.apply$mcVI$sp(TorrentBroadcast.scala:172)
+	at org.apache.spark.broadcast.TorrentBroadcast$$anonfun$org$apache$spark$broadcast$TorrentBroadcast$$readBlocks$1.apply(TorrentBroadcast.scala:150)
+	at org.apache.spark.broadcast.TorrentBroadcast$$anonfun$org$apache$spark$broadcast$TorrentBroadcast$$readBlocks$1.apply(TorrentBroadcast.scala:150)
+	at scala.collection.immutable.List.foreach(List.scala:381)
+	at org.apache.spark.broadcast.TorrentBroadcast.org$apache$spark$broadcast$TorrentBroadcast$$readBlocks(TorrentBroadcast.scala:150)
+	at org.apache.spark.broadcast.TorrentBroadcast$$anonfun$readBroadcastBlock$1.apply(TorrentBroadcast.scala:222)
+	at org.apache.spark.util.Utils$.tryOrIOException(Utils.scala:1303)
+	at org.apache.spark.broadcast.TorrentBroadcast.readBroadcastBlock(TorrentBroadcast.scala:206)
+	at org.apache.spark.broadcast.TorrentBroadcast._value$lzycompute(TorrentBroadcast.scala:66)
+	at org.apache.spark.broadcast.TorrentBroadcast._value(TorrentBroadcast.scala:66)
+	at org.apache.spark.broadcast.TorrentBroadcast.getValue(TorrentBroadcast.scala:96)
+	at org.apache.spark.broadcast.Broadcast.value(Broadcast.scala:70)
+	at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:86)
+	at org.apache.spark.scheduler.ShuffleMapTask.runTask(ShuffleMapTask.scala:53)
+	at org.apache.spark.scheduler.Task.run(Task.scala:108)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:335)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)
+
+17/12/20 17:58:30 ERROR TaskSchedulerImpl: Lost executor 1 on 10.10.43.131: Remote RPC client disassociated. Likely due to containers exceeding thresholds, or network issues. Check driver logs for WARN messages.
+17/12/20 17:58:30 WARN TaskSetManager: Lost task 1.0 in stage 3.0 (TID 20, 10.10.43.131, executor 1): ExecutorLostFailure (executor 1 exited caused by one of the running tasks) Reason: Remote RPC client disassociated. Likely due to containers exceeding thresholds, or network issues. Check driver logs for WARN messages.
+17/12/20 17:58:30 WARN TaskSetManager: Lost task 5.0 in stage 3.0 (TID 22, 10.10.43.131, executor 1): ExecutorLostFailure (executor 1 exited caused by one of the running tasks) Reason: Remote RPC client disassociated. Likely due to containers exceeding thresholds, or network issues. Check driver logs for WARN messages.
+17/12/20 17:58:30 WARN TaskSetManager: Lost task 3.0 in stage 3.0 (TID 21, 10.10.43.131, executor 1): ExecutorLostFailure (executor 1 exited caused by one of the running tasks) Reason: Remote RPC client disassociated. Likely due to containers exceeding thresholds, or network issues. Check driver logs for WARN messages.
+17/12/20 17:58:30 WARN TaskSetManager: Lost task 3.0 in stage 2.0 (TID 25, 10.10.43.131, executor 1): ExecutorLostFailure (executor 1 exited caused by one of the running tasks) Reason: Remote RPC client disassociated. Likely due to containers exceeding thresholds, or network issues. Check driver logs for WARN messages.
+17/12/20 17:58:30 INFO DAGScheduler: Executor lost: 1 (epoch 2)
+17/12/20 17:58:30 INFO BlockManagerMasterEndpoint: Trying to remove executor 1 from BlockManagerMaster.
+17/12/20 17:58:30 INFO BlockManagerMasterEndpoint: Removing block manager BlockManagerId(1, 10.10.43.131, 35792, None)
+17/12/20 17:58:30 INFO BlockManagerMaster: Removed 1 successfully in removeExecutor
+17/12/20 17:58:30 INFO DAGScheduler: Shuffle files lost for executor: 1 (epoch 2)
+17/12/20 17:58:30 INFO ShuffleMapStage: ShuffleMapStage 1 is now unavailable on executor 1 (4/8, false)
+17/12/20 17:58:30 INFO ShuffleMapStage: ShuffleMapStage 0 is now unavailable on executor 1 (4/8, false)
+17/12/20 17:58:30 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20171220175735-0010/1 is now EXITED (Command exited with code 52)
+17/12/20 17:58:30 INFO StandaloneSchedulerBackend: Executor app-20171220175735-0010/1 removed: Command exited with code 52
+17/12/20 17:58:30 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20171220175735-0010/2 on worker-20171220145325-10.10.43.131-46830 (10.10.43.131:46830) with 4 cores
+17/12/20 17:58:30 INFO StandaloneSchedulerBackend: Granted executor ID app-20171220175735-0010/2 on hostPort 10.10.43.131:46830 with 4 cores, 1024.0 MB RAM
+17/12/20 17:58:30 INFO BlockManagerMasterEndpoint: Trying to remove executor 1 from BlockManagerMaster.
+17/12/20 17:58:30 INFO BlockManagerMaster: Removal of executor 1 requested
+17/12/20 17:58:30 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Asked to remove non-existent executor 1
+17/12/20 17:58:30 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20171220175735-0010/2 is now RUNNING
+17/12/20 17:58:33 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.10.43.131:54632) with ID 2
+17/12/20 17:58:33 INFO TaskSetManager: Starting task 3.1 in stage 2.0 (TID 26, 10.10.43.131, executor 2, partition 3, NODE_LOCAL, 4614 bytes)
+17/12/20 17:58:33 INFO TaskSetManager: Starting task 1.1 in stage 2.0 (TID 27, 10.10.43.131, executor 2, partition 1, NODE_LOCAL, 4614 bytes)
+17/12/20 17:58:33 INFO TaskSetManager: Starting task 5.0 in stage 2.0 (TID 28, 10.10.43.131, executor 2, partition 5, NODE_LOCAL, 4614 bytes)
+17/12/20 17:58:33 INFO TaskSetManager: Starting task 7.0 in stage 2.0 (TID 29, 10.10.43.131, executor 2, partition 7, NODE_LOCAL, 4614 bytes)
+17/12/20 17:58:33 INFO BlockManagerMasterEndpoint: Registering block manager 10.10.43.131:36896 with 366.3 MB RAM, BlockManagerId(2, 10.10.43.131, 36896, None)
+17/12/20 17:58:36 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 10.10.43.131:36896 (size: 2.6 KB, free: 366.3 MB)
+17/12/20 17:58:36 INFO MapOutputTrackerMasterEndpoint: Asked to send map output locations for shuffle 8 to 10.10.43.131:54632
+17/12/20 17:58:36 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+retBytes: null
+
+
+17/12/20 17:58:36 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses.length: 8
+
+
+17/12/20 17:58:36 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+statuses(0): KMGetBlockInfo:
+location: BlockManagerId(0, 10.10.43.132, 45486, None)
+uncompressedSizes(0): 31051030
+uncompressedSizes(1): 0
+uncompressedSizes(2): 0
+uncompressedSizes(3): 0
+uncompressedSizes(4): 0
+uncompressedSizes(5): 0
+uncompressedSizes(6): 0
+uncompressedSizes(7): 0
+totalSize: 31051030
+
+
+17/12/20 17:58:36 ERROR MapOutputTrackerMaster:
+java.lang.NullPointerException
+	at org.apache.spark.MapOutputTrackerMaster$$anonfun$getSerializedMapOutputStatuses$1.apply$mcVI$sp(MapOutputTracker.scala:573)
+	at scala.collection.immutable.Range.foreach$mVc$sp(Range.scala:160)
+	at org.apache.spark.MapOutputTrackerMaster.getSerializedMapOutputStatuses(MapOutputTracker.scala:570)
+	at org.apache.spark.MapOutputTrackerMaster$MessageLoop.run(MapOutputTracker.scala:352)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
