@@ -1,0 +1,97 @@
+17/12/22 19:31:29 INFO SparkContext: Running Spark version 2.2.0
+17/12/22 19:31:30 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+17/12/22 19:31:30 INFO SparkContext: Submitted application: LogisticRegressionDataGenerator
+17/12/22 19:31:30 INFO SecurityManager: Changing view acls to: hadoop
+17/12/22 19:31:30 INFO SecurityManager: Changing modify acls to: hadoop
+17/12/22 19:31:30 INFO SecurityManager: Changing view acls groups to:
+17/12/22 19:31:30 INFO SecurityManager: Changing modify acls groups to:
+17/12/22 19:31:30 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(hadoop); groups with view permissions: Set(); users  with modify permissions: Set(hadoop); groups with modify permissions: Set()
+17/12/22 19:31:31 INFO Utils: Successfully started service 'sparkDriver' on port 34324.
+compressShuffle => [spark.shuffle.compress : true]
+17/12/22 19:31:31 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+codecName: lz4
+
+17/12/22 19:31:31 INFO SparkEnv: Registering MapOutputTracker
+17/12/22 19:31:31 INFO SparkEnv: Registering BlockManagerMaster
+17/12/22 19:31:31 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+17/12/22 19:31:31 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+17/12/22 19:31:31 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-a6f57fb6-b492-4fc1-9607-8e529489bd80
+17/12/22 19:31:31 INFO MemoryStore: MemoryStore started with capacity 912.3 MB
+17/12/22 19:31:31 INFO SparkEnv: Registering OutputCommitCoordinator
+17/12/22 19:31:31 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+17/12/22 19:31:31 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://10.10.43.130:4040
+17/12/22 19:31:31 INFO SparkContext: Added JAR file:/home/hadoop/hadoopTest/HiBench2-LZF/sparkbench/assembly/target/sparkbench-assembly-7.1-SNAPSHOT-dist.jar at spark://10.10.43.130:34324/jars/sparkbench-assembly-7.1-SNAPSHOT-dist.jar with timestamp 1513942291543
+17/12/22 19:31:31 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://cluster209-hadoop-master:7077...
+17/12/22 19:31:31 INFO TransportClientFactory: Successfully created connection to cluster209-hadoop-master/10.10.43.130:7077 after 28 ms (0 ms spent in bootstraps)
+17/12/22 19:31:31 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20171222193131-0017
+17/12/22 19:31:31 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20171222193131-0017/0 on worker-20171222154019-10.10.43.132-45268 (10.10.43.132:45268) with 4 cores
+17/12/22 19:31:31 INFO StandaloneSchedulerBackend: Granted executor ID app-20171222193131-0017/0 on hostPort 10.10.43.132:45268 with 4 cores, 2.0 GB RAM
+17/12/22 19:31:31 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20171222193131-0017/1 on worker-20171222154114-10.10.43.131-39436 (10.10.43.131:39436) with 4 cores
+17/12/22 19:31:31 INFO StandaloneSchedulerBackend: Granted executor ID app-20171222193131-0017/1 on hostPort 10.10.43.131:39436 with 4 cores, 2.0 GB RAM
+17/12/22 19:31:31 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 41651.
+17/12/22 19:31:31 INFO NettyBlockTransferService: Server created on 10.10.43.130:41651
+17/12/22 19:31:31 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+17/12/22 19:31:32 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20171222193131-0017/1 is now RUNNING
+17/12/22 19:31:32 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20171222193131-0017/0 is now RUNNING
+17/12/22 19:31:32 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 10.10.43.130, 41651, None)
+17/12/22 19:31:32 INFO BlockManagerMasterEndpoint: Registering block manager 10.10.43.130:41651 with 912.3 MB RAM, BlockManagerId(driver, 10.10.43.130, 41651, None)
+17/12/22 19:31:32 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 10.10.43.130, 41651, None)
+17/12/22 19:31:32 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 10.10.43.130, 41651, None)
+17/12/22 19:31:32 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+Output Path: hdfs://cluster209-hadoop-master:9000/user/hadoop/HiBench2-LZF/HiBench/LR/Input
+Num of Examples: 1000
+Num of Features: 10000
+17/12/22 19:31:33 INFO SequenceFileRDDFunctions: Saving as sequence file of type (NullWritable,BytesWritable)
+17/12/22 19:31:35 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.10.43.131:33204) with ID 1
+17/12/22 19:31:35 INFO BlockManagerMasterEndpoint: Registering block manager 10.10.43.131:36290 with 912.3 MB RAM, BlockManagerId(1, 10.10.43.131, 36290, None)
+17/12/22 19:31:36 INFO SparkContext: Starting job: saveAsObjectFile at LogisticRegressionDataGenerator.scala:94
+17/12/22 19:31:36 INFO DAGScheduler: Got job 0 (saveAsObjectFile at LogisticRegressionDataGenerator.scala:94) with 8 output partitions
+17/12/22 19:31:36 INFO DAGScheduler: Final stage: ResultStage 0 (saveAsObjectFile at LogisticRegressionDataGenerator.scala:94)
+17/12/22 19:31:36 INFO DAGScheduler: Parents of final stage: List()
+17/12/22 19:31:36 INFO DAGScheduler: Missing parents: List()
+17/12/22 19:31:36 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[3] at saveAsObjectFile at LogisticRegressionDataGenerator.scala:94), which has no missing parents
+17/12/22 19:31:37 INFO KMScalaKit:
+******************** [KMLogInfo] ********************
+codecName: lz4
+
+17/12/22 19:31:37 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 64.8 KB, free 912.2 MB)
+17/12/22 19:31:37 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 23.1 KB, free 912.2 MB)
+17/12/22 19:31:37 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.10.43.130:41651 (size: 23.1 KB, free: 912.3 MB)
+17/12/22 19:31:37 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1006
+17/12/22 19:31:37 INFO DAGScheduler: Submitting 8 missing tasks from ResultStage 0 (MapPartitionsRDD[3] at saveAsObjectFile at LogisticRegressionDataGenerator.scala:94) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6, 7))
+17/12/22 19:31:37 INFO TaskSchedulerImpl: Adding task set 0.0 with 8 tasks
+17/12/22 19:31:37 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, 10.10.43.131, executor 1, partition 0, PROCESS_LOCAL, 4829 bytes)
+17/12/22 19:31:37 INFO TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1, 10.10.43.131, executor 1, partition 1, PROCESS_LOCAL, 4829 bytes)
+17/12/22 19:31:37 INFO TaskSetManager: Starting task 2.0 in stage 0.0 (TID 2, 10.10.43.131, executor 1, partition 2, PROCESS_LOCAL, 4829 bytes)
+17/12/22 19:31:37 INFO TaskSetManager: Starting task 3.0 in stage 0.0 (TID 3, 10.10.43.131, executor 1, partition 3, PROCESS_LOCAL, 4829 bytes)
+17/12/22 19:31:39 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.10.43.131:36290 (size: 23.1 KB, free: 912.3 MB)
+17/12/22 19:31:42 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (10.10.43.132:60294) with ID 0
+17/12/22 19:31:42 INFO TaskSetManager: Starting task 4.0 in stage 0.0 (TID 4, 10.10.43.132, executor 0, partition 4, PROCESS_LOCAL, 4829 bytes)
+17/12/22 19:31:42 INFO TaskSetManager: Starting task 5.0 in stage 0.0 (TID 5, 10.10.43.132, executor 0, partition 5, PROCESS_LOCAL, 4829 bytes)
+17/12/22 19:31:42 INFO TaskSetManager: Starting task 6.0 in stage 0.0 (TID 6, 10.10.43.132, executor 0, partition 6, PROCESS_LOCAL, 4829 bytes)
+17/12/22 19:31:42 INFO TaskSetManager: Starting task 7.0 in stage 0.0 (TID 7, 10.10.43.132, executor 0, partition 7, PROCESS_LOCAL, 4829 bytes)
+17/12/22 19:31:42 INFO BlockManagerMasterEndpoint: Registering block manager 10.10.43.132:42951 with 912.3 MB RAM, BlockManagerId(0, 10.10.43.132, 42951, None)
+17/12/22 19:31:42 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 5731 ms on 10.10.43.131 (executor 1) (1/8)
+17/12/22 19:31:42 INFO TaskSetManager: Finished task 2.0 in stage 0.0 (TID 2) in 5717 ms on 10.10.43.131 (executor 1) (2/8)
+17/12/22 19:31:43 INFO TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 6208 ms on 10.10.43.131 (executor 1) (3/8)
+17/12/22 19:31:43 INFO TaskSetManager: Finished task 3.0 in stage 0.0 (TID 3) in 6264 ms on 10.10.43.131 (executor 1) (4/8)
+17/12/22 19:31:44 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 10.10.43.132:42951 (size: 23.1 KB, free: 912.3 MB)
+17/12/22 19:31:47 INFO TaskSetManager: Finished task 4.0 in stage 0.0 (TID 4) in 5362 ms on 10.10.43.132 (executor 0) (5/8)
+17/12/22 19:31:47 INFO TaskSetManager: Finished task 5.0 in stage 0.0 (TID 5) in 5324 ms on 10.10.43.132 (executor 0) (6/8)
+17/12/22 19:31:47 INFO TaskSetManager: Finished task 6.0 in stage 0.0 (TID 6) in 5434 ms on 10.10.43.132 (executor 0) (7/8)
+17/12/22 19:31:47 INFO TaskSetManager: Finished task 7.0 in stage 0.0 (TID 7) in 5440 ms on 10.10.43.132 (executor 0) (8/8)
+17/12/22 19:31:47 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool
+17/12/22 19:31:47 INFO DAGScheduler: ResultStage 0 (saveAsObjectFile at LogisticRegressionDataGenerator.scala:94) finished in 10.721 s
+17/12/22 19:31:47 INFO DAGScheduler: Job 0 finished: saveAsObjectFile at LogisticRegressionDataGenerator.scala:94, took 11.017494 s
+17/12/22 19:31:48 INFO SparkUI: Stopped Spark web UI at http://10.10.43.130:4040
+17/12/22 19:31:48 INFO StandaloneSchedulerBackend: Shutting down all executors
+17/12/22 19:31:48 INFO CoarseGrainedSchedulerBackend$DriverEndpoint: Asking each executor to shut down
+17/12/22 19:31:48 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+17/12/22 19:31:48 INFO MemoryStore: MemoryStore cleared
+17/12/22 19:31:48 INFO BlockManager: BlockManager stopped
+17/12/22 19:31:48 INFO BlockManagerMaster: BlockManagerMaster stopped
+17/12/22 19:31:48 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+17/12/22 19:31:48 INFO SparkContext: Successfully stopped SparkContext
+17/12/22 19:31:49 INFO ShutdownHookManager: Shutdown hook called
+17/12/22 19:31:49 INFO ShutdownHookManager: Deleting directory /tmp/spark-da9a1757-7378-4c63-b1fd-5b60082a061a
