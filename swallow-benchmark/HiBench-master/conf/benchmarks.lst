@@ -1,4 +1,3 @@
-
 micro.wordcount
 micro.sort
 micro.terasort
@@ -7,8 +6,21 @@ ml.bayes
 ml.kmeans
 ml.lr
 
+ml.als
+ml.lda
+ml.linear
+ml.pca
+ml.svd
+ml.svm
+ml.rf
+
 websearch.pagerank
 
+graph.nweight
+
+
+
+#====================================================
 
 #micro.sleep
 #micro.sort
