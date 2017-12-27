@@ -158,8 +158,8 @@ object AlgorithmSimulator {
 
 //    val scheduler: KMSchedulerFIFO = new KMSchedulerFIFO();
 //    val scheduler: KMSchedulerSRTF = new KMSchedulerSRTF();
-//    val scheduler: KMSchedulerSFSH = new KMSchedulerSFSH();
-    val scheduler: KMSchedulerFAIR = new KMSchedulerFAIR()
+    val scheduler: KMSchedulerSFSH = new KMSchedulerSFSH();
+//    val scheduler: KMSchedulerFAIR = new KMSchedulerFAIR()
 
     scheduler.addNewFlows(flows1);
 //    scheduler.addNewFlows(flows2);
@@ -172,8 +172,8 @@ object AlgorithmSimulator {
     // time slice, simulated with 'while'
     breakable {
       while (true) {
-//        scheduler.scheduling(timeSlice = 0.01);
-        scheduler.schedulingInOneChannel(channel1)
+        scheduler.scheduling(timeSlice = 0.01);
+//        scheduler.schedulingInOneChannel(channel1)  //For FAIR
 
 
         //if all flows completed
