@@ -48,6 +48,10 @@ public class Constants {
      * Use the colfow smart-comression scheduler.
      */
     SSCF,
+    /**
+     * The improved version of SSCF.
+     */
+    FVDF,
   }
 
   /**

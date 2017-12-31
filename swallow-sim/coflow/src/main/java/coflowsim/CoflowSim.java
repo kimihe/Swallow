@@ -13,11 +13,11 @@ public class CoflowSim {
   public static void main(String[] args) {
     int curArg = 0;
 
-    SHARING_ALGO sharingAlgo = SHARING_ALGO.SSCF;
+    SHARING_ALGO sharingAlgo = SHARING_ALGO.FVDF;
     if (args.length > curArg) {
       String UPPER_ARG = args[curArg++].toUpperCase();
 
-      if (UPPER_ARG.contains("FAIR")) {
+      if (UPPER_ARG.contains("FAIR") || UPPER_ARG.contains("PFF")) {
         sharingAlgo = SHARING_ALGO.FAIR;
       } else if (UPPER_ARG.contains("PFP")) {
         sharingAlgo = SHARING_ALGO.PFP;
@@ -35,6 +35,8 @@ public class CoflowSim {
         sharingAlgo = SHARING_ALGO.DARK;
       } else if (UPPER_ARG.contains("SSCF")) {
         sharingAlgo = SHARING_ALGO.SSCF;
+      } else if (UPPER_ARG.contains("FVDF")) {
+        sharingAlgo = SHARING_ALGO.FVDF;
       }
       else {
         System.err.println("Unsupported or Wrong Sharing Algorithm");
@@ -114,7 +116,7 @@ public class CoflowSim {
           deadlineMultRandomFactor);
     } else if (sharingAlgo == SHARING_ALGO.DARK) {
       nlpl = new CoflowSimulatorDark(sharingAlgo, traceProducer);
-    } else if (sharingAlgo == SHARING_ALGO.SSCF) {
+    } else if (sharingAlgo == SHARING_ALGO.SSCF || sharingAlgo == SHARING_ALGO.FVDF) {
       nlpl = new CoflowSimulatorSmartCompression(SHARING_ALGO.SEBF, // improve on SEBF with smart compression
               traceProducer, isOffline, considerDeadline, deadlineMultRandomFactor);
     } else {
