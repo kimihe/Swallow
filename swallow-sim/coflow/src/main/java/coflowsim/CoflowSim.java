@@ -64,18 +64,18 @@ public class CoflowSim {
     int numJobs = 10;
     int randomSeed = 13;
     JobClassDescription[] jobClassDescs = new JobClassDescription[] {
-        new JobClassDescription(1, 5, 1, 10),
-        new JobClassDescription(1, 5, 10, 1000),
-        new JobClassDescription(5, numRacks, 1, 10),
-        new JobClassDescription(5, numRacks, 10, 1000) };
+            new JobClassDescription(1, 5, 1, 10),
+            new JobClassDescription(1, 5, 10, 1000),
+            new JobClassDescription(5, numRacks, 1, 10),
+            new JobClassDescription(5, numRacks, 10, 1000) };
     double[] fracsOfClasses = new double[] {
-        41,
-        29,
-        9,
-        21 };
+            41,
+            29,
+            9,
+            21 };
 
     traceProducer = new CustomTraceProducer(numRacks, numJobs, jobClassDescs, fracsOfClasses,
-        randomSeed);
+            randomSeed);
 
     if (args.length > curArg) {
       String UPPER_ARG = args[curArg++].toUpperCase();
@@ -103,7 +103,7 @@ public class CoflowSim {
         randomSeed = Integer.parseInt(args[curArg++]);
 
         traceProducer = new CustomTraceProducer(numRacks, numJobs, jobClassDescs, fracsOfClasses,
-            randomSeed);
+                randomSeed);
       } else if (UPPER_ARG.equals("COFLOW-BENCHMARK")) {
         String pathToCoflowBenchmarkTraceFile = args[curArg++];
         traceProducer = new CoflowBenchmarkTraceProducer(pathToCoflowBenchmarkTraceFile);

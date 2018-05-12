@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.Vector;
 
+import coflowsim.KMLogCenter;
 import coflowsim.datastructures.Flow;
 import coflowsim.datastructures.Job;
 import coflowsim.datastructures.JobCollection;
@@ -296,10 +297,21 @@ public abstract class Simulator {
       }
     }
 
+
+
+
+    String JOB_COUNT = "Job Count: " + jobCount + "\n";
+    String AVG_CCT = "Average CCT: " + sumDur/jobCount  + "\n";
+    String TOTAL_JOB_TIME = "Total Job Duration: " + sumDur + "\n";
+
+    String LOG = JOB_COUNT + AVG_CCT + TOTAL_JOB_TIME + "\n";
+    KMLogCenter.INSTANCE.addLog(LOG);
+
     if (doPrint) {
-      System.out.println("Job Count:" + jobCount);
-      System.out.println("Average CCT:" + sumDur/jobCount);
-      System.out.println("Total Job Duration:" + sumDur);
+
+      System.out.println(JOB_COUNT);
+      System.out.println(AVG_CCT);
+      System.out.println(TOTAL_JOB_TIME);
 
       if (considerDeadline) {
         System.out.println(metDeadlineCount + "/" + admitCount + " " + ignoreCount);
