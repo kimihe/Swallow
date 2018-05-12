@@ -105,7 +105,12 @@ public class Constants {
   /**
    * {@link CoflowSimulatorSmartCompression#useCompression(double)} CPU idle ratio.
    */
-  public static final double SIMULATION_CPU_IDLE_THRESHOLD = 70;
+  public static final double SIMULATION_CPU_IDLE_THRESHOLD = 60;
+
+  /**
+   * {@link CoflowSimulatorSmartCompression#useCompression(double)} CPU idle ratio.
+   */
+  public static final double SIMULATION_CPU_BUSY_COMPRESSION_TIME_COMSUMPTION_FACTOR = (100/(100-SIMULATION_CPU_IDLE_THRESHOLD)) * (100/(100-SIMULATION_CPU_IDLE_THRESHOLD));
 
   /**
    * {@link CoflowSimulatorSmartCompression#useCompression(double)} compression speed.

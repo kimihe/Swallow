@@ -7,6 +7,7 @@ import coflowsim.traceproducers.JobClassDescription;
 import coflowsim.traceproducers.TraceProducer;
 import coflowsim.utils.Constants;
 import coflowsim.utils.Constants.SHARING_ALGO;
+import coflowsim.simulators.CoflowSimulatorSmartCompression;
 
 public class CoflowSim {
 
@@ -114,17 +115,34 @@ public class CoflowSim {
     if (sharingAlgo == SHARING_ALGO.FAIR || sharingAlgo == SHARING_ALGO.PFP) {
       nlpl = new FlowSimulator(sharingAlgo, traceProducer, isOffline, considerDeadline,
           deadlineMultRandomFactor);
-    } else if (sharingAlgo == SHARING_ALGO.DARK) {
+
+      nlpl.simulate(simulationTimestep);
+      nlpl.printStats(true);
+    }
+    else if (sharingAlgo == SHARING_ALGO.DARK) {
       nlpl = new CoflowSimulatorDark(sharingAlgo, traceProducer);
-    } else if (sharingAlgo == SHARING_ALGO.SSCF || sharingAlgo == SHARING_ALGO.FVDF) {
-      nlpl = new CoflowSimulatorSmartCompression(SHARING_ALGO.SEBF, // improve on SEBF with smart compression
+
+      nlpl.simulate(simulationTimestep);
+      nlpl.printStats(true);
+    }
+    else if (sharingAlgo == SHARING_ALGO.SSCF || sharingAlgo == SHARING_ALGO.FVDF) {
+      CoflowSimulatorSmartCompression sim = new CoflowSimulatorSmartCompression(SHARING_ALGO.SEBF, // improve on SEBF with smart compression
               traceProducer, isOffline, considerDeadline, deadlineMultRandomFactor);
-    } else {
+      sim.enforceCompression = true;
+
+      sim.simulate(simulationTimestep);
+      sim.printStats(true);
+
+    }
+    else {
       nlpl = new CoflowSimulator(sharingAlgo, traceProducer, isOffline, considerDeadline,
           deadlineMultRandomFactor);
+
+      nlpl.simulate(simulationTimestep);
+      nlpl.printStats(true);
     }
 
-    nlpl.simulate(simulationTimestep);
-    nlpl.printStats(true);
+//    nlpl.simulate(simulationTimestep);
+//    nlpl.printStats(true);
   }
 }

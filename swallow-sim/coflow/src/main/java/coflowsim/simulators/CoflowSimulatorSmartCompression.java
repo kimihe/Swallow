@@ -26,6 +26,24 @@ public class CoflowSimulatorSmartCompression extends Simulator {
     double[] sendBpsFree;
     double[] recvBpsFree;
 
+
+
+
+    public boolean enforceCompression;
+
+//    private boolean enableSmartCompression;
+//
+//    public void setEnableSmartCompression (boolean b) {
+//        this.enableSmartCompression = b;
+//    }
+//
+//    public  boolean getEnableSmartCompress() {
+//        return this.enableSmartCompression;
+//    }
+
+
+
+
     /**
      * {@inheritDoc}
      */
@@ -441,6 +459,8 @@ public class CoflowSimulatorSmartCompression extends Simulator {
 
     private boolean useCompression(double bandwidth) {
 
+
+        // first
         java.util.Random random = new java.util.Random();
         int r = random.nextInt();
         r = r % 100;
@@ -448,6 +468,7 @@ public class CoflowSimulatorSmartCompression extends Simulator {
             return false;
         }
 
+        // second
         double v1 = bandwidth;
         double v2 = Constants.SIMULATION_COMPRESSION_SPEED * (1-Constants.SIMULATION_COMPRESSION_RARIO);
         if (v1 >= v2) {
@@ -471,7 +492,8 @@ public class CoflowSimulatorSmartCompression extends Simulator {
 
 
                 double multiFactor = 1.0;
-                if (useCompression(bandwidth)) {
+
+                if (this.enforceCompression) {
 
                     // D: newBytesPerTask, d: originBytesPerTask
                     // CompressionSpeed = alpha * Bandwidth
@@ -480,10 +502,34 @@ public class CoflowSimulatorSmartCompression extends Simulator {
                     double alpha = Constants.SIMULATION_COMPRESSION_SPEED/bandwidth;
                     double res = alpha/(1+alpha*Constants.SIMULATION_COMPRESSION_RARIO);
 
-                    if (res > 1.0) {
+
+                    java.util.Random random = new java.util.Random();
+                    int r = random.nextInt();
+                    r = r % 100;
+                    if (r > Constants.SIMULATION_CPU_IDLE_THRESHOLD) {
+                        multiFactor = res / Constants.SIMULATION_CPU_BUSY_COMPRESSION_TIME_COMSUMPTION_FACTOR;
+                    }
+                    else {
                         multiFactor = res;
                     }
                 }
+                else {
+                    if (useCompression(bandwidth)) {
+
+                        // D: newBytesPerTask, d: originBytesPerTask
+                        // CompressionSpeed = alpha * Bandwidth
+                        // K: CompressionRatio
+                        // Formula: D = alpha*d/(1+alpha*K)
+                        double alpha = Constants.SIMULATION_COMPRESSION_SPEED/bandwidth;
+                        double res = alpha/(1+alpha*Constants.SIMULATION_COMPRESSION_RARIO);
+
+                        if (res > 1.0) {
+                            multiFactor = res;
+                        }
+                    }
+                }
+
+
 
 
 
