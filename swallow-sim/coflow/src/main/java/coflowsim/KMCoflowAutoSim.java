@@ -169,5 +169,6 @@ public class KMCoflowAutoSim {
         } // bandwidth scope
 
         KMLogCenter.INSTANCE.description();
+        KMLogCenter.INSTANCE.saveLog();
     } // main()
 } // class domain
