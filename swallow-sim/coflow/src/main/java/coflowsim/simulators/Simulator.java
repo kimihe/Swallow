@@ -300,11 +300,11 @@ public abstract class Simulator {
 
 
 
-    String JOB_COUNT = "Job Count: " + jobCount + "\n";
-    String AVG_CCT = "Average CCT: " + sumDur/jobCount  + "\n";
-    String TOTAL_JOB_TIME = "Total Job Duration: " + sumDur + "\n";
+    String JOB_COUNT      = "Job Count:                 " + jobCount                + "\n";
+    String AVG_CCT        = "Average CCT:               " + sumDur/jobCount  + " ms" + "\n";
+    String TOTAL_JOB_TIME = "Total Job Duration:        " + sumDur           + " ms" + "\n";
 
-    String LOG = JOB_COUNT + AVG_CCT + TOTAL_JOB_TIME + "\n";
+    String LOG = JOB_COUNT + AVG_CCT + TOTAL_JOB_TIME + "\n" + "************* *********** ************* \n";
     KMLogCenter.INSTANCE.addLog(LOG);
 
     if (doPrint) {

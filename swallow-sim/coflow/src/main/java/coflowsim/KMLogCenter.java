@@ -14,7 +14,7 @@ public enum KMLogCenter {
         System.out.print("************* KMLogCenter ************* \n");
         for(int i = 0; i < logList.size(); i++){
             System.out.print(logList.get(i) + "\n");
-            System.out.print("************* *********** ************* \n");
         }
+        System.out.print("*************** Log End *************** \n");
     }
 }

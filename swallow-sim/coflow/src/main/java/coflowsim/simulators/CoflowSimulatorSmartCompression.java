@@ -30,7 +30,8 @@ public class CoflowSimulatorSmartCompression extends Simulator {
 
 
     public boolean enforceCompression;
-    public double simBandwidth;
+    public double  simBandwidth;
+    public double  simCPUIdleThreshold;
 
 //    private boolean enableSmartCompression;
 //
@@ -465,7 +466,7 @@ public class CoflowSimulatorSmartCompression extends Simulator {
         java.util.Random random = new java.util.Random();
         int r = random.nextInt();
         r = r % 100;
-        if (r > Constants.SIMULATION_CPU_IDLE_THRESHOLD) {
+        if (r > this.simCPUIdleThreshold) {
             return false;
         }
 
@@ -507,8 +508,9 @@ public class CoflowSimulatorSmartCompression extends Simulator {
                     java.util.Random random = new java.util.Random();
                     int r = random.nextInt();
                     r = r % 100;
-                    if (r > Constants.SIMULATION_CPU_IDLE_THRESHOLD) {
-                        multiFactor = res / Constants.SIMULATION_CPU_BUSY_COMPRESSION_TIME_COMSUMPTION_FACTOR;
+                    if (r > this.simCPUIdleThreshold) {
+                        double SIMULATION_CPU_BUSY_COMPRESSION_TIME_COMSUMPTION_FACTOR = (100/(100-this.simCPUIdleThreshold)) * (100/(100-this.simCPUIdleThreshold));
+                        multiFactor = res / SIMULATION_CPU_BUSY_COMPRESSION_TIME_COMSUMPTION_FACTOR;
                     }
                     else {
                         multiFactor = res;
