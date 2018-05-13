@@ -16,7 +16,7 @@ public class KMCoflowAutoSim {
     public static void main(String[] args) {
 
         double[]  bandwidthArr          =  {100, 500, 1000, 5000, 10000};
-        double[]  cpuIdleThresholdArr   =  {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9};
+        double[]  cpuIdleThresholdArr   =  {0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95};
         boolean[] enforceCompressionArr =  {false, true};
 
         for (int bandwidthIndex = 0; bandwidthIndex < bandwidthArr.length; bandwidthIndex++){
@@ -24,7 +24,7 @@ public class KMCoflowAutoSim {
                 for (int ecIndex = 0; ecIndex < enforceCompressionArr.length; ecIndex++) {
                     String bandwidthInfo = "Bandwidth:                 " + bandwidthArr[bandwidthIndex]       + " Mbps"   + "\n";
                     String cpuInfo       = "CPU Idle Threshold:        " + cpuIdleThresholdArr[cpuIndex]*100  + " %"      + "\n";
-                    String ecInfo        = "Is Enforced COmpression:   " + enforceCompressionArr[ecIndex]                + "\n";
+                    String ecInfo        = "Is Enforced COmpression:   " + enforceCompressionArr[ecIndex]                 + "\n";
                     String hardwareInfo  = bandwidthInfo + cpuInfo + ecInfo;
 
                     KMLogCenter.INSTANCE.addLog(hardwareInfo);

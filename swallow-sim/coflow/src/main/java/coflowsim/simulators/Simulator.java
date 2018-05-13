@@ -300,7 +300,7 @@ public abstract class Simulator {
 
 
 
-    String JOB_COUNT      = "Job Count:                 " + jobCount                + "\n";
+    String JOB_COUNT      = "Job Count:                 " + jobCount                 + "\n";
     String AVG_CCT        = "Average CCT:               " + sumDur/jobCount  + " ms" + "\n";
     String TOTAL_JOB_TIME = "Total Job Duration:        " + sumDur           + " ms" + "\n";
 
