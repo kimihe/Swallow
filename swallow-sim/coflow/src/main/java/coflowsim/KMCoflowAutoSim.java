@@ -8,6 +8,7 @@ import coflowsim.traceproducers.TraceProducer;
 import coflowsim.utils.Constants;
 import coflowsim.utils.Constants.SHARING_ALGO;
 import coflowsim.simulators.KMCoflowAutoSimulatorSmartCompression;
+import coflowsim.simulators.KMCoflowAutoSimulatorSmartCompression.KMSimulatorType;
 
 
 
@@ -27,17 +28,17 @@ public class KMCoflowAutoSim {
 //        double[]  bandwidthArr          =  {10, 20, 40, 60, 80, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
 //        double[]  cpuIdleThresholdArr   =  {0.05, 0.5, 0.95};
 
-        double[]  bandwidthArr          =  {10};
-        double[]  cpuIdleThresholdArr   =  {0.5};
-
-        boolean[] enforceCompressionArr =  {false};
+        double[]  bandwidthArr          =  {10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 750, 1000, 2500, 5000, 7500, 10000, 25000, 50000, 100000};
+        double[]  cpuIdleThresholdArr   =  {0.05, 0.25, 0.5, 0.75, 0.95};
+        KMSimulatorType[] simulatorTypeArr = {KMSimulatorType.SEBF_WITH_STATIC_COMPRESSION, KMSimulatorType.FVDF};
+        //boolean[] enforceCompressionArr =  {true, false};
 
         for (int bandwidthIndex = 0; bandwidthIndex < bandwidthArr.length; bandwidthIndex++){
             for (int cpuIndex = 0; cpuIndex < cpuIdleThresholdArr.length; cpuIndex++) {
-                for (int ecIndex = 0; ecIndex < enforceCompressionArr.length; ecIndex++) {
+                for (int ecIndex = 0; ecIndex < simulatorTypeArr.length; ecIndex++) {
                     String bandwidthInfo = "Bandwidth:                 " + bandwidthArr[bandwidthIndex]       + " Mbps"   + "\n";
                     String cpuInfo       = "CPU Idle Threshold:        " + cpuIdleThresholdArr[cpuIndex]*100  + " %"      + "\n";
-                    String ecInfo        = "Is Enforced COmpression:   " + enforceCompressionArr[ecIndex]                 + "\n";
+                    String ecInfo        = "Simulator Type:            " + simulatorTypeArr[ecIndex]                      + "\n";
                     String hardwareInfo  = bandwidthInfo + cpuInfo + ecInfo;
 
                     KMLogCenter.INSTANCE.addLog(hardwareInfo);
@@ -162,9 +163,9 @@ public class KMCoflowAutoSim {
                         KMCoflowAutoSimulatorSmartCompression sim = new KMCoflowAutoSimulatorSmartCompression(SHARING_ALGO.SEBF,
                                 traceProducer, isOffline, considerDeadline, deadlineMultRandomFactor);
 
-                        sim.simBandwidth = bandwidthArr[bandwidthIndex];
+                        sim.simBandwidth        = bandwidthArr[bandwidthIndex];
                         sim.simCPUIdleThreshold = cpuIdleThresholdArr[cpuIndex];
-                        sim.enforceCompression = enforceCompressionArr[ecIndex];
+                        sim.simType  = simulatorTypeArr[ecIndex];
 
                         sim.simulate(simulationTimestep);
                         sim.printStats(false);
