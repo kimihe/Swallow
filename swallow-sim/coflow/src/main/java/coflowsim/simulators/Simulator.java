@@ -309,9 +309,10 @@ public abstract class Simulator {
 
     if (doPrint) {
 
-      System.out.println(JOB_COUNT);
-      System.out.println(AVG_CCT);
-      System.out.println(TOTAL_JOB_TIME);
+//      System.out.println(JOB_COUNT);
+//      System.out.println(AVG_CCT);
+//      System.out.println(TOTAL_JOB_TIME);
+      System.out.println(LOG);
 
       if (considerDeadline) {
         System.out.println(metDeadlineCount + "/" + admitCount + " " + ignoreCount);

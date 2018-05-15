@@ -128,7 +128,7 @@ public class CoflowSim {
     else if (sharingAlgo == SHARING_ALGO.SSCF || sharingAlgo == SHARING_ALGO.FVDF) {
       CoflowSimulatorSmartCompression sim = new CoflowSimulatorSmartCompression(SHARING_ALGO.SEBF, // improve on SEBF with smart compression
               traceProducer, isOffline, considerDeadline, deadlineMultRandomFactor);
-      sim.enforceCompression = true;
+      sim.enforceCompression = false;
 
       sim.simulate(simulationTimestep);
       sim.printStats(true);

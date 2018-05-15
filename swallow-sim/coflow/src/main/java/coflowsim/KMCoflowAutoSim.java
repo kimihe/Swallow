@@ -7,7 +7,7 @@ import coflowsim.traceproducers.JobClassDescription;
 import coflowsim.traceproducers.TraceProducer;
 import coflowsim.utils.Constants;
 import coflowsim.utils.Constants.SHARING_ALGO;
-import coflowsim.simulators.CoflowSimulatorSmartCompression;
+import coflowsim.simulators.KMCoflowAutoSimulatorSmartCompression;
 
 
 
@@ -24,10 +24,13 @@ public class KMCoflowAutoSim {
 //        double[]  bandwidthArr          =  {1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000};
 //        double[]  cpuIdleThresholdArr   =  {0.05, 0.5, 0.95};
 
-        double[]  bandwidthArr          =  {10, 20, 40, 60, 80, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
-        double[]  cpuIdleThresholdArr   =  {0.05, 0.5, 0.95};
+//        double[]  bandwidthArr          =  {10, 20, 40, 60, 80, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
+//        double[]  cpuIdleThresholdArr   =  {0.05, 0.5, 0.95};
 
-        boolean[] enforceCompressionArr =  {false, true};
+        double[]  bandwidthArr          =  {10};
+        double[]  cpuIdleThresholdArr   =  {0.5};
+
+        boolean[] enforceCompressionArr =  {false};
 
         for (int bandwidthIndex = 0; bandwidthIndex < bandwidthArr.length; bandwidthIndex++){
             for (int cpuIndex = 0; cpuIndex < cpuIdleThresholdArr.length; cpuIndex++) {
@@ -156,7 +159,7 @@ public class KMCoflowAutoSim {
                     }
                     else if (sharingAlgo == SHARING_ALGO.SSCF || sharingAlgo == SHARING_ALGO.FVDF) {
 
-                        CoflowSimulatorSmartCompression sim = new CoflowSimulatorSmartCompression(SHARING_ALGO.SEBF,
+                        KMCoflowAutoSimulatorSmartCompression sim = new KMCoflowAutoSimulatorSmartCompression(SHARING_ALGO.SEBF,
                                 traceProducer, isOffline, considerDeadline, deadlineMultRandomFactor);
 
                         sim.simBandwidth = bandwidthArr[bandwidthIndex];

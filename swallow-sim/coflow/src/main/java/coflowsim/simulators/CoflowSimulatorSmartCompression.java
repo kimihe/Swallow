@@ -29,7 +29,7 @@ public class CoflowSimulatorSmartCompression extends Simulator {
 
 
 
-    public boolean enforceCompression;
+    public boolean enforceCompression = false;
     public double  simBandwidth;
     public double  simCPUIdleThreshold;
 
@@ -531,6 +531,10 @@ public class CoflowSimulatorSmartCompression extends Simulator {
                         }
                     }
                 }
+
+//                System.out.println("Is EC: " + enforceCompression + "\n"
+//                        + "bandwidth: " + simBandwidth + "\n"
+//                        + "multifactor: " + multiFactor);
 
 
 
