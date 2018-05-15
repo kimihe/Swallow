@@ -586,6 +586,8 @@ public class KMCoflowAutoSimulatorSmartCompression extends Simulator {
                     }
                 }
 
+                double tmp = multiFactor;
+
 //                System.out.println("Is EC: " + enforceCompression + "\n"
 //                        + "bandwidth: " + simBandwidth + "\n"
 //                        + "multifactor: " + multiFactor);

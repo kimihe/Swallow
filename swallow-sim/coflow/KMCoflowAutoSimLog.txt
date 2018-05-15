@@ -1,81 +1,21 @@
 ************* KMLogCenter ************* 
-Bandwidth:                 10.0 Mbps
-CPU Idle Threshold:        50.0 %
+Bandwidth:                 10000.0 Mbps
+CPU Idle Threshold:        5.0 %
 Simulator Type:            SEBF_WITH_STATIC_COMPRESSION
 
 Job Count:                 8
-Average CCT:               6519.0 ms
-Total Job Duration:        52152.0 ms
+Average CCT:               4763512.0 ms
+Total Job Duration:        3.8108096E7 ms
 
 ************* *********** ************* 
 
-Bandwidth:                 10.0 Mbps
-CPU Idle Threshold:        50.0 %
+Bandwidth:                 10000.0 Mbps
+CPU Idle Threshold:        5.0 %
 Simulator Type:            FVDF
 
 Job Count:                 8
-Average CCT:               7203.0 ms
-Total Job Duration:        57624.0 ms
-
-************* *********** ************* 
-
-Bandwidth:                 20.0 Mbps
-CPU Idle Threshold:        50.0 %
-Simulator Type:            SEBF_WITH_STATIC_COMPRESSION
-
-Job Count:                 8
-Average CCT:               12802.0 ms
-Total Job Duration:        102416.0 ms
-
-************* *********** ************* 
-
-Bandwidth:                 20.0 Mbps
-CPU Idle Threshold:        50.0 %
-Simulator Type:            FVDF
-
-Job Count:                 8
-Average CCT:               13698.0 ms
-Total Job Duration:        109584.0 ms
-
-************* *********** ************* 
-
-Bandwidth:                 50.0 Mbps
-CPU Idle Threshold:        50.0 %
-Simulator Type:            SEBF_WITH_STATIC_COMPRESSION
-
-Job Count:                 8
-Average CCT:               31683.0 ms
-Total Job Duration:        253464.0 ms
-
-************* *********** ************* 
-
-Bandwidth:                 50.0 Mbps
-CPU Idle Threshold:        50.0 %
-Simulator Type:            FVDF
-
-Job Count:                 8
-Average CCT:               30706.0 ms
-Total Job Duration:        245648.0 ms
-
-************* *********** ************* 
-
-Bandwidth:                 100.0 Mbps
-CPU Idle Threshold:        50.0 %
-Simulator Type:            SEBF_WITH_STATIC_COMPRESSION
-
-Job Count:                 8
-Average CCT:               62700.0 ms
-Total Job Duration:        501600.0 ms
-
-************* *********** ************* 
-
-Bandwidth:                 100.0 Mbps
-CPU Idle Threshold:        50.0 %
-Simulator Type:            FVDF
-
-Job Count:                 8
-Average CCT:               53479.0 ms
-Total Job Duration:        427832.0 ms
+Average CCT:               7496.0 ms
+Total Job Duration:        59968.0 ms
 
 ************* *********** ************* 
 
