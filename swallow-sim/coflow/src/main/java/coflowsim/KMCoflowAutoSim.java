@@ -27,6 +27,9 @@ public class KMCoflowAutoSim {
 
 //        double[]  bandwidthArr          =  {10, 20, 40, 60, 80, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
 //        double[]  cpuIdleThresholdArr   =  {0.05, 0.5, 0.95};
+//
+//        double[]  bandwidthArr          =  {10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 750, 1000, 2500, 5000, 7500, 10000};
+//        double[]  cpuIdleThresholdArr   =  {0.05, 0.25, 0.5, 0.75, 0.95};
 
         double[]  bandwidthArr          =  {10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 750, 1000, 2500, 5000, 7500, 10000};
         double[]  cpuIdleThresholdArr   =  {0.05, 0.25, 0.5, 0.75, 0.95};

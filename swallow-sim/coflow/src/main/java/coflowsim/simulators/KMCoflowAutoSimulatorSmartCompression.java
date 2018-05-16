@@ -36,7 +36,7 @@ public class KMCoflowAutoSimulatorSmartCompression extends Simulator {
     }
 
     public KMSimulatorType  simType                 = KMSimulatorType.FVDF;
-    public double           simBandwidth            =  1000;
+    public double           simBandwidth            =  1000;  // Mbps
     public double           simCPUIdleThreshold     =  0.7;
 
 
@@ -44,6 +44,7 @@ public class KMCoflowAutoSimulatorSmartCompression extends Simulator {
     private double   simCompressionSpeed        =  625; // MB/s  LZ4 default (v1.7.3)
     private double   simCompressionRatio        =  0.48;// LZ4 default (v1.7.3)
     private double   simTimeSlice               =  1.0;
+    private double   simBandwidthBaseline       =  100;  // Mbps, Bandwidth baseline
 
     private enum KMVolumnDecrementType {
         TRANSMISSION, COMPRESSION, FAST_VOLUMN_DISPOSAL_FIRST
@@ -140,7 +141,7 @@ public class KMCoflowAutoSimulatorSmartCompression extends Simulator {
     /** {@inheritDoc} */
     @Override
     protected void onSchedule(long curTime) {
-        proceedFlowsInAllRacks(curTime, Constants.SIMULATION_QUANTA, this.simBandwidth/8);
+        proceedFlowsInAllRacks(curTime, Constants.SIMULATION_QUANTA, this.simBandwidthBaseline/8);
     }
 
     /** {@inheritDoc} */
@@ -518,35 +519,49 @@ public class KMCoflowAutoSimulatorSmartCompression extends Simulator {
     private  double volumnDecrementRatio(KMVolumnDecrementType vdType, double compressionSpeed, double compressionRatio, double bandwidth, double timeSlice) {
 
         double vdRatio = 1.0;
+        double compressionPercentile = 1.0;
+        double transmissionPercentile = compressionRatio;
+        double transmissionVolumnDecrementBaseline = this.simBandwidthBaseline * timeSlice;
+
+
         switch (vdType) {
             case TRANSMISSION: {
+
+                double delta_t = bandwidth * timeSlice;
+                vdRatio = delta_t / transmissionVolumnDecrementBaseline;
+
                 break;
             }
             case COMPRESSION: {
+
                 double delta_c = compressionSpeed * timeSlice * (1-compressionRatio);
                 double delta_t = bandwidth * timeSlice;
+                delta_c = delta_c*compressionPercentile + delta_t*transmissionPercentile;
 
-                vdRatio = delta_c/delta_t;
+                vdRatio = delta_c / transmissionVolumnDecrementBaseline;
+
                 break;
             }
             case FAST_VOLUMN_DISPOSAL_FIRST: {
+
                 double delta_c = compressionSpeed * timeSlice * (1-compressionRatio);
                 double delta_t = bandwidth * timeSlice;
+                delta_c = delta_c*compressionPercentile + delta_t*transmissionPercentile;
 
-                double tmp = delta_c/delta_t;
-                if (tmp > 1) {
-                    vdRatio = tmp;
+                if (delta_c > delta_t) {
+                    vdRatio = delta_c / transmissionVolumnDecrementBaseline;
                 }
                 else {
-                    vdRatio = 1/tmp;
+                    vdRatio = delta_t / transmissionVolumnDecrementBaseline;
                 }
+
                 break;
             }
         }
         return vdRatio;
     }
 
-    private void proceedFlowsInAllRacks(long curTime, long quantaSize, double bandwidth) {
+    private void proceedFlowsInAllRacks(long curTime, long quantaSize, double bandwidthBaseline) {
         for (int i = 0; i < NUM_RACKS; i++) {
             double totalBytesMoved = 0;
             Vector<Flow> flowsToRemove = new Vector<Flow>();
@@ -562,31 +577,31 @@ public class KMCoflowAutoSimulatorSmartCompression extends Simulator {
 
 
                 double multiFactor = 1.0;
+                double currentCompressionSpeed = this.simCompressionSpeed;
+
+                if (isCPUBusy()) {
+                    currentCompressionSpeed = currentCompressionSpeed * CPUDegradation();
+                }
 
                 if (this.simType == KMSimulatorType.SEBF_WITH_STATIC_COMPRESSION) {
-
-                    double currentCompressionSpeed = this.simCompressionSpeed;
-
-                    if (isCPUBusy()) {
-                        currentCompressionSpeed = currentCompressionSpeed * CPUDegradation();
-                    }
-
                     multiFactor = volumnDecrementRatio(KMVolumnDecrementType.COMPRESSION,
                             currentCompressionSpeed, this.simCompressionRatio, this.simBandwidth, this.simTimeSlice);
                 }
                 else {
+                    multiFactor = volumnDecrementRatio(KMVolumnDecrementType.FAST_VOLUMN_DISPOSAL_FIRST,
+                            currentCompressionSpeed, this.simCompressionRatio, this.simBandwidth, this.simTimeSlice);
 
-                    if (isCPUBusy()) {
-                        multiFactor = volumnDecrementRatio(KMVolumnDecrementType.TRANSMISSION,
-                                this.simCompressionSpeed, this.simCompressionRatio, this.simBandwidth, this.simTimeSlice);
-                    }
-                    else {
-                        multiFactor = volumnDecrementRatio(KMVolumnDecrementType.FAST_VOLUMN_DISPOSAL_FIRST,
-                                this.simCompressionSpeed, this.simCompressionRatio, this.simBandwidth, this.simTimeSlice);
-                    }
+//                    if (isCPUBusy()) {
+//                        multiFactor = volumnDecrementRatio(KMVolumnDecrementType.TRANSMISSION,
+//                                this.simCompressionSpeed, this.simCompressionRatio, this.simBandwidth, this.simTimeSlice);
+//                    }
+//                    else {
+//                        multiFactor = volumnDecrementRatio(KMVolumnDecrementType.FAST_VOLUMN_DISPOSAL_FIRST,
+//                                this.simCompressionSpeed, this.simCompressionRatio, this.simBandwidth, this.simTimeSlice);
+//                    }
                 }
 
-                double tmp = multiFactor;
+                double res = multiFactor;
 
 //                System.out.println("Is EC: " + enforceCompression + "\n"
 //                        + "bandwidth: " + simBandwidth + "\n"
