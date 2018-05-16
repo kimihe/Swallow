@@ -141,7 +141,7 @@ public class KMCoflowAutoSimulatorSmartCompression extends Simulator {
     /** {@inheritDoc} */
     @Override
     protected void onSchedule(long curTime) {
-        proceedFlowsInAllRacks(curTime, Constants.SIMULATION_QUANTA, this.simBandwidthBaseline/8);
+        proceedFlowsInAllRacks(curTime, Constants.SIMULATION_QUANTA);
     }
 
     /** {@inheritDoc} */
@@ -561,7 +561,7 @@ public class KMCoflowAutoSimulatorSmartCompression extends Simulator {
         return vdRatio;
     }
 
-    private void proceedFlowsInAllRacks(long curTime, long quantaSize, double bandwidthBaseline) {
+    private void proceedFlowsInAllRacks(long curTime, long quantaSize) {
         for (int i = 0; i < NUM_RACKS; i++) {
             double totalBytesMoved = 0;
             Vector<Flow> flowsToRemove = new Vector<Flow>();
