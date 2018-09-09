@@ -1,5 +1,6 @@
 # Project Guide
-* A prototype of **Swallow**.   
+* This project is a light-weight prototype of **Swallow**. 
+* Design details and principles of **Swallow** can be found at **"[Swallow: Joint Online Scheduling and Coflow Compression in Datacenter Networks](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8425204)", in *Proc. IPDPS*, Vancouver, May. 2018**.   
 * You can also found our implementation in Spark-2.2.0 at: [Modified-Spark](https://github.com/kimihe/SparkInternals/tree/master/Source%20Codes%20Development/For_Source_Codes_Modifying_spark-2.2.0-debug). As the full source code project is large, we just put modified codes, mainly in module of `spark-core` and `network-common`.  
 * In root directory `Swallow-master`, four subprojects are contained: **swallow**, **swallow-sim**, **swallow-benchmark** and **swallow-trace**.  
 
@@ -59,8 +60,13 @@ Enter number:
 
 * These four processes simulate a simplest distributed scheduling system. In this example, all of them are run on the same machine, you can modify the `application.conf` in directory `resources` to respectively configure their IP address and communication port. **Swallow can be deployed on different machines and run as a real distributed scheduling system.**
 
-# About Intellij IDEA
+# Collaboration with Intellij IDEA
 You can also organize this project with **Intellij IDEA**, just open from the root directory `Swallow-master/swallow`.
+
+# Relevant Publications
+
+* "[Swallow: Joint Online Scheduling and Coflow Compression in Datacenter Networks](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8425204)", in *Proc. IPDPS*, Vancouver, May. 2018.   
+
 
 # More
 This project is still in development, welcome any contributions to help make it better.  **:)**
