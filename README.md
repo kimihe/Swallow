@@ -1,4 +1,6 @@
 # Project Guide
+> All the practice of Swallow is for project Griffin.
+
 * This project is a light-weight prototype of **Swallow**. 
 * Design details and principles of **Swallow** can be found at **"[Swallow: Joint Online Scheduling and Coflow Compression in Datacenter Networks](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8425204)", in *Proc. IPDPS*, Vancouver, May. 2018**.   
 * You can also found our implementation in Spark-2.2.0 at: [Modified-Spark](https://github.com/kimihe/SparkInternals/tree/master/Source%20Codes%20Development/For_Source_Codes_Modifying_spark-2.2.0-debug). As the full source code project is large, we just put modified codes, mainly in module of `spark-core` and `network-common`.  
